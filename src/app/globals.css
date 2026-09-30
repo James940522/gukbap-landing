@@ -1405,9 +1405,99 @@ details[open] .details-plus::after {
   margin-top: 7px;
 }
 
+/* Nurungji: one generous visual and a short editorial menu list. */
+.nurungji-section {
+  background: var(--background-deep);
+}
+.nurungji-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 80px;
+}
+.nurungji-lead {
+  margin-top: 25px;
+  font-size: 19px;
+  color: var(--gold-light);
+  letter-spacing: -0.03em;
+}
+.nurungji-copy .body-copy {
+  margin-top: 13px;
+}
+.nurungji-menu-list {
+  list-style: none;
+  margin-block: 30px 24px;
+  border-top: 1px solid var(--border-gold);
+}
+.nurungji-menu-list li {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.nurungji-menu-number {
+  font-size: 10px;
+  color: var(--gold-light);
+}
+.nurungji-menu-list h3 {
+  font-size: 18px;
+  letter-spacing: -0.03em;
+}
+.nurungji-visual {
+  position: relative;
+  min-width: 0;
+}
+.nurungji-media {
+  aspect-ratio: 1;
+  background: #28251e;
+}
+.nurungji-media .placeholder-bowl {
+  width: 86px;
+  height: 86px;
+}
+.nurungji-stamp {
+  position: absolute;
+  z-index: 1;
+  top: -28px;
+  right: 28px;
+  padding: 20px 15px 18px;
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  background: #393023;
+  color: var(--ivory);
+  text-align: center;
+  font-size: 19px;
+  letter-spacing: 0.08em;
+}
+.nurungji-stamp i {
+  display: block;
+  margin-top: 8px;
+  font-size: 9px;
+  font-style: normal;
+  color: var(--gold-light);
+  letter-spacing: 0.06em;
+}
+.nurungji-visual-note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.nurungji-visual-note span:last-child {
+  color: var(--text-muted);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
 /* Menu: a category rail beside the desktop slider; stacked cards on mobile. */
 .menu-section {
-  background: var(--background);
+  --surface: #f5ede0;
+  --surface-elevated: #e3d7c3;
+  background: var(--section-ivory);
 }
 .menu-heading {
   align-items: center;
@@ -1472,7 +1562,7 @@ details[open] .details-plus::after {
   border-color: var(--border-gold);
 }
 .menu-tabs button:hover {
-  color: var(--ivory);
+  color: var(--text-primary);
   background: var(--surface);
 }
 .menu-tabs button:focus-visible {
@@ -1508,6 +1598,127 @@ details[open] .details-plus::after {
   padding: 3px 8px;
   font-size: 10px;
   margin-top: 12px;
+}
+
+/* Pairings: a shared table above three recommendations, without extra cards. */
+.pairing-section {
+  background: #1b1a17;
+}
+.pairing-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 44px;
+}
+.pairing-heading .body-copy {
+  padding-bottom: 8px;
+}
+.pairing-visual {
+  position: relative;
+}
+.pairing-media {
+  aspect-ratio: 3.6;
+  background: #24221d;
+}
+.table-setting {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  pointer-events: none;
+  color: rgba(203, 164, 91, 0.16);
+}
+.table-bowl,
+.table-plate {
+  position: absolute;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+.table-bowl {
+  width: 27%;
+  aspect-ratio: 1;
+  left: 4%;
+  top: 16%;
+}
+.table-plate {
+  width: 27%;
+  aspect-ratio: 1.35;
+  right: 7%;
+  top: -16%;
+  transform: rotate(-24deg);
+}
+.table-bowl::after,
+.table-plate::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+}
+.table-chopsticks {
+  position: absolute;
+  width: 11px;
+  height: 65%;
+  right: 15%;
+  top: 40%;
+  border-inline: 1px solid currentColor;
+  transform: rotate(28deg);
+}
+.pairing-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 36px;
+}
+.pairing-item {
+  padding: 4px 28px;
+  border-left: 1px solid var(--border-gold);
+}
+.pairing-item:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.pairing-item:last-child {
+  padding-right: 0;
+}
+.pairing-occasion {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.pairing-occasion span {
+  color: var(--gold-light);
+  font-size: 9px;
+}
+.pairing-item h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-top: 17px;
+  font-size: 22px;
+  letter-spacing: -0.045em;
+  line-height: 1.6;
+}
+.pairing-plus {
+  color: var(--gold-light);
+  font-size: 15px;
+  font-weight: 400;
+}
+.pairing-description {
+  margin-top: 9px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+.pairing-footnote {
+  margin-top: 36px;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.8;
 }
 
 /* Standards: a bowl-shaped brand motif connects four principles. */
@@ -2196,5 +2407,117 @@ details[open] .details-plus::after {
   .inquiry-topics > span {
     font-size: 11px;
     padding: 8px 10px;
+  }
+}
+
+/* Responsive layouts for the two editorial sections. */
+@media (max-width: 1100px) {
+  .nurungji-layout {
+    gap: 44px;
+  }
+  .pairing-item {
+    padding-inline: 20px;
+  }
+  .pairing-item h3 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 899px) {
+  .nurungji-layout {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+  .nurungji-media {
+    aspect-ratio: 1.4;
+  }
+  .nurungji-menu-list {
+    max-width: 520px;
+  }
+  .pairing-heading {
+    align-items: start;
+  }
+  .pairing-heading .body-copy {
+    padding-top: 41px;
+    font-size: 14px;
+  }
+  .pairing-media {
+    aspect-ratio: 2.6;
+  }
+}
+
+@media (max-width: 599px) {
+  .nurungji-layout {
+    gap: 56px;
+  }
+  .nurungji-lead {
+    font-size: 17px;
+    margin-top: 22px;
+  }
+  .nurungji-menu-list h3 {
+    font-size: 17px;
+  }
+  .nurungji-media {
+    aspect-ratio: 1.1;
+  }
+  .nurungji-stamp {
+    right: 20px;
+    top: -22px;
+    padding: 14px 12px;
+    font-size: 17px;
+  }
+  .nurungji-visual-note {
+    gap: 8px;
+    font-size: 10px;
+  }
+  .nurungji-visual-note span:last-child {
+    font-size: 7px;
+  }
+  .pairing-heading {
+    display: block;
+    margin-bottom: 30px;
+  }
+  .pairing-heading .body-copy {
+    padding-top: 22px;
+  }
+  .pairing-media {
+    aspect-ratio: 1.35;
+  }
+  .table-bowl {
+    width: 48%;
+    left: -26%;
+    top: 31%;
+  }
+  .table-plate {
+    width: 57%;
+    right: -24%;
+    top: -4%;
+  }
+  .table-chopsticks {
+    height: 45%;
+    right: 8%;
+    top: 64%;
+  }
+  .pairing-list {
+    grid-template-columns: 1fr;
+    margin-top: 10px;
+  }
+  .pairing-item,
+  .pairing-item:first-child,
+  .pairing-item:last-child {
+    padding: 26px 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .pairing-item h3 {
+    margin-top: 10px;
+    font-size: 22px;
+  }
+  .pairing-description {
+    margin-top: 6px;
+  }
+  .pairing-footnote {
+    margin-top: 23px;
+    font-size: 10px;
   }
 }

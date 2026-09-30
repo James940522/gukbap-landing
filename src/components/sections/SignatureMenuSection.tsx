@@ -8,13 +8,13 @@ export function SignatureMenuSection() {
   return (
     <section
       id="menu"
-      className="section menu-section"
+      className="section section-light menu-section"
       aria-labelledby="menu-title"
     >
       <div className="container">
         <Reveal className="section-heading menu-heading">
           <div>
-            <SectionEyebrow number="02">SIGNATURE MENU</SectionEyebrow>
+            <SectionEyebrow number="03">SIGNATURE MENU</SectionEyebrow>
             <h2 id="menu-title" className="section-title">
               가장 자신 있는
               <br />

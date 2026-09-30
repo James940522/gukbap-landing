@@ -132,6 +132,34 @@ export const menuCategories: MenuCategory[] = [
   })),
 }));
 
+// TODO: Add confirmed nurungji and table-setting photographs.
+export const nurungjiFeature = {
+  image: null as string | null,
+  menus: menuCategories.flatMap((category) => category.items).filter((menu) => menu.name.includes("누룽지")),
+};
+
+export const pairingFeature = {
+  image: null as string | null,
+  // Editorial suggestions using existing dishes, not fixed sets or promotions.
+  suggestions: [
+    {
+      title: "든든하게 채우고 싶은 날",
+      dishes: ["돼지국밥", "보쌈"],
+      description: "뜨끈한 한 그릇에, 고기 한 점을 더해.",
+    },
+    {
+      title: "얼큰하게 즐기고 싶은 날",
+      dishes: ["얼큰 순대국밥", "부추전"],
+      description: "얼큰한 국밥 한 숟갈, 전 한 점의 즐거움.",
+    },
+    {
+      title: "따뜻하게 나누고 싶은 날",
+      dishes: ["맑은 돼지국밥", "고기왕만두"],
+      description: "맑은 국밥 곁에, 함께 나누는 만두 한 접시.",
+    },
+  ],
+};
+
 export const standards = [
   {
     number: "01",

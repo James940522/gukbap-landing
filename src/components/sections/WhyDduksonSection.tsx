@@ -8,7 +8,7 @@ export function WhyDduksonSection() {
     <section id="standard" className="section section-light standards-section" aria-labelledby="standards-title">
       <div className="container">
         <Reveal className="standards-intro">
-          <SectionEyebrow number="03">WHY DDUKSON</SectionEyebrow>
+          <SectionEyebrow number="05">WHY DDUKSON</SectionEyebrow>
           <h2 id="standards-title" className="section-title">익숙한 음식에,<br />분명한 기준.</h2>
           <p className="body-copy">좋은 한 그릇을 이루는, 뚝손의 네 가지 생각.</p>
         </Reveal>

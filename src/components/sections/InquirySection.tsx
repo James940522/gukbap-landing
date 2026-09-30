@@ -11,7 +11,7 @@ export function InquirySection() {
     >
       <div className="container inquiry-grid">
         <Reveal className="inquiry-copy">
-          <SectionEyebrow number="05">START WITH DDUKSON</SectionEyebrow>
+          <SectionEyebrow number="07">START WITH DDUKSON</SectionEyebrow>
           <h2 id="inquiry-title" className="section-title display-font">
             뚝손국밥과
             <br />
