@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 뚝손국밥
 
-## Getting Started
+산본에프앤비(SANBON F&B)의 뚝손국밥 브랜드 랜딩페이지 프로젝트입니다.
 
-First, run the development server:
+Next.js App Router, TypeScript, Tailwind CSS v4를 사용합니다.
+구현 기준은 [AGENTS.md](AGENTS.md)를 참고하세요.
+
+## 개발
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 검증
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm lint
+pnpm build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## UI 초안
 
-## Learn More
+- 브랜드 소개, 메뉴, 뚝손의 기준, 창업 안내, 문의 폼으로 구성합니다.
+- 메뉴 32종과 카테고리 8개는 `src/data/site.ts`에서 관리합니다.
+- 전달받은 샘플 사진은 첫 화면(국밥 한 숟갈), 브랜드 소개(가마솥 조리), 메뉴 소개(순대)에 적용했습니다.
+- 사진 원본은 `assets/food/originals/`, 웹용 WebP는 `public/images/food/`에 보관합니다.
+  `src/data/site.ts`의 `foodImages`에서 경로를 관리하며 `next/image`로 표시합니다.
+- 샘플과 개별 메뉴의 대응은 확인 후 연결합니다. 메뉴 데이터의 `image`에 이미지 경로를 지정하면 표시되며,
+  아직 사진이 없는 메뉴는 기존 이미지 영역을 유지합니다.
+- 문의 폼은 입력 검증만 수행합니다. 네트워크 전송이나 브라우저 저장을 하지 않습니다.
+- 실제 접수 채널, 개인정보 안내, 회사 정보, 가맹 정책은 확정 후 반영해야 합니다.
+- 초안은 검색 색인을 비활성화했습니다. 공개 시 `src/app/layout.tsx`의 robots 설정을 변경하세요.
 
-To learn more about Next.js, take a look at the following resources:
+## 로고
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 전달받은 JPEG 원본은 `assets/logos/originals/`에 보관합니다.
+- 배경을 제거하고 여백을 줄인 투명 PNG는 `public/images/logos/`에서 관리합니다.
+- `ddukson-gukbap.png`: 헤더, Hero, 푸터의 브랜드 로고.
+- `sanbon-fnb.png`: 푸터의 회사 로고.
+- 모든 로고는 `next/image`로 표시하며 원본 비율을 유지합니다.
+- [로고 처리 기록](assets/logos/README.md)에 원본 대응 관계와 편집 프롬프트를 기록했습니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 섹션 배경
 
-## Deploy on Vercel
+`omurice-landing/public/asset/bg/`에서 요청받은 네 파일을 원본 그대로
+`public/asset/bg/`에 복사했습니다. 질감은 창업 안내의 작은 패널에만 사용하고,
+섹션 전체는 먹색과 아이보리를 번갈아 배치합니다. 모바일에서는 패널 질감을 더 약하게 표시합니다.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| 파일 | 적용 영역 |
+| --- | --- |
+| `main-section1-bg.jpg` | 보관 · 현재 미사용 |
+| `sec7-bg.jpg` | 보관 · 현재 미사용 |
+| `main-section10-bg.jpg` | 보관 · 현재 미사용 |
+| `sec8-bg.jpg` | 창업 안내 패널 · 짙은 브라운 질감 |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 첫 화면은 큰 음식 사진과 원형 선 장식, 브랜드 소개는 넓은 사진과 세로 가치 목록으로 구성합니다.
+- 메뉴는 데스크톱에서 세로 카테고리와 슬라이드, 태블릿에서 가로 카테고리와 슬라이드,
+  모바일에서 가로 카테고리와 세로 목록으로 표시합니다. 자동 재생은 하지 않습니다.
+- 뚝손의 기준은 뚝배기 심볼과 네 가지 원칙, 창업 안내는 펼쳐보는 목록으로 구성합니다.
+- 주요 사진과 패널은 12~16px, 입력 필드와 카테고리는 8px 모서리를 사용합니다.
+
+## 폰트
+
+- [Pretendard](https://github.com/orioncactus/pretendard): 본문용 로컬 가변 폰트.
+- [마루 부리](https://hangeul.naver.com/font): Hero와 섹션 제목, 중앙 브랜드 심볼 문구에 SemiBold(600)를 사용합니다.
+  네이버 공식 WOFF2를 로컬에서 `next/font/local`로 불러오며, 한글 전체를 지원해 제목 교체 시 서브셋을 다시 만들 필요가 없습니다.
+- 본문·내비게이션·메뉴명·버튼은 Pretendard를 사용하며, 제목의 자간과 행간을 명조체에 맞춰 조정했습니다.
+- 이전 고운바탕 파일은 보관하며 현재 화면에서는 불러오지 않습니다.
+- 폰트 라이선스는 `public/fonts`에 함께 보관합니다.
+
+디자인 참고: [오늘은 볶음우동](https://todayudon.com/), [심 곱도리탕](https://www.simgopdoritang.com/).
+색감, 제목의 크기와 섹션 리듬을 참고하며 뚝손의 사진·심볼·정보 구조에 맞춰 재구성합니다.

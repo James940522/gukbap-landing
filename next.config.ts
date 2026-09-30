@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Keep project instructions intact when starting the local preview.
+  agentRules: false,
+  devIndicators: false,
 };
 
 export default nextConfig;
