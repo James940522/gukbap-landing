@@ -122,7 +122,7 @@ h4 {
   padding-block: 128px;
   scroll-margin-top: 0;
 }
-/* Warm paper sections provide contrast while keeping the same brand palette. */
+/* Hanji texture sits behind content, with a quieter treatment on small screens. */
 .section-light {
   --text-primary: #35291f;
   --text-secondary: #655749;
@@ -131,8 +131,22 @@ h4 {
   --gold-dark: #85612e;
   --border-gold: rgba(117, 86, 40, 0.34);
   --border-subtle: rgba(53, 41, 31, 0.16);
+  --paper-texture-opacity: 0.16;
+  position: relative;
+  isolation: isolate;
   color: var(--text-primary);
   color-scheme: light;
+}
+.section-light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--paper-texture-opacity);
+  background-image: url("/asset/bg/hanji-texture.svg");
+  background-size: 640px 640px;
+  background-repeat: repeat;
 }
 .section-light .text-link:hover {
   color: var(--text-primary);
@@ -563,6 +577,7 @@ details[open] .details-plus::after {
 
 /* Inquiry */
 .inquiry-section {
+  --paper-texture-opacity: 0.12;
   background: var(--section-ivory);
 }
 .inquiry-grid {
@@ -918,6 +933,12 @@ details[open] .details-plus::after {
   }
   body::before {
     opacity: 0.012;
+  }
+  .section-light {
+    --paper-texture-opacity: 0.1;
+  }
+  .inquiry-section {
+    --paper-texture-opacity: 0.07;
   }
   .container {
     width: calc(100% - 40px);
