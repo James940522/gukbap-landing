@@ -1,28 +1,73 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type TargetAndTransition } from "framer-motion";
 import type { ReactNode } from "react";
+
+const elements = {
+  div: motion.div,
+  span: motion.span,
+  p: motion.p,
+  h1: motion.h1,
+  h2: motion.h2,
+  article: motion.article,
+  figure: motion.figure,
+};
+
+const entrances = {
+  rise: { opacity: 0, y: 20 },
+  fade: { opacity: 0 },
+  "from-left": { opacity: 0, x: -20 },
+  "from-right": { opacity: 0, x: 20 },
+  settle: { opacity: 0, scale: 1.035 },
+  line: { opacity: 0, scaleX: 0 },
+} satisfies Record<string, TargetAndTransition>;
+
+type RevealProps = {
+  children?: ReactNode;
+  className?: string;
+  as?: keyof typeof elements;
+  effect?: keyof typeof entrances;
+  delay?: number;
+  duration?: number;
+  id?: string;
+  "aria-hidden"?: boolean;
+  "aria-label"?: string;
+};
 
 export function Reveal({
   children,
   className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+  as = "div",
+  effect = "rise",
+  delay = 0,
+  duration = 0.75,
+  ...attributes
+}: RevealProps) {
   const reducedMotion = useReducedMotion();
+  const Element = elements[as];
 
   return (
-    <motion.div
+    <Element
+      {...attributes}
       className={className}
-      initial={false}
-      whileInView={
-        reducedMotion ? undefined : { opacity: [0.65, 1], y: [16, 0] }
-      }
-      viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
+      data-reveal={effect}
+      // Keep the server and first client render identical. CSS exposes content
+      // immediately for reduced motion, keyboard focus, and without JavaScript.
+      initial="hidden"
+      whileInView="visible"
+      variants={{
+        hidden: entrances[effect],
+        visible: { opacity: 1, x: 0, y: 0, scale: 1, scaleX: 1 },
+      }}
+      viewport={{ once: true, amount: "some", margin: "0px 0px -32px 0px" }}
+      transition={{
+        type: "tween",
+        duration: reducedMotion ? 0 : duration,
+        delay: reducedMotion ? 0 : delay,
+        ease: [0.22, 0.61, 0.36, 1],
+      }}
     >
       {children}
-    </motion.div>
+    </Element>
   );
 }

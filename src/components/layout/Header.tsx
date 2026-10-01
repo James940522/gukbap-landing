@@ -53,7 +53,7 @@ export function Header() {
             src={brandLogo}
             alt="뚝손국밥"
             className="header-logo"
-            sizes="(max-width: 599px) 126px, 152px"
+            sizes="(max-width: 599px) 84px, 102px"
             priority
           />
         </a>

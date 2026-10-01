@@ -7,7 +7,12 @@ import { SignatureMenuSection } from "@/components/sections/SignatureMenuSection
 import { PairingSection } from "@/components/sections/PairingSection";
 import { WhyDduksonSection } from "@/components/sections/WhyDduksonSection";
 import { FranchiseSection } from "@/components/sections/FranchiseSection";
+import { TerritorySection } from "@/components/sections/TerritorySection";
 import { InquirySection } from "@/components/sections/InquirySection";
+import { StartupBenefitsSection } from "@/components/sections/StartupBenefitsSection";
+import { LandscapeSection } from "@/components/sections/LandscapeSection";
+import { PartnerSection } from "@/components/sections/PartnerSection";
+import { CostRatioSection } from "@/components/sections/CostRatioSection";
 
 export default function Home() {
   return (
@@ -18,12 +23,17 @@ export default function Home() {
       <Header />
       <main id="main">
         <HeroSection />
+        <LandscapeSection />
         <BrandStorySection />
         <NurungjiSection />
         <SignatureMenuSection />
         <PairingSection />
         <WhyDduksonSection />
+        <TerritorySection />
+        <CostRatioSection />
         <FranchiseSection />
+        <PartnerSection />
+        <StartupBenefitsSection />
         <InquirySection />
       </main>
       <Footer />

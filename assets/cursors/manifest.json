@@ -1,0 +1,85 @@
+{
+  "alphaThreshold": 8,
+  "cursors": {
+    "default": {
+      "source": "82ca6079-6ff9-41e6-83af-c271e227ee7b.png",
+      "crop": {
+        "left": 171,
+        "top": 135,
+        "width": 907,
+        "height": 990
+      },
+      "sourceHotspot": [
+        224,
+        169
+      ],
+      "width": 37,
+      "height": 40,
+      "hotspot": [
+        2,
+        1
+      ],
+      "bytes": 2470
+    },
+    "hover": {
+      "source": "ChatGPT 이미지 2026년 10월 1일 오전 09_55_10.png",
+      "crop": {
+        "left": 213,
+        "top": 154,
+        "width": 846,
+        "height": 969
+      },
+      "sourceHotspot": [
+        320,
+        235
+      ],
+      "width": 40,
+      "height": 46,
+      "hotspot": [
+        5,
+        4
+      ],
+      "bytes": 3913
+    },
+    "click": {
+      "source": "ChatGPT 이미지 2026년 10월 1일 오전 09_58_54.png",
+      "crop": {
+        "left": 147,
+        "top": 132,
+        "width": 948,
+        "height": 1012
+      },
+      "sourceHotspot": [
+        271,
+        163
+      ],
+      "width": 37,
+      "height": 40,
+      "hotspot": [
+        5,
+        1
+      ],
+      "bytes": 2868
+    },
+    "text": {
+      "source": "ChatGPT 이미지 2026년 10월 1일 오전 09_59_00.png",
+      "crop": {
+        "left": 363,
+        "top": 149,
+        "width": 528,
+        "height": 958
+      },
+      "sourceHotspot": [
+        627,
+        628
+      ],
+      "width": 18,
+      "height": 32,
+      "hotspot": [
+        9,
+        16
+      ],
+      "bytes": 1581
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { brand, navigation } from "@/data/site";
 import { ArrowIcon } from "@/components/ui/Icons";
+import { Reveal } from "@/components/ui/Reveal";
 import brandLogo from "../../../public/images/logos/ddukson-gukbap.png";
 import companyLogo from "../../../public/images/logos/sanbon-fnb.png";
 
@@ -8,7 +9,7 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="container">
-        <div className="footer-main">
+        <Reveal effect="fade" duration={0.65} className="footer-main">
           <div>
             <a href="#top" className="footer-wordmark" aria-label="뚝손국밥 처음으로">
               <Image
@@ -31,15 +32,20 @@ export function Footer() {
               <strong>SANBON F&B</strong>
             </div>
             <p>{brand.company}</p>
-            <p>
-              사업자 정보 · 주소 · 연락처{" "}
-              <span className="pending-text">안내 준비 중</span>
+            <p>대표자 : {brand.representatives}</p>
+            <p>사업자등록번호 : {brand.businessNumber}</p>
+            <p>주소 : {brand.address}</p>
+            <p className="footer-contact-row">
+              대표번호 : <a href={brand.phoneHref}>{brand.phone}</a>
+            </p>
+            <p className="footer-contact-row">
+              이메일 : <a href={`mailto:${brand.email}`}>{brand.email}</a>
             </p>
           </div>
           <a className="back-top" href="#top" aria-label="페이지 맨 위로">
             <ArrowIcon />
           </a>
-        </div>
+        </Reveal>
         <div className="footer-bottom">
           <small>
             © {new Date().getFullYear()} SANBON F&B. All rights reserved.

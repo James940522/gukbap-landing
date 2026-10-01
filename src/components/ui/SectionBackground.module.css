@@ -1,0 +1,25 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.image {
+  object-fit: cover;
+  object-position: var(--background-image-position);
+  opacity: var(--background-image-opacity);
+}
+
+@media (max-width: 899px) {
+  .image {
+    object-position: var(--background-image-position-mobile);
+    opacity: var(--background-image-opacity-mobile);
+  }
+}
+
+@media print {
+  .layer { display: none; }
+}

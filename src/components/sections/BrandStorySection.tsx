@@ -8,23 +8,23 @@ export function BrandStorySection() {
   return (
     <section id="brand" className="section section-light brand-section" aria-labelledby="brand-title">
       <div className="container">
-        <Reveal className="brand-heading">
-          <div>
+        <div className="brand-heading">
+          <Reveal>
             <SectionEyebrow number="01">ABOUT DDUKSON</SectionEyebrow>
             <h2 id="brand-title" className="section-title display-font">
               뚝배기에 담은<br />우리의 손맛.
             </h2>
-          </div>
-          <div className="brand-introduction">
+          </Reveal>
+          <Reveal effect="fade" delay={0.16} className="brand-introduction">
             <p className="lead">특별한 날이 아니어도,<br />제대로 된 한 끼는 필요하니까.</p>
             <p className="body-copy">
               바쁜 하루의 한가운데, 따뜻한 국밥 한 그릇.<br />
               뚝손은 그 익숙한 위로에서 시작합니다.
             </p>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
         <div className="brand-story-layout">
-          <Reveal className="brand-visual">
+          <Reveal effect="settle" duration={0.9} className="brand-visual">
             <MediaFrame
               image={foodImages.cooking}
               label="김이 오르는 가마솥 위로 고기와 순대를 들어 올리는 모습"
@@ -36,7 +36,7 @@ export function BrandStorySection() {
           </Reveal>
           <div className="brand-values">
             {brandValues.map((value, i) => (
-              <Reveal key={value.english} className="brand-value">
+              <Reveal key={value.english} effect="from-right" delay={i * 0.09} className="brand-value">
                 <span className="value-number">0{i + 1}</span>
                 <div>
                   <span className="small-label">{value.english}</span>

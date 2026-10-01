@@ -1,0 +1,92 @@
+{
+  "encoding": {
+    "format": "webp",
+    "quality": 78,
+    "effort": 6,
+    "maxWidth": 1920,
+    "upscaled": false
+  },
+  "assets": [
+    {
+      "source": "KakaoTalk_Image_2026-10-01-13-43-12_001.jpeg",
+      "sha256": "e4231a94d8449291565470591782414b601a519421764da1ed6a4432c01fd15e",
+      "output": "/images/backgrounds/wood-table.webp",
+      "width": 1672,
+      "height": 941,
+      "sourceBytes": 371502,
+      "webpBytes": 143288
+    },
+    {
+      "source": "KakaoTalk_Image_2026-10-01-13-43-12_002.png",
+      "sha256": "314a959e078ca635e4d0e0f373671972da93706c7611bfb0fd56e1e1f865cb87",
+      "output": "/images/backgrounds/hanok-window.webp",
+      "width": 1672,
+      "height": 941,
+      "sourceBytes": 1807804,
+      "webpBytes": 52060
+    },
+    {
+      "source": "KakaoTalk_Image_2026-10-01-13-43-12_003.jpeg",
+      "sha256": "3a462f5eebe7b338d25dcc2f4ce3fc0bb1c7827bac95ea845c86cdc65058b5cf",
+      "output": "/images/backgrounds/warm-hanji.webp",
+      "width": 1672,
+      "height": 941,
+      "sourceBytes": 282526,
+      "webpBytes": 65416
+    },
+    {
+      "source": "KakaoTalk_Image_2026-10-01-13-43-12_004.jpeg",
+      "sha256": "69094c44185019c3966c2c78ad79be72d5279ae600167829a1b47d315e69705c",
+      "output": "/images/backgrounds/rising-steam.webp",
+      "width": 1672,
+      "height": 940,
+      "sourceBytes": 161538,
+      "webpBytes": 38958
+    },
+    {
+      "source": "KakaoTalk_Image_2026-10-01-13-43-12_005.jpeg",
+      "sha256": "470c06255108e89cb8ee26a4164f1d0df75bfb980d647e2ac39b58a30f31ad63",
+      "output": "/images/backgrounds/dark-stone.webp",
+      "width": 1672,
+      "height": 941,
+      "sourceBytes": 424010,
+      "webpBytes": 194326
+    },
+    {
+      "source": "KakaoTalk_Image_2026-10-01-13-43-13_006.jpeg",
+      "sha256": "d0a4e9077668733b9fc8b8037b69c5eb8ac0b13486a317c4485463ebd32b62b9",
+      "output": "/images/backgrounds/amber-light.webp",
+      "width": 1672,
+      "height": 941,
+      "sourceBytes": 143623,
+      "webpBytes": 26718
+    },
+    {
+      "source": "KakaoTalk_Image_2026-10-01-13-43-13_007.jpeg",
+      "sha256": "1f41f0d731fbc5d9f7a16f69ec12c394df55e25b1b9aedd87f9d2a4596ea9b15",
+      "output": "/images/backgrounds/steaming-ttukbaegi.webp",
+      "width": 1672,
+      "height": 941,
+      "sourceBytes": 162563,
+      "webpBytes": 60506
+    },
+    {
+      "source": "KakaoTalk_Image_2026-10-01-13-43-13_008.jpeg",
+      "sha256": "85dc7037742bce18ec24fb98885fb992ea0f0bc3de7122af77b331e14e134f6d",
+      "output": "/images/backgrounds/gold-brush-ring.webp",
+      "width": 1672,
+      "height": 941,
+      "sourceBytes": 360074,
+      "webpBytes": 133332
+    },
+    {
+      "source": "KakaoTalk_Image_2026-10-01-13-43-13_009.jpeg",
+      "sha256": "b825fcab30e363de5bcb678c0d53dfc016ca2505fc9aaa57930b19d04fe354da",
+      "output": "/images/backgrounds/cooking-steam.webp",
+      "width": 1672,
+      "height": 941,
+      "sourceBytes": 205544,
+      "webpBytes": 70634
+    }
+  ]
+}

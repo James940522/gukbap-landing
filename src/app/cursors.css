@@ -1,0 +1,55 @@
+/* Pixel dimensions and measured hotspots: assets/cursors/manifest.json.
+   Spoon states share their upper-left tip; the I-beam uses its center. */
+@media (hover: hover) and (pointer: fine) {
+  :root {
+    --cursor-default: url("/asset/cursor/default.png") 2 1, default;
+    --cursor-hover: url("/asset/cursor/hover.png") 5 4, pointer;
+    --cursor-click: url("/asset/cursor/click.png") 5 1, pointer;
+    --cursor-text: url("/asset/cursor/text.png") 9 16, text;
+  }
+
+  html,
+  body,
+  body * {
+    cursor: var(--cursor-default);
+  }
+
+  /* Keep a control's cursor over its nested label, icon and pseudo-elements. */
+  html:root :where(
+    a[href], button, summary, select,
+    [role="button"], [role="link"], [role="tab"],
+    input:is([type="button"], [type="submit"], [type="reset"],
+      [type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="color"]),
+    label:has(input:is([type="checkbox"], [type="radio"])),
+    .cursor-pointer, [data-cursor="pointer"]
+  ) {
+    &, & *, &::before, &::after, & *::before, & *::after {
+      cursor: var(--cursor-hover) !important;
+    }
+  }
+
+  html[data-cursor-pressed] {
+    &, & *, &::before, &::after, & *::before, & *::after {
+      cursor: var(--cursor-click) !important;
+    }
+  }
+
+  /* Retain the centered I-beam while positioning the caret or selecting text. */
+  html:root :where(
+    input:not([type]),
+    input:is([type="text"], [type="email"], [type="number"], [type="password"],
+      [type="search"], [type="tel"], [type="url"]),
+    textarea, [contenteditable="true"], [contenteditable=""],
+    [contenteditable="plaintext-only"], .cursor-text, [data-cursor="text"]
+  ) {
+    &, & *, &::before, &::after, & *::before, & *::after {
+      cursor: var(--cursor-text) !important;
+    }
+  }
+
+  html:root :where(:disabled, [aria-disabled="true"], [inert]) {
+    &, & *, &::before, &::after, & *::before, & *::after {
+      cursor: not-allowed !important;
+    }
+  }
+}

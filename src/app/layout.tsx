@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { CustomCursorState } from "@/components/ui/CustomCursorState";
 import "./globals.css";
 
 const pretendard = localFont({
@@ -18,14 +19,22 @@ const displayFont = localFont({
   fallback: ["Batang", "serif"],
 });
 
+const siteTitle = "뚝손국밥 | (주)산본에프앤비";
+const siteDescription =
+  "오래된 국밥집의 깊이를, 현대적인 브랜드로 재해석한 뚝손국밥";
+
 export const metadata: Metadata = {
-  title: "뚝손국밥 | 한 그릇을 제대로",
-  description: "뜨겁게 끓이고 든든하게 내놓는 뚝손국밥 공식 홈페이지입니다.",
+  // Vercel infers its deployment URL; other hosts can set the public site URL.
+  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
+    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+    : undefined,
+  title: siteTitle,
+  description: siteDescription,
   // Prevent the unfinished brand draft from appearing in search results.
   robots: { index: false, follow: false },
   openGraph: {
-    title: "뚝손국밥 | 한 그릇을 제대로",
-    description: "한 그릇에 담은 깊은 맛. 뚝손국밥의 이야기를 만나보세요.",
+    title: siteTitle,
+    description: siteDescription,
     locale: "ko_KR",
     type: "website",
     siteName: "뚝손국밥",
@@ -38,7 +47,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="ko"
       className={`${pretendard.variable} ${displayFont.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <noscript>
+          <style>{`[data-reveal] { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
+        <CustomCursorState />
+        {children}
+      </body>
     </html>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import { ArrowIcon } from "./Icons";
+import { brand } from "@/data/site";
 
 type Field = "name" | "phone" | "region" | "consent";
 type Errors = Partial<Record<Field, string>>;
@@ -149,13 +150,13 @@ export function InquiryForm() {
         <ArrowIcon />
       </button>
       <p className="form-caption">
-        상담 접수 준비 중 · 입력하신 정보는 전송·저장되지 않습니다.
+        온라인 접수 준비 중 · 입력하신 정보는 전송·저장되지 않습니다.
       </p>
       <div className="form-status" role="status" aria-live="polite">
         {checked && (
           <p>
-            입력 내용을 확인했습니다. 아직 상담이 접수된 것은 아닙니다. 정식
-            접수가 시작되면 안내드리겠습니다.
+            입력 내용을 확인했습니다. 온라인으로 상담이 접수되지는 않았습니다.
+            실제 상담은 <a href={brand.phoneHref}>{brand.phone}</a>로 문의해주세요.
           </p>
         )}
       </div>

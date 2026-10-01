@@ -3,11 +3,18 @@ export const brand = {
   name: "뚝손국밥",
   englishName: "DDUKSON GUKBAP",
   company: "주식회사 산본에프앤비",
+  representatives: "이호남, 유기백",
+  businessNumber: "589-86-02728",
+  phone: "010-6739-9203",
+  phoneHref: "tel:01067399203",
+  address: "경기도 하남시 풍산동 492 미사하우스디엘타워 6층 621-2호",
+  email: "wochl123@naver.com",
   hero: {
     eyebrow: "한 그릇을 대하는 진심",
-    title: ["뜨끈하게,", "제대로."],
-    description: "한 그릇에 담은 깊은 맛.",
-    detail: "익숙한 한 끼에도, 지키고 싶은 기준이 있습니다.",
+    slogan: "뜨겁게 끓이고, 든든하게 채우다.",
+    title: "뚝손국밥",
+    description: "제대로 끓여낸 한 그릇의 힘.",
+    detail: "매일 생각나는 국밥을 만듭니다.",
   },
 };
 
@@ -156,6 +163,33 @@ export const pairingFeature = {
       title: "따뜻하게 나누고 싶은 날",
       dishes: ["맑은 돼지국밥", "고기왕만두"],
       description: "맑은 국밥 곁에, 함께 나누는 만두 한 접시.",
+    },
+  ],
+};
+
+// User-supplied copy with AI concept imagery. Prompts: assets/food/generated/manifest.json.
+// Replace with actual brand photography when available.
+export const brothFeature = {
+  description: ["뚝손국밥만의 특별한 전용육수와", "엄선된 재료로"],
+  title: ["원팩만큼 쉽지만,", "제대로 끓여낸", "한 그릇의 힘."],
+  elements: [
+    {
+      id: "broth",
+      label: "뚝손국밥 전용육수",
+      english: "DDUKSON SIGNATURE BROTH",
+      mobileEnglish: "SIGNATURE BROTH",
+      placeholder: "전용육수 이미지",
+      image: "/images/food/signature-broth-ai.webp" as string | null,
+      alt: "김이 오르는 뚝배기에 담긴 진한 육수 — AI 연출 이미지",
+    },
+    {
+      id: "ingredients",
+      label: "엄선된 재료",
+      english: "SELECTED INGREDIENTS",
+      mobileEnglish: "INGREDIENTS",
+      placeholder: "엄선된 재료 이미지",
+      image: "/images/food/selected-ingredients-ai.webp" as string | null,
+      alt: "어두운 도자기 접시 위의 돼지고기와 대파, 마늘 — AI 연출 이미지",
     },
   ],
 };

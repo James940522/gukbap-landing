@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore, type KeyboardEvent }
 import { menuCategories, type MenuCategory } from "@/data/site";
 import { ArrowIcon } from "./Icons";
 import { MediaFrame } from "./MediaFrame";
+import { Reveal } from "./Reveal";
 
 const desktopQuery = "(min-width: 900px)";
 
@@ -103,7 +104,7 @@ function MenuSlider({ category }: { category: MenuCategory }) {
         onKeyDown={handleSliderKeyDown}
       >
         {category.items.map((menu, index) => (
-          <article key={menu.id} className="menu-card">
+          <Reveal as="article" key={menu.id} delay={(index % 3) * 0.08} duration={0.65} className="menu-card">
             <MediaFrame
               label={`${menu.name} 이미지`}
               englishLabel={category.english}
@@ -120,7 +121,7 @@ function MenuSlider({ category }: { category: MenuCategory }) {
               </div>
               {menu.badge && <span className="menu-badge">{menu.badge}</span>}
             </div>
-          </article>
+          </Reveal>
         ))}
       </div>
       <div className="menu-slider-controls">
@@ -221,14 +222,14 @@ export function MenuGallery() {
         >
           {categoryIndex === activeIndex && (
             <>
-              <div className="menu-category-heading">
+              <Reveal effect="fade" duration={0.45} className="menu-category-heading">
                 <h3>{active.name}</h3>
                 <span>
                   {active.english}
                   <i />
                   {String(active.items.length).padStart(2, "0")} ITEMS
                 </span>
-              </div>
+              </Reveal>
               <MenuSlider category={category} />
             </>
           )}

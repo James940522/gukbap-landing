@@ -1,6 +1,7 @@
 import { InquiryForm } from "@/components/ui/InquiryForm";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { brand } from "@/data/site";
 
 export function InquirySection() {
   return (
@@ -10,7 +11,7 @@ export function InquirySection() {
       aria-labelledby="inquiry-title"
     >
       <div className="container inquiry-grid">
-        <Reveal className="inquiry-copy">
+        <Reveal effect="from-left" className="inquiry-copy">
           <SectionEyebrow number="07">START WITH DDUKSON</SectionEyebrow>
           <h2 id="inquiry-title" className="section-title display-font">
             뚝손국밥과
@@ -29,19 +30,27 @@ export function InquirySection() {
           <div className="inquiry-note">
             <span className="status-dot" />
             <div>
-              <strong>가맹 상담을 준비하고 있습니다.</strong>
+              <strong>창업 문의</strong>
+              <a className="inquiry-phone" href={brand.phoneHref}>
+                {brand.phone}
+              </a>
               <p>
-                궁금한 점을 적어보세요.
+                브랜드와 창업에 대해 궁금한 점을
                 <br />
-                현재는 입력 내용을 확인하는 초안 화면입니다.
+                전화 또는 이메일로 문의해주세요.
               </p>
+              <a className="inquiry-email" href={`mailto:${brand.email}`}>
+                {brand.email}
+              </a>
             </div>
           </div>
           <p className="inquiry-signature">
             SANBON F&B <span>×</span> DDUKSON GUKBAP
           </p>
         </Reveal>
-        <InquiryForm />
+        <Reveal effect="fade" duration={0.65} delay={0.12}>
+          <InquiryForm />
+        </Reveal>
       </div>
     </section>
   );

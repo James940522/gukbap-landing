@@ -2,12 +2,14 @@ import { franchiseTopics } from "@/data/site";
 import { ArrowIcon, BowlIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { SectionBackground } from "@/components/ui/SectionBackground";
 
 export function FranchiseSection() {
   return (
-    <section id="franchise" className="section franchise-section" aria-labelledby="franchise-title">
+    <section id="franchise" className="section franchise-section section-background-host" aria-labelledby="franchise-title">
+      <SectionBackground name="franchise" />
       <div className="container franchise-layout">
-        <Reveal className="franchise-invitation">
+        <Reveal effect="from-left" duration={0.85} className="franchise-invitation">
           <SectionEyebrow number="06">FRANCHISE</SectionEyebrow>
           <h2 id="franchise-title" className="section-title">좋은 한 그릇이,<br />좋은 시작이 되도록.</h2>
           <p className="body-copy">뚝손의 다음 한 그릇을<br />함께할 분을 기다립니다.</p>
@@ -16,8 +18,8 @@ export function FranchiseSection() {
         </Reveal>
         <div className="franchise-topics">
           <div className="franchise-topics-heading"><span>함께 알아갈 이야기</span><span>WITH DDUKSON</span></div>
-          {franchiseTopics.map((item) => (
-            <Reveal key={item.number}>
+          {franchiseTopics.map((item, index) => (
+            <Reveal effect="from-right" delay={index * 0.1} key={item.number}>
               <details className="franchise-topic">
                 <summary>
                   <span className="topic-number">{item.number}</span>
