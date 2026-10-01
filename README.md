@@ -40,6 +40,16 @@ pnpm build
   막대 길이는 참고 이미지의 대략적인 비율로, `30% 초반`을 특정 수치로 확정하지 않습니다.
 - 원가율 그래프는 화면에 들어오면 Framer Motion으로 왼쪽부터 한 번 채워집니다. 두 막대의 실제 완료 이벤트를
   모두 받은 뒤 수치가 함께 나타납니다. 움직임 줄이기·인쇄·JavaScript 비활성 상태에서는 완성된 그래프를 표시합니다.
+- ‘뚝손의 기준’ 뒤에는 조리 안내를 배치했습니다. `src/data/cooking.ts`에서 문구와 준비·조리·완성 단계를 관리합니다.
+  조리 시간, 필요 인원, 완제품 공급 등 확인되지 않은 운영 조건은 참고 이미지에서 가져오지 않았습니다.
+  배경은 새로 생성한 AI 주방 연출 이미지이며, 데스크톱 58%·모바일 36% 불투명도로 적용합니다.
+  [배경 생성 기록](assets/backgrounds/generated/ddukson-kitchen-ai.json)과
+  [사용한 프롬프트](assets/backgrounds/generated/ddukson-kitchen-ai.prompt.txt)를 함께 보관합니다.
+- 원가율과 창업 안내 사이에 `#success-roadmap`을 배치했습니다. 사용자가 제공한 `udon-landing`의
+  `SuccessionPlanningSectionV2`에서 소개 패널·6개 카드·장식선을 가져왔습니다.
+  이미지 6칸은 비워두었으며 `src/data/roadmap.ts`의 `image`에 경로를 넣으면 연결됩니다.
+  뚝손 기준으로 확정되지 않은 조리 시간·배송 횟수·매장 평수는 원본에서 가져오지 않았습니다.
+  Framer Motion의 영역별 등장·카드 호버를 적용하고, 모바일과 움직임 줄이기에 대응합니다.
 - 초안은 검색 색인을 비활성화했습니다. 공개 시 `src/app/layout.tsx`의 robots 설정을 변경하세요.
 
 ## 로고

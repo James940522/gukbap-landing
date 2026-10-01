@@ -25,6 +25,12 @@
 
 ## 적용 방식
 
+추가 제작한 `ddukson-kitchen-ai.webp`는 조리 안내 전용 배경입니다.
+내장 image_gen으로 새로 생성한 주방·국밥 연출 장면이며 실제 매장 촬영물이 아닙니다.
+원본, 프롬프트, 변환 기록은 `assets/backgrounds/generated/`에 보관합니다.
+생성 원본을 WebP quality 80으로 최적화하고, 데스크톱 58%·모바일 36% 불투명도로 표시합니다.
+기존 보관 이미지 009는 향후 실제 조리 과정 소개에 활용할 수 있도록 유지합니다.
+
 - `src/data/sectionBackgrounds.ts`: 섹션별 이미지, 데스크톱·모바일 강도, 크롭 위치.
 - `src/components/ui/SectionBackground.tsx`: Server Component. `next/image`의 반응형 크기와 기본 이미지 최적화 사용.
 - 사용하는 섹션에 `section-background-host` 클래스를 지정하고, 내부에 `<SectionBackground name="…" />`를 추가합니다.

@@ -10,9 +10,9 @@ const pretendard = localFont({
   display: "swap",
 });
 
-// Official WOFF2 with full Hangul coverage, so future headlines need no new subset.
+// Use the smaller OTF from the user-provided MaruBuri family for display text.
 const displayFont = localFont({
-  src: "../../public/fonts/MaruBuri-SemiBold.woff2",
+  src: "../../public/fonts/maruburi/OTF/MaruBuri-SemiBold.otf",
   variable: "--font-display",
   weight: "600",
   display: "swap",

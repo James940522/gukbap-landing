@@ -1,0 +1,10 @@
+Use case: photorealistic-natural.
+Asset type: original photographic background for a premium Korean gukbap restaurant brand website cooking-process section, landscape 16:9 composition.
+Primary request: create a cinematic, credible, quiet Korean soup kitchen still life for the brand Ddukson Gukbap. The image will be used at semi-transparent opacity behind website text and outlined circles; do not render any graphic UI.
+Scene/backdrop: dark warm brown Korean restaurant preparation counter, subtly weathered matte earthen-plaster wall, a large dark iron soup pot softly out of focus toward the far right rear, warm natural rising steam.
+Subject: at the bottom right, a real-looking black earthenware ttukbaegi containing pale pork broth, a modest amount of sliced cooked pork and finely cut green onion, on a dark stone worktop; a steel soup ladle rests beside the pot. The bowl is supporting scenery, not a product catalog shot. No human subjects.
+Composition/framing: wide panoramic environment, left 45 percent almost empty with low-detail dark brown wall for a large headline; right half softly layered cooking tools and steam near the lower and outer edges, with open quiet mid-right space for three outlined circular text steps. Avoid bright edges through the middle of the scene.
+Lighting/mood: low-key warm window light from upper right, restrained highlights on pottery rim, natural thin steam, deep brown soft shadows, tactile, authentic, calm and inviting.
+Color palette: espresso brown, charcoal brown, muted clay brown, warm ivory broth, tiny desaturated green accents. No pure black luxury look, no bright gold.
+Materials/textures: realistic glazed earthenware, matte stone, subtle plaster grain, natural food texture, shallow depth of field.
+Constraints: no text, no lettering, no logos, no watermark, no captions, no numbers, no circles, no split panels, no interface; no ginseng, no whole chicken, no Japanese motifs, no large flame, no thick theatrical smoke. Full opaque raster photograph; transparency will be applied through CSS in the website.

@@ -17,7 +17,7 @@
 .layout {
   display: grid;
   grid-template-columns: 46% 54%;
-  min-height: clamp(600px, 45vw, 860px);
+  min-height: var(--section-height);
   max-width: 1920px;
   margin-inline: auto;
 }
@@ -56,6 +56,7 @@
   font-family: var(--font-display), "Batang", serif;
   font-size: clamp(40px, 4.1vw, 76px);
   font-weight: 600;
+  font-synthesis: none;
   letter-spacing: -0.055em;
   line-height: 1.4;
 }
@@ -79,7 +80,7 @@
 @media (max-width: 767px) {
   .layout {
     grid-template-columns: 1fr;
-    min-height: auto;
+    align-content: center;
   }
 
   .copy {

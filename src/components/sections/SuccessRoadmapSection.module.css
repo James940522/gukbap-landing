@@ -1,0 +1,53 @@
+.section {
+  /* Local heading rules take precedence over the unlayered global heading reset. */
+  --heading-color: #f0dfc0;
+}
+
+.section h2,
+.section h3 {
+  font-weight: 800;
+}
+
+.inquiryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  color: #f0dfc0;
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+
+.inquiryLink svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.inquiryLink:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 767px) {
+  .cardContent {
+    position: static;
+  }
+
+  .numberBadge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+  }
+}
+
+@media (max-width: 359px) {
+  .section [data-roadmap-grid] {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inquiryLink svg { transition: none; }
+  .inquiryLink:hover svg { transform: none; }
+}

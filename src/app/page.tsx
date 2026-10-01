@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingInquiry } from "@/components/layout/FloatingInquiry";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { BrandStorySection } from "@/components/sections/BrandStorySection";
 import { NurungjiSection } from "@/components/sections/NurungjiSection";
@@ -13,6 +14,8 @@ import { StartupBenefitsSection } from "@/components/sections/StartupBenefitsSec
 import { LandscapeSection } from "@/components/sections/LandscapeSection";
 import { PartnerSection } from "@/components/sections/PartnerSection";
 import { CostRatioSection } from "@/components/sections/CostRatioSection";
+import { CookingSystemSection } from "@/components/sections/CookingSystemSection";
+import { SuccessRoadmapSection } from "@/components/sections/SuccessRoadmapSection";
 
 export default function Home() {
   return (
@@ -29,14 +32,17 @@ export default function Home() {
         <SignatureMenuSection />
         <PairingSection />
         <WhyDduksonSection />
+        <CookingSystemSection />
         <TerritorySection />
         <CostRatioSection />
+        <SuccessRoadmapSection />
         <FranchiseSection />
         <PartnerSection />
         <StartupBenefitsSection />
         <InquirySection />
       </main>
       <Footer />
+      <FloatingInquiry />
     </div>
   );
 }

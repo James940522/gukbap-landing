@@ -118,11 +118,83 @@
   background: currentColor;
 }
 
+.locationSupport {
+  margin-top: 54px;
+}
+
+.supportHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.supportHeading h3 {
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
+.supportHeading > span {
+  color: var(--text-on-paper-muted);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+.supportList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.supportItem {
+  height: 100%;
+  padding: 30px 20px 34px;
+  border: 1px solid rgba(86, 65, 37, 0.14);
+  border-radius: 8px;
+  background: rgba(251, 248, 240, 0.92);
+  text-align: center;
+  word-break: keep-all;
+}
+
+.stepNumber {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--cost-accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.supportItem p {
+  color: var(--text-on-paper-secondary);
+  font-size: 18px;
+  line-height: 1.85;
+  letter-spacing: -0.035em;
+}
+
+.supportItem h4 {
+  margin-top: 8px;
+  font-size: 23px;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: -0.055em;
+}
+
 @media (max-width: 1099px) {
   .comparison { padding-inline: 28px; }
   .principle { padding-inline: 28px; }
   .intro { font-size: 17px; }
   .statement { font-size: 16px; }
+  .supportList { gap: 12px; }
+  .supportItem { padding-inline: 14px; }
+  .supportItem p { font-size: 16px; }
+  .supportItem h4 { font-size: 19px; }
 }
 
 @media (max-width: 899px) {
@@ -144,4 +216,11 @@
   .principle h3 { font-size: 25px; }
   .statement { margin-top: 22px; font-size: 16px; }
   .signature { margin-top: 28px; }
+  .locationSupport { margin-top: 38px; }
+  .supportHeading { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+  .supportHeading h3 { font-size: 23px; }
+  .supportList { grid-template-columns: 1fr; }
+  .supportItem { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 16px; padding: 26px 22px; text-align: left; }
+  .stepNumber { margin: 5px 0 0; }
+  .supportItem h4 { font-size: 20px; }
 }

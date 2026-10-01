@@ -1,0 +1,22 @@
+{
+  "generator": "Built-in image_gen",
+  "created": "2026-10-01",
+  "use": "Decorative AI-generated kitchen scene; not a photograph of an actual Ddukson store or product.",
+  "prompt": "ddukson-kitchen-ai.prompt.txt",
+  "original": "ddukson-kitchen-ai.png",
+  "webAsset": "/images/backgrounds/ddukson-kitchen-ai.webp",
+  "sha256": "35d7acbaa334f6a2e1ccfe9122e325138a5cefebb06583dace49da168c3bd3ff",
+  "sourceBytes": 1815766,
+  "outputBytes": 66262,
+  "width": 1672,
+  "height": 941,
+  "encoding": {
+    "format": "webp",
+    "quality": 80,
+    "effort": 6
+  },
+  "display": {
+    "desktopOpacity": 0.58,
+    "mobileOpacity": 0.36
+  }
+}

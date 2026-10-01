@@ -10,7 +10,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(350px, 1.35fr) minmax(0, 1fr);
   align-items: center;
   gap: 36px;
-  margin-top: 64px;
+  margin-top: var(--section-gap);
 }
 .message { grid-column: 2; grid-row: 1; text-align: center; }
 .seal { display: inline-block; padding: 5px 13px; border: 1px solid var(--border-gold); color: var(--gold-light); font-size: 12px; letter-spacing: 0.12em; }
@@ -32,7 +32,7 @@
 .englishMobile { display: none; }
 .caption h3 { margin-top: 7px; font-size: clamp(19px, 1.8vw, 24px); font-weight: 600; letter-spacing: -0.035em; }
 .multiply { display: none; }
-.signature { display: flex; align-items: center; gap: 24px; margin-top: 70px; color: var(--gold-light); font-size: 10px; letter-spacing: 0.24em; }
+.signature { display: flex; align-items: center; gap: 24px; margin-top: var(--section-gap); color: var(--gold-light); font-size: 10px; letter-spacing: 0.24em; }
 .signature::before, .signature::after { content: ""; flex: 1; height: 1px; background: var(--border-gold); }
 @media (max-width: 999px) {
   .composition { grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr); gap: 0 12px; max-width: 640px; margin-inline: auto; margin-top: 42px; }

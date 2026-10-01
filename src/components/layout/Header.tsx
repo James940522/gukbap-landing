@@ -1,66 +1,81 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import Image from "next/image";
-import { navigation } from "@/data/site";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { brand, navigation } from "@/data/site";
 import { ArrowIcon } from "@/components/ui/Icons";
 import brandLogo from "../../../public/images/logos/ddukson-gukbap.png";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeHref, setActiveHref] = useState("");
   const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const sections = [...navigation.map((item) => item.href), "#inquiry"]
+      .map((href) => ({ href, element: document.getElementById(href.slice(1)) }));
+    let frame = 0;
+    const syncPosition = () => {
+      frame = 0;
+      setScrolled(window.scrollY > 24);
+      let current = "";
+      for (const section of sections) {
+        if (section.element && section.element.getBoundingClientRect().top <= 120)
+          current = section.href;
+      }
+      setActiveHref(current);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(syncPosition);
+    };
     const desktop = window.matchMedia("(min-width: 900px)");
     const onResize = () => {
       if (desktop.matches) setMenuOpen(false);
+      onScroll();
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     desktop.addEventListener("change", onResize);
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       desktop.removeEventListener("change", onResize);
     };
   }, []);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-        toggleRef.current?.focus();
-      }
-    };
-    document.addEventListener("keydown", onEscape);
-    return () => document.removeEventListener("keydown", onEscape);
-  }, [menuOpen]);
 
   return (
     <header
       className={`site-header ${scrolled || menuOpen ? "header-solid" : ""}`}
     >
       <div className="container header-inner">
-        <a
-          href="#top"
-          className="wordmark"
-          aria-label="뚝손국밥 처음으로"
-          onClick={() => setMenuOpen(false)}
-        >
-          <Image
-            src={brandLogo}
-            alt="뚝손국밥"
-            className="header-logo"
-            sizes="(max-width: 599px) 84px, 102px"
-            priority
-          />
-        </a>
+        <div className="header-brand">
+          <a
+            href="#top"
+            className="wordmark"
+            aria-label="뚝손국밥 처음으로"
+          >
+            <Image
+              src={brandLogo}
+              alt="뚝손국밥"
+              className="header-logo"
+              sizes="(max-width: 599px) 104px, 124px"
+              priority
+            />
+          </a>
+          <div className="header-brand-note">
+            <span>DDUKSON GUKBAP</span>
+            <p>한 그릇을 제대로.</p>
+          </div>
+        </div>
         <nav className="desktop-nav" aria-label="주요 메뉴">
-          {navigation.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
+          {navigation.map((item, index) => (
+            <a key={item.href} href={item.href} aria-current={activeHref === item.href ? "location" : undefined}>
+              <span className="header-nav-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <span>{item.label}</span>
             </a>
           ))}
         </nav>
@@ -68,7 +83,7 @@ export function Header() {
           <a
             href="#inquiry"
             className="button button-primary header-cta"
-            onClick={() => setMenuOpen(false)}
+            aria-current={activeHref === "#inquiry" ? "location" : undefined}
           >
             창업 문의
             <ArrowIcon />
@@ -87,26 +102,102 @@ export function Header() {
           </button>
         </div>
       </div>
-      <nav
-        id="mobile-navigation"
-        className="mobile-nav"
-        aria-label="모바일 메뉴"
-        hidden={!menuOpen}
-      >
-        <div className="container">
-          {navigation.map((item, i) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-            >
-              <span className="mobile-nav-number">0{i + 1}</span>
-              {item.label}
+      <AnimatePresence>
+        {menuOpen && <MobileNavigation activeHref={activeHref} returnFocusRef={toggleRef} onClose={() => setMenuOpen(false)} />}
+      </AnimatePresence>
+    </header>
+  );
+}
+
+function MobileNavigation({ activeHref, onClose, returnFocusRef }: {
+  activeHref: string;
+  onClose: () => void;
+  returnFocusRef: RefObject<HTMLButtonElement | null>;
+}) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const returnFocusTarget = returnFocusRef.current;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus({ preventScroll: true });
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      dialog.close();
+      // Wait for the browser to remove the modal's inert state before restoring focus.
+      requestAnimationFrame(() => {
+        if (window.matchMedia("(max-width: 899px)").matches)
+          returnFocusTarget?.focus({ preventScroll: true });
+      });
+    };
+  }, [returnFocusRef]);
+
+  return (
+    <motion.dialog
+      ref={dialogRef}
+      id="mobile-navigation"
+      className="mobile-nav"
+      aria-label="뚝손국밥 전체 메뉴"
+      initial={{ x: reducedMotion ? 0 : "100%", opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: reducedMotion ? 0 : "100%", opacity: 0 }}
+      transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          event.stopPropagation();
+          onClose();
+        }
+        if (event.key === "Tab") {
+          const links = event.currentTarget.querySelectorAll<HTMLElement>("button, a[href]");
+          const first = links[0];
+          const last = links[links.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }
+      }}
+      onClick={(event) => {
+        const bounds = event.currentTarget.getBoundingClientRect();
+        if (event.target === event.currentTarget && event.clientX < bounds.left) onClose();
+      }}
+    >
+      <div className="mobile-menu-content">
+        <div className="mobile-menu-heading">
+          <span className="mobile-menu-eyebrow">DDUKSON GUKBAP</span>
+          <button ref={closeRef} type="button" className="mobile-menu-close" aria-label="메뉴 닫기" onClick={onClose}>
+            <span /><span />
+          </button>
+          <p className="display-font">한 그릇을<br />제대로.</p>
+        </div>
+        <nav className="mobile-menu-links" aria-label="모바일 메뉴">
+          {navigation.map((item, index) => (
+            <a key={item.href} href={item.href} onClick={onClose} aria-current={activeHref === item.href ? "location" : undefined}>
+              <span className="mobile-nav-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <span>{item.label}</span>
               <ArrowIcon />
             </a>
           ))}
+        </nav>
+        <div className="mobile-menu-footer">
+          <p>함께할 다음 한 그릇.</p>
+          <a href="#inquiry" className="button button-primary" onClick={onClose}>창업 문의<ArrowIcon /></a>
+          <div><span>SANBON F&B</span><a href={brand.phoneHref}>{brand.phone}</a></div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </motion.dialog>
   );
 }

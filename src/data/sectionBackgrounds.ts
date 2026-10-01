@@ -41,6 +41,13 @@ export const sectionBackgrounds = {
     opacity: 0.46,
     mobileOpacity: 0.3,
   },
+  cooking: {
+    image: "ddukson-kitchen-ai",
+    opacity: 0.58,
+    mobileOpacity: 0.36,
+    position: "center",
+    mobilePosition: "72% center",
+  },
   franchise: {
     image: "hanok-window",
     opacity: 0.34,

@@ -3,28 +3,17 @@
 import { useRef, useState, type FormEvent } from "react";
 import { ArrowIcon } from "./Icons";
 import { brand } from "@/data/site";
-
-type Field = "name" | "phone" | "region" | "consent";
-type Errors = Partial<Record<Field, string>>;
+import { validateInquiry, type InquiryErrors, type InquiryField } from "@/lib/inquiry";
 
 export function InquiryForm() {
-  const [errors, setErrors] = useState<Errors>({});
+  const [errors, setErrors] = useState<InquiryErrors>({});
   const [checked, setChecked] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const nextErrors: Errors = {};
-    if (!String(data.get("name") ?? "").trim())
-      nextErrors.name = "이름을 입력해주세요.";
-    const phone = String(data.get("phone") ?? "").replace(/[\s()-]/g, "");
-    if (!/^0\d{8,10}$/.test(phone))
-      nextErrors.phone = "연락 가능한 전화번호를 확인해주세요.";
-    if (!String(data.get("region") ?? "").trim())
-      nextErrors.region = "희망 지역을 입력해주세요.";
-    if (data.get("consent") !== "on")
-      nextErrors.consent = "동의 항목을 확인해주세요.";
+    const nextErrors = validateInquiry(data);
     setErrors(nextErrors);
     setChecked(Object.keys(nextErrors).length === 0);
     const firstError = Object.keys(nextErrors)[0];
@@ -35,7 +24,7 @@ export function InquiryForm() {
     // Preview only: never send or persist personal information.
   }
 
-  function error(field: Field) {
+  function error(field: InquiryField) {
     return errors[field] ? (
       <p id={`${field}-error`} className="field-error">
         {errors[field]}

@@ -11,9 +11,8 @@ export const brand = {
   email: "wochl123@naver.com",
   hero: {
     eyebrow: "한 그릇을 대하는 진심",
-    slogan: "뜨겁게 끓이고, 든든하게 채우다.",
-    title: "뚝손국밥",
-    description: "제대로 끓여낸 한 그릇의 힘.",
+    title: ["뜨끈하게,", "제대로."],
+    description: "한 숟갈의 온기, 오래 남는 든든함.",
     detail: "매일 생각나는 국밥을 만듭니다.",
   },
 };

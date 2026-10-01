@@ -4,6 +4,21 @@ import { SectionBackground } from "@/components/ui/SectionBackground";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import styles from "./CostRatioSection.module.css";
 
+const locationSupport = [
+  {
+    title: "정밀한 ‘상권 분석’",
+    description: ["유동 인구와 소비 계층의", "구조를 모두 고려한"],
+  },
+  {
+    title: "‘매출 가능성’ 검토",
+    description: ["주변 경쟁 브랜드 및", "업종 분포를 반영한"],
+  },
+  {
+    title: "최적 입지 도출 및 제안",
+    description: ["상권 특성과", "브랜드 적합도를 고려한"],
+  },
+];
+
 export function CostRatioSection() {
   return (
     <section
@@ -51,6 +66,31 @@ export function CostRatioSection() {
               QUALITY FIRST
             </Reveal>
           </div>
+        </div>
+
+        <div id="location-support" className={styles.locationSupport}>
+          <Reveal className={styles.supportHeading}>
+            <h3 id="location-support-title">입지 선정도, 꼼꼼하게.</h3>
+            <span aria-hidden="true">LOCATION SUPPORT</span>
+          </Reveal>
+          <ol className={styles.supportList} aria-labelledby="location-support-title">
+            {locationSupport.map((item, index) => (
+              <li key={item.title}>
+                <Reveal delay={index * 0.12} className={styles.supportItem}>
+                  <span className={styles.stepNumber} aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p>
+                      {item.description[0]}<br />
+                      {item.description[1]}
+                    </p>
+                    <h4>{item.title}</h4>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

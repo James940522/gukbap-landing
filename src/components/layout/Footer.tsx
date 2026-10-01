@@ -7,7 +7,7 @@ import companyLogo from "../../../public/images/logos/sanbon-fnb.png";
 
 export function Footer() {
   return (
-    <footer className="site-footer">
+    <footer id="footer" className="site-footer">
       <div className="container">
         <Reveal effect="fade" duration={0.65} className="footer-main">
           <div>

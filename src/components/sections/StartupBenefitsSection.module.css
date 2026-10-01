@@ -3,7 +3,7 @@
   background: var(--deep-brown);
   border-block: 1px solid var(--border-gold);
 }
-.heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 48px; }
+.heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: var(--section-gap); }
 .eyebrow { color: var(--gold-light); font-size: 12px; font-weight: 600; letter-spacing: .24em; margin-bottom: 20px; }
 .heading h2 { color: var(--ivory); font-size: clamp(32px, 4vw, 54px); font-weight: 800; line-height: 1.28; letter-spacing: -.055em; }
 .heading h2 span { color: var(--gold-light); }
@@ -14,25 +14,25 @@
 .table { width: 100%; border-collapse: collapse; table-layout: fixed; text-align: center; background: var(--background); }
 .nameColumn { width: 23%; }
 .amountColumn { width: 25%; }
-.table th, .table td { border-right: 1px solid var(--border-gold); border-bottom: 1px solid var(--border-gold); padding: 22px 24px; }
+.table th, .table td { border-right: 1px solid var(--border-gold); border-bottom: 1px solid var(--border-gold); padding: clamp(8px, 1.2svh, 16px) 24px; }
 .table tr > :last-child { border-right: 0; }
-.table thead th { padding-block: 19px; color: var(--ivory); background: var(--background-deep); font-size: 19px; font-weight: 700; }
+.table thead th { padding-block: clamp(10px, 1.4svh, 16px); color: var(--ivory); background: var(--background-deep); font-size: 19px; font-weight: 700; }
 .table tbody th { color: var(--ivory); font-size: 22px; font-weight: 750; letter-spacing: -.04em; }
 .table .description { color: var(--text-dark); background: var(--text-light); font-size: 16px; font-weight: 600; line-height: 1.6; }
-.table .amount { padding: 14px 18px; }
-.stampCell { min-height: 77px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
-.stamp { position: relative; display: grid; place-items: center; width: 88px; height: 51px; border: 2px solid currentColor; border-radius: 4px; color: var(--stamp-ink); font-family: "Songti SC", "Noto Serif CJK KR", Batang, serif; font-size: 34px; line-height: 1; transform-origin: 50% 65%; }
+.table .amount { padding: clamp(8px, 1svh, 12px) 18px; }
+.stampCell { min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+.stamp { position: relative; display: grid; place-items: center; width: 78px; height: clamp(38px, 4.5svh, 48px); border: 2px solid currentColor; border-radius: 4px; color: var(--stamp-ink); font-family: "Songti SC", "Noto Serif CJK KR", Batang, serif; font-size: 30px; line-height: 1; transform-origin: 50% 65%; }
 .stamp::after { content: ""; position: absolute; inset: 4px; border: 1px solid currentColor; border-radius: 1px; opacity: .7; }
 .pending { color: var(--text-muted); font-size: 10px; letter-spacing: .02em; }
 .consult { color: var(--ivory); font-size: 16px; font-weight: 600; }
-.table tfoot th, .table tfoot td { border-bottom: 0; padding-block: 24px; font-size: 22px; font-weight: 800; }
+.table tfoot th, .table tfoot td { border-bottom: 0; padding-block: clamp(12px, 1.6svh, 20px); font-size: 22px; font-weight: 800; }
 .table tfoot th { color: var(--ivory); background: var(--background-deep); }
 .table tfoot td { color: var(--text-dark); background: var(--ivory); }
 .note { margin-top: 18px; color: var(--text-light); font-size: 12px; line-height: 1.8; }
 @media (max-width: 899px) {
   .heading { gap: 24px; }
   .intro p { font-size: 14px; }
-  .table th, .table td { padding: 18px 16px; }
+  .table th, .table td { padding-inline: 16px; }
   .table tbody th { font-size: 19px; }
 }
 @media (max-width: 599px) {
@@ -41,12 +41,12 @@
   .eyebrow { font-size: 10px; margin-bottom: 14px; }
   .nameColumn { width: 24%; }
   .amountColumn { width: 28%; }
-  .table th, .table td { padding: 16px 9px; }
+  .table th, .table td { padding: 12px 9px; }
   .table thead th { font-size: 13px; padding-block: 14px; }
   .table tbody th { font-size: 15px; line-height: 1.45; }
   .table .description { font-size: 12px; }
-  .table .amount { padding: 13px 6px; }
-  .stampCell { min-height: 68px; }
+  .table .amount { padding: 10px 6px; }
+  .stampCell { min-height: 44px; }
   .stamp { width: 59px; height: 39px; font-size: 26px; }
   .pending { font-size: 9px; }
   .consult { font-size: 12px; }
