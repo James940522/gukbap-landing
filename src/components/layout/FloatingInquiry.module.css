@@ -19,7 +19,7 @@
 
 .form {
   display: grid;
-  grid-template-columns: minmax(280px, 1.9fr) repeat(3, minmax(0, 1fr)) 124px 166px;
+  grid-template-columns: minmax(280px, 1.9fr) repeat(3, minmax(0, 1fr)) 140px 166px;
   align-items: start;
   gap: 8px 14px;
   width: min(1400px, calc(100% - 48px));
@@ -40,7 +40,7 @@
 .eyebrow {
   display: block;
   color: var(--gold-dark);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 650;
   letter-spacing: 0.16em;
 }
@@ -77,7 +77,7 @@
   border-radius: 8px;
   background: #fffdf8;
   color: var(--text-dark);
-  font-size: 14px;
+  font-size: 16px;
 }
 .field input::placeholder { color: var(--text-on-paper-muted); }
 .field input:focus { border-color: var(--gold-dark); }
@@ -88,8 +88,9 @@
   align-items: center;
   gap: 8px;
   min-height: 48px;
-  font-size: 12px;
+  font-size: 14px;
   white-space: nowrap;
+  font-weight: 600;
 }
 .consent input {
   flex-shrink: 0;
@@ -97,18 +98,18 @@
   height: 18px;
   accent-color: var(--gold-dark);
 }
-.submit { min-height: 48px; padding-inline: 16px; gap: 12px; font-size: 14px; }
+.submit { min-height: 48px; padding-inline: 16px; gap: 12px; font-size: 16px; }
 .submit svg { flex-shrink: 0; }
-.notice { grid-column: 1 / -1; color: var(--text-on-paper-muted); font-size: 10px; text-align: right; }
-.error { margin-top: 6px; color: var(--color-error); font-size: 12px; line-height: 1.5; }
-.status { grid-column: 1 / -1; font-size: 13px; line-height: 1.7; }
+.notice { grid-column: 1 / -1; color: var(--text-on-paper-muted); font-size: 12px; text-align: right; }
+.error { margin-top: 6px; color: var(--color-error); font-size: 14px; line-height: 1.5; }
+.status { grid-column: 1 / -1; font-size: 15px; line-height: 1.7; }
 .status:empty { display: none; }
 .status:not(:empty) { padding-top: 10px; border-top: 1px solid var(--border-gold); }
 .status a { color: var(--gold-dark); text-decoration: underline; text-underline-offset: 3px; }
 
 /* Match the header's mobile breakpoint; the form stays usable on small laptops. */
 @media (min-width: 900px) and (max-width: 1199px) {
-  .form { grid-template-columns: repeat(3, minmax(0, 1fr)) 124px 166px; }
+  .form { grid-template-columns: repeat(3, minmax(0, 1fr)) 140px 166px; }
   .identity { grid-column: 1 / -1; justify-content: flex-start; border: 0; padding: 0; }
   .identity > div { display: flex; align-items: center; gap: 14px; }
   .identity h2 { margin: 0; }
@@ -132,7 +133,7 @@
     border: 0;
     background: transparent;
     color: var(--gold-dark);
-    font-size: 12px;
+    font-size: 14px;
   }
   .close > span {
     position: absolute;
@@ -148,7 +149,7 @@
   .identity h2 { font-size: 21px; }
   .phone { font-size: clamp(17px, 4.8vw, 22px); }
   .field input { font-size: 16px; }
-  .consent label { min-height: 44px; font-size: 13px; }
+  .consent label { min-height: 44px; font-size: 14px; }
   .submit { justify-content: space-between; width: 100%; min-height: 50px; }
   .notice { text-align: left; line-height: 1.7; }
   .toggle {

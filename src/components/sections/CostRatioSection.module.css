@@ -18,8 +18,9 @@
 
 .masthead > span {
   color: var(--text-on-paper-muted);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 .layout {
@@ -45,7 +46,7 @@
 
 .intro {
   margin-top: 26px;
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.9;
   color: var(--text-on-paper-secondary);
   word-break: keep-all;
@@ -86,7 +87,7 @@
 .statement {
   margin-top: 26px;
   color: var(--text-on-paper-secondary);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.85;
   letter-spacing: -0.03em;
   word-break: keep-all;
@@ -98,7 +99,7 @@
 
 .statement strong {
   color: var(--text-dark);
-  font-weight: 550;
+  font-weight: 650;
 }
 
 .signature {
@@ -107,7 +108,7 @@
   gap: 10px;
   margin-top: 34px;
   color: var(--cost-accent);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.2em;
 }
@@ -138,8 +139,9 @@
 
 .supportHeading > span {
   color: var(--text-on-paper-muted);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.18em;
+  font-weight: 600;
 }
 
 .supportList {
@@ -165,7 +167,7 @@
   display: block;
   margin-bottom: 16px;
   color: var(--cost-accent);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.12em;
   font-variant-numeric: tabular-nums;
@@ -173,7 +175,7 @@
 
 .supportItem p {
   color: var(--text-on-paper-secondary);
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.85;
   letter-spacing: -0.035em;
 }
@@ -193,7 +195,7 @@
   .statement { font-size: 16px; }
   .supportList { gap: 12px; }
   .supportItem { padding-inline: 14px; }
-  .supportItem p { font-size: 16px; }
+  .supportItem p { font-size: 17px; }
   .supportItem h4 { font-size: 19px; }
 }
 
@@ -202,15 +204,15 @@
   .comparison { padding: 40px; }
   .title { font-size: 32px; }
   .principle { padding: 36px 40px; border-left: 0; border-top: 1px solid rgba(86, 65, 37, 0.12); }
-  .statement { font-size: 17px; }
+  .statement { font-size: 16px; }
 }
 
 @media (max-width: 599px) {
   .masthead { gap: 12px; margin-bottom: 20px; }
-  .masthead > span { font-size: 10px; }
+  .masthead > span { font-size: 13px; }
   .comparison { padding: 32px 22px 36px; }
   .title { max-width: 270px; font-size: 29px; text-wrap: initial; }
-  .intro { margin-top: 20px; font-size: 16px; }
+  .intro { margin-top: 20px; font-size: 17px; }
   .mobileBreak { display: initial; }
   .principle { padding: 32px 26px; }
   .principle h3 { font-size: 25px; }

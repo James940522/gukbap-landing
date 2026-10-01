@@ -12,9 +12,9 @@ const pretendard = localFont({
 
 // Use the smaller OTF from the user-provided MaruBuri family for display text.
 const displayFont = localFont({
-  src: "../../public/fonts/maruburi/OTF/MaruBuri-SemiBold.otf",
+  src: "../../public/fonts/maruburi/OTF/MaruBuri-Bold.otf",
   variable: "--font-display",
-  weight: "600",
+  weight: "700",
   display: "swap",
   fallback: ["Batang", "serif"],
 });

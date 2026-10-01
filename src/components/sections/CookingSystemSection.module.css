@@ -36,8 +36,9 @@
 .lead {
   margin-top: 28px;
   color: var(--ivory);
-  font-size: 17px;
+  font-size: 19px;
   letter-spacing: -0.025em;
+  font-weight: 600;
 }
 
 .title {
@@ -60,7 +61,7 @@
 .description {
   margin-top: 25px;
   color: var(--text-light);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.9;
   letter-spacing: -0.025em;
   word-break: keep-all;
@@ -111,7 +112,7 @@
 
 .principles p {
   color: var(--text-light);
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.6;
   letter-spacing: -0.035em;
   word-break: keep-all;
@@ -137,8 +138,9 @@
   gap: 10px;
   margin-bottom: 28px;
   color: var(--text-light);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.07em;
+  font-weight: 600;
 }
 
 .processHeading svg {
@@ -182,7 +184,7 @@
 
 .stepNumber {
   color: var(--gold-light);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.18em;
   font-variant-numeric: tabular-nums;
@@ -191,15 +193,16 @@
 .stepLabel {
   margin-top: 10px;
   color: var(--text-light);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.13em;
+  font-weight: 600;
 }
 
 .circle h3 {
   margin-top: 5px;
   color: var(--ivory);
   font-size: 23px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.5;
   letter-spacing: -0.045em;
 }
@@ -214,7 +217,7 @@
 
 .circle p {
   color: var(--text-light);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.85;
   letter-spacing: -0.025em;
 }
@@ -230,8 +233,9 @@
   gap: 12px;
   margin-top: 30px;
   color: var(--text-light);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.18em;
+  font-weight: 600;
 }
 
 .signature span {
@@ -244,11 +248,11 @@
   .layout { gap: 42px; grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr); }
   .copy { padding-right: 28px; }
   .title { font-size: 36px; }
-  .lead { font-size: 15px; }
-  .description { font-size: 15px; }
-  .principles p { font-size: 16px; }
+  .lead { font-size: 17px; }
+  .description { font-size: 16px; }
+  .principles p { font-size: 17px; }
   .circle h3 { font-size: 20px; }
-  .circle p { font-size: 13px; }
+  .circle p { font-size: 16px; }
   .stepRule { margin-block: 12px; }
 }
 
@@ -259,24 +263,24 @@
   .title { font-size: 44px; }
   .description { font-size: 16px; }
   .principles { margin-top: 30px; }
-  .principles p { font-size: 18px; }
+  .principles p { font-size: 17px; }
   .action { margin-top: 28px; }
   .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
   .step:first-child { grid-column: auto; width: auto; justify-self: stretch; }
   .circle { padding-inline: 10px; }
   .circle h3 { font-size: 18px; }
-  .circle p { font-size: 12px; }
-  .stepLabel { margin-top: 7px; font-size: 11px; }
+  .circle p { font-size: 16px; }
+  .stepLabel { margin-top: 7px; font-size: 13px; }
   .stepRule { margin-block: 10px; }
   .processHeading { justify-content: flex-start; }
 }
 
 @media (max-width: 699px) {
   .layout { gap: 44px; }
-  .lead { margin-top: 24px; font-size: 14px; }
+  .lead { margin-top: 24px; font-size: 17px; }
   .title { font-size: clamp(30px, 7.5vw, 42px); line-height: 1.55; }
-  .description { margin-top: 22px; font-size: 15px; }
-  .principles p { font-size: 16px; }
+  .description { margin-top: 22px; font-size: 16px; }
+  .principles p { font-size: 17px; }
   .principles li > div { gap: 15px; }
   .steps { grid-template-columns: 1fr; gap: 0; }
   .step:first-child { width: auto; }
@@ -306,13 +310,13 @@
     border: 1px solid rgba(243, 234, 219, 0.5);
     border-radius: 50%;
     background: rgba(27, 20, 15, 0.4);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.08em;
   }
-  .stepLabel { grid-column: 2; margin-top: 0; font-size: 11px; }
+  .stepLabel { grid-column: 2; margin-top: 0; font-size: 13px; }
   .circle h3 { grid-column: 2; font-size: 21px; }
-  .circle p { grid-column: 2; margin-top: 8px; font-size: 14px; }
+  .circle p { grid-column: 2; margin-top: 8px; font-size: 16px; }
   .stepRule { display: none; }
-  .processHeading { justify-content: flex-start; margin-bottom: 20px; font-size: 11px; }
+  .processHeading { justify-content: flex-start; margin-bottom: 20px; font-size: 14px; }
   .signature { margin-top: 18px; }
 }

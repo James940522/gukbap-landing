@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type TargetAndTransition } from "framer-motion";
 import type { ReactNode } from "react";
+import { revealViewport } from "@/lib/motion";
 
 const elements = {
   div: motion.div,
@@ -40,7 +41,7 @@ export function Reveal({
   as = "div",
   effect = "rise",
   delay = 0,
-  duration = 0.75,
+  duration = 0.9,
   ...attributes
 }: RevealProps) {
   const reducedMotion = useReducedMotion();
@@ -59,7 +60,7 @@ export function Reveal({
         hidden: entrances[effect],
         visible: { opacity: 1, x: 0, y: 0, scale: 1, scaleX: 1 },
       }}
-      viewport={{ once: true, amount: "some", margin: "0px 0px -32px 0px" }}
+      viewport={revealViewport}
       transition={{
         type: "tween",
         duration: reducedMotion ? 0 : duration,

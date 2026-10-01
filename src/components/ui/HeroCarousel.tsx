@@ -1,21 +1,69 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
-import { useId, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useId, useRef, useState, useSyncExternalStore, type KeyboardEvent, type PointerEvent } from "react";
 import type { HeroSlide } from "@/data/heroSlides";
 import { ArrowIcon, BowlIcon } from "./Icons";
 import { Reveal } from "./Reveal";
 import styles from "./HeroCarousel.module.css";
 
+const AUTOPLAY_INTERVAL = 5000;
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribeToMotionPreference(onChange: () => void) {
+  const media = window.matchMedia(REDUCED_MOTION_QUERY);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
+function prefersReducedMotion() {
+  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+// Keep the initial button markup identical during server rendering/hydration.
+function serverReducedMotion() {
+  return true;
+}
+
+function subscribeToVisibility(onChange: () => void) {
+  document.addEventListener("visibilitychange", onChange);
+  return () => document.removeEventListener("visibilitychange", onChange);
+}
+
+function isPageVisible() {
+  return document.visibilityState === "visible";
+}
+
+function serverPageVisible() {
+  return true;
+}
+
 export function HeroCarousel({ slides }: { slides: readonly HeroSlide[] }) {
   const [selected, setSelected] = useState(0);
+  const [playback, setPlayback] = useState<"auto" | "playing" | "paused">("auto");
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const gesture = useRef<{ x: number; y: number } | null>(null);
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useSyncExternalStore(subscribeToMotionPreference, prefersReducedMotion, serverReducedMotion);
+  const inView = useInView(carouselRef, { amount: 0.25 });
+  const pageVisible = useSyncExternalStore(subscribeToVisibility, isPageVisible, serverPageVisible);
   const viewportId = useId();
   const statusId = useId();
   const total = slides.length;
   const active = Math.min(selected, total - 1);
+  // Reduced-motion users can still explicitly start playback, without fades.
+  const autoplayEnabled = playback === "playing" || (playback === "auto" && !reducedMotion);
+  const playing = total > 1 && autoplayEnabled && inView && pageVisible && !hovered && !focused;
+
+  useEffect(() => {
+    if (!playing) return;
+    const timer = window.setTimeout(() => {
+      setSelected((current) => (current + 1) % total);
+    }, AUTOPLAY_INTERVAL);
+    return () => window.clearTimeout(timer);
+  }, [playing, selected, total]);
 
   if (total === 0) return null;
 
@@ -50,7 +98,19 @@ export function HeroCarousel({ slides }: { slides: readonly HeroSlide[] }) {
   }
 
   return (
-    <div className="hero-visual" role="region" aria-roledescription="캐러셀" aria-label="뚝손국밥 음식 사진">
+    <div
+      ref={carouselRef}
+      className="hero-visual"
+      role="region"
+      aria-roledescription="캐러셀"
+      aria-label="뚝손국밥 음식 사진"
+      onPointerEnter={(event) => { if (event.pointerType === "mouse") setHovered(true); }}
+      onPointerLeave={() => setHovered(false)}
+      onFocusCapture={() => setFocused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
+      }}
+    >
       <div className="hero-orbit" aria-hidden="true" />
       <Reveal effect="fade" className="hero-visual-top">
         <span>THE WARMTH OF A BOWL</span>
@@ -123,13 +183,29 @@ export function HeroCarousel({ slides }: { slides: readonly HeroSlide[] }) {
           </div>
         )}
         <div className={styles.navigation}>
-          <p id={statusId} className={styles.position} role="status" aria-atomic="true">
+          <p id={statusId} className={styles.position} role="status" aria-live={playing ? "off" : "polite"} aria-atomic="true">
             <span className="sr-only">사진 </span>
             <strong>{String(active + 1).padStart(2, "0")}</strong>
             <span> / {String(total).padStart(2, "0")}</span>
           </p>
           {total > 1 && (
             <div className={styles.arrows}>
+              <button
+                type="button"
+                aria-label={autoplayEnabled ? "자동 재생 일시정지" : "자동 재생 시작"}
+                aria-controls={viewportId}
+                onClick={() => {
+                  setPlayback(autoplayEnabled ? "paused" : "playing");
+                  // An explicit Play request also works with keyboard focus here.
+                  setFocused(false);
+                }}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                  {autoplayEnabled
+                    ? <path d="M9 5v14M15 5v14" />
+                    : <path d="m9 5 10 7-10 7Z" />}
+                </svg>
+              </button>
               <button type="button" aria-label="이전 사진" aria-controls={viewportId} onClick={() => goTo(active - 1)}>
                 <ArrowIcon className={styles.previous} />
               </button>

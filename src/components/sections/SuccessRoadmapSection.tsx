@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 import { roadmapStrengths, roadmapSignals, type RoadmapStrength } from '@/data/roadmap';
 import { ArrowIcon } from '@/components/ui/Icons';
+import { revealViewport } from '@/lib/motion';
 import styles from './SuccessRoadmapSection.module.css';
 
 interface TimelineItemProps {
@@ -24,9 +25,9 @@ function TimelineItem({ strength, index, reduceMotion }: TimelineItemProps) {
         scale: reduceMotion ? 1 : 0.96,
       }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 'some', margin: '0px 0px -24px 0px' }}
+      viewport={revealViewport}
       transition={{
-        duration: reduceMotion ? 0.01 : 0.58,
+        duration: reduceMotion ? 0.01 : 0.85,
         delay: reduceMotion ? 0 : (index % 3) * 0.08,
         ease: [0.22, 1, 0.36, 1],
       }}
@@ -70,7 +71,7 @@ function TimelineItem({ strength, index, reduceMotion }: TimelineItemProps) {
             <p className="text-[0.58rem] font-black uppercase tracking-[0.22em] text-[#b56e32] md:text-[0.66rem]">
               Roadmap {strength.number}
             </p>
-            <h3 className="mt-1 break-keep text-sm font-black leading-snug tracking-[-0.04em] text-[#f0dfc0] md:text-lg">
+            <h3 className="mt-1 break-keep text-base font-black leading-snug tracking-[-0.04em] text-[#f0dfc0] md:text-lg">
               {strength.title}
             </h3>
           </div>
@@ -86,7 +87,7 @@ function TimelineItem({ strength, index, reduceMotion }: TimelineItemProps) {
           <span className="h-px flex-1 bg-[#a9824c]/20" />
         </div>
 
-        <p className="break-keep text-xs font-semibold leading-5 text-[#c8b69a] md:text-sm md:leading-6">
+        <p className="break-keep text-sm font-semibold leading-6 text-[#dfd0b8] md:text-base md:leading-7">
           {strength.desc}
         </p>
       </div>
@@ -181,9 +182,9 @@ export function SuccessRoadmapSection() {
           className="relative overflow-hidden rounded-[2rem] border border-[#a9824c]/70 bg-[#140c08]/74 p-4 shadow-[0_32px_90px_rgba(18,10,6,0.46)] backdrop-blur-[2px] md:p-6 lg:grid lg:grid-cols-[0.72fr_1.28fr] lg:gap-8 lg:p-8"
           initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 'some' }}
+          viewport={revealViewport}
           transition={{
-            duration: reduceMotion ? 0.01 : 0.72,
+            duration: reduceMotion ? 0.01 : 0.9,
             ease: [0.22, 1, 0.36, 1],
           }}
         >
@@ -218,9 +219,9 @@ export function SuccessRoadmapSection() {
             className="relative z-10 mb-7 rounded-[1.6rem] border border-[#a9824c]/35 bg-[#21150f]/82 p-5 shadow-[0_22px_55px_rgba(18,10,6,0.38)] md:p-7 lg:mb-0 lg:flex lg:min-h-[34rem] lg:flex-col lg:justify-between"
             initial={{ opacity: 0, x: reduceMotion ? 0 : -22 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 'some' }}
+            viewport={revealViewport}
             transition={{
-              duration: reduceMotion ? 0.01 : 0.66,
+              duration: reduceMotion ? 0.01 : 0.9,
               delay: reduceMotion ? 0 : 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
@@ -241,7 +242,7 @@ export function SuccessRoadmapSection() {
                 6단계 로드맵
               </h2>
 
-              <p className="mt-5 max-w-xl break-keep text-sm font-bold leading-6 text-[#c8b69a] md:text-lg md:leading-8 lg:text-base">
+              <p className="mt-5 max-w-xl break-keep text-base font-bold leading-7 text-[#dfd0b8] md:text-lg md:leading-8">
                 한 그릇의 기본부터 매장의 운영까지. 뚝손과 함께 살펴볼 여섯 가지 기준을 한눈에 담았습니다.
               </p>
             </div>
@@ -264,7 +265,7 @@ export function SuccessRoadmapSection() {
 
             <div className="mt-7 border-t border-[#a9824c]/20 pt-5">
               <a href="#inquiry" className={styles.inquiryLink}>지금 바로 시작하세요<ArrowIcon /></a>
-              <p className="mt-2 break-keep text-sm font-bold leading-6 text-[#c8b69a]">
+              <p className="mt-2 break-keep text-base font-bold leading-7 text-[#dfd0b8]">
                 점주님의 시작을 함께 이야기하겠습니다.
               </p>
             </div>
@@ -275,9 +276,9 @@ export function SuccessRoadmapSection() {
             data-reveal="from-right"
             initial={{ opacity: 0, x: reduceMotion ? 0 : 24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 'some' }}
+            viewport={revealViewport}
             transition={{
-              duration: reduceMotion ? 0.01 : 0.68,
+              duration: reduceMotion ? 0.01 : 0.9,
               delay: reduceMotion ? 0 : 0.16,
               ease: [0.22, 1, 0.36, 1],
             }}
@@ -287,7 +288,7 @@ export function SuccessRoadmapSection() {
                 <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b56e32]">
                   01—06
                 </p>
-                <p className="mt-1 break-keep text-sm font-bold text-[#c8b69a] md:text-base">
+                <p className="mt-1 break-keep text-base font-bold text-[#dfd0b8]">
                   뚝손의 여섯 가지 운영 기준
                 </p>
               </div>

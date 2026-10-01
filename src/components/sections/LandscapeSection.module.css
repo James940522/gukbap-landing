@@ -41,6 +41,7 @@
   font-size: clamp(16px, 1.55vw, 28px);
   letter-spacing: -0.035em;
   line-height: 1.6;
+  font-weight: 600;
 }
 
 .divider {
@@ -55,7 +56,7 @@
   color: var(--deep-brown);
   font-family: var(--font-display), "Batang", serif;
   font-size: clamp(40px, 4.1vw, 76px);
-  font-weight: 600;
+  font-weight: 700;
   font-synthesis: none;
   letter-spacing: -0.055em;
   line-height: 1.4;
@@ -72,7 +73,7 @@
 
 .description {
   margin-top: 30px;
-  font-size: clamp(15px, 1.15vw, 20px);
+  font-size: 18px;
   line-height: 1.95;
   letter-spacing: -0.025em;
 }
@@ -100,7 +101,7 @@
   .description {
     max-width: 420px;
     margin: 24px auto 0;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .visual {
