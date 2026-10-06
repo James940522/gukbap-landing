@@ -244,7 +244,7 @@ export function StrategySection() {
           <div className={styles.mobileGraph} data-strategy-layer="graph"><ArrowGraph mode="mobile" /></div>
           <StrategyBadges />
           <div className={styles.captionPosition} data-strategy-layer="caption">
-            <motion.p className={styles.graphCaption} data-strategy-reveal variants={entrance(timing.graph + timing.graphDuration, reduced)}>
+            <motion.p className={styles.graphCaption} data-strategy-reveal variants={entrance(timing.graphCaption, reduced)}>
               <span>{strategyContent.graphCaption[0]}</span>
               <strong>{strategyContent.graphCaption[1]}</strong>
             </motion.p>
