@@ -1,0 +1,51 @@
+{
+  "source": "public/images/hero/source/gate-original.png",
+  "sourceSha256": "1e1926befbfe830f4e76235c7d220519d72907c78a42f9af672acf2cb9846c18",
+  "sourceWidth": 1492,
+  "sourceHeight": 1138,
+  "configSha256": "cee1c385067d1413ae50362f8d024d03f9a6a5da5994409436c4f37414628878",
+  "compositionOrder": [
+    "black background",
+    "gate-door-left.png",
+    "gate-door-right.png",
+    "gate-frame.webp"
+  ],
+  "reconstruction": {
+    "status": "PASS",
+    "changedPixels": 0,
+    "maxChannelDifference": 0,
+    "meanAbsoluteError": 0,
+    "rootMeanSquareError": 0,
+    "alphaDifference": 0
+  },
+  "masking": {
+    "status": "PASS",
+    "frameMaskErrors": 0,
+    "uncoveredPixels": 0,
+    "transparentDoorwayPixels": 567759,
+    "seamOverlapPixels": 2
+  },
+  "assets": [
+    {
+      "file": "gate-frame.webp",
+      "width": 1492,
+      "height": 1138,
+      "hasAlpha": true,
+      "bytes": 1089444
+    },
+    {
+      "file": "gate-door-left.png",
+      "width": 401,
+      "height": 716,
+      "hasAlpha": true,
+      "bytes": 420073
+    },
+    {
+      "file": "gate-door-right.png",
+      "width": 397,
+      "height": 715,
+      "hasAlpha": true,
+      "bytes": 422056
+    }
+  ]
+}

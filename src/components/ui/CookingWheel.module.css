@@ -1,0 +1,133 @@
+.figure {
+  width: min(100%, 680px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.wheel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  isolation: isolate;
+}
+
+.pictures {
+  position: absolute;
+  inset: 3.46%;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--background-deep);
+}
+
+.baseImage {
+  object-fit: cover;
+}
+
+.piece {
+  position: absolute;
+  inset: 0;
+}
+
+/* Three 120-degree sectors, clockwise from twelve o'clock. The far points
+   sit outside the circle so their edges meet exactly at its center. */
+.right { clip-path: polygon(50% 50%, 50% 0, 100% 0, 100% 78.8675%); }
+.bottom { clip-path: polygon(50% 50%, 100% 78.8675%, 100% 100%, 0 100%, 0 78.8675%); }
+.left { clip-path: polygon(50% 50%, 0 78.8675%, 0 0, 50% 0); }
+
+.photoArea {
+  position: absolute;
+}
+
+.photoArea img {
+  object-fit: cover;
+}
+
+.right .photoArea { inset: 0 0 24% 50%; }
+.bottom .photoArea { inset: 50% 6.6% 0; }
+.left .photoArea { inset: 0 50% 24% 0; }
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 12, 9, 0.24);
+}
+
+.right .shade,
+.left .shade {
+  background: linear-gradient(to bottom, rgba(16, 12, 9, 0.04) 10%, rgba(16, 12, 9, 0.62) 45%, rgba(16, 12, 9, 0.15) 72%);
+}
+
+.bottom .shade {
+  background: linear-gradient(to bottom, transparent 48%, rgba(16, 12, 9, 0.52) 69%, rgba(16, 12, 9, 0.66));
+}
+
+.caption {
+  position: absolute;
+  width: 39%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(16, 12, 9, 0.7);
+}
+
+.right .caption { left: 73%; top: 39%; }
+.bottom .caption { left: 50%; top: 79%; width: 48%; }
+.left .caption { left: 27%; top: 39%; }
+
+.caption svg {
+  display: block;
+  width: clamp(28px, 4vw, 45px);
+  height: auto;
+  margin: 0 auto 7px;
+  stroke-width: 1.7;
+}
+
+.stepNumber {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--gold-light);
+  font-size: clamp(10px, 1.2vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.caption p {
+  font-size: clamp(17px, 2vw, 23px);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.055em;
+  word-break: keep-all;
+}
+
+.caption p span { display: block; }
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.track { stroke: rgba(255, 255, 255, 0.3); stroke-width: 1; }
+.progress { stroke: #fff; stroke-width: 4; }
+
+@media (max-width: 899px) {
+  .figure { width: min(100%, 600px); }
+  .caption p { font-size: clamp(17px, 2.7vw, 22px); }
+}
+
+@media (max-width: 599px) {
+  .caption svg { width: 28px; margin-bottom: 3px; }
+  .caption p { font-size: clamp(12px, 3.3vw, 18px); line-height: 1.5; }
+  .stepNumber { margin-bottom: 5px; font-size: 10px; letter-spacing: 0.07em; }
+  .caption { width: 41%; }
+  .right .caption { left: 73%; top: 40%; }
+  .left .caption { left: 27%; top: 40%; }
+  .bottom .caption { top: 79%; }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .piece { opacity: 1 !important; }
+  .progress { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
+}

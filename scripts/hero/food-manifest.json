@@ -1,0 +1,19 @@
+{
+  "source": "public/images/hero/source/gukbap-table-original.jpg",
+  "sourceSha256": "23d7e96d2a5eecb92f580aad013c8e724c5821d3f626c54fe683071c77db0ffe",
+  "sourceWidth": 1280,
+  "sourceHeight": 960,
+  "sourceBytes": 305314,
+  "output": "/images/hero/gukbap-table.webp",
+  "width": 1280,
+  "height": 960,
+  "bytes": 210138,
+  "encoding": {
+    "format": "webp",
+    "quality": 90,
+    "effort": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "note": "User-supplied photograph. Preserve the whole table composition. No generative edits, bubbling, or animated steam."
+}

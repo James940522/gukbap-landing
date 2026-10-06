@@ -1,0 +1,50 @@
+{
+  "assets": [
+    {
+      "file": "bg-paper-texture.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 123164,
+      "alpha": false,
+      "sourceSha256": "0b7daf1a771c85f4fa4dfe58fc3e92f9ca6f9ed4c6b5def6e933103db0ba9928",
+      "provenance": "Restored with built-in image_gen using the supplied design as reference; not a pixel-exact crop."
+    },
+    {
+      "file": "bg-hanok-left.webp",
+      "width": 1000,
+      "height": 1250,
+      "bytes": 317510,
+      "alpha": true,
+      "sourceSha256": "894d77c73cf04f512d1601146a85a15dc379813f0a607fe4466dda5a795bee6f",
+      "provenance": "Restored with built-in image_gen using the supplied design as reference; not a pixel-exact crop."
+    },
+    {
+      "file": "bg-food-right.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 345564,
+      "alpha": false,
+      "sourceSha256": "a9529cab728281eb7785902f46f4507662ae39f8b5f1b551c7dc7a6b851e2d55",
+      "provenance": "Restored with built-in image_gen using the supplied design as reference; not a pixel-exact crop."
+    },
+    {
+      "file": "bg-food-mobile.webp",
+      "width": 1161,
+      "height": 1355,
+      "bytes": 389630,
+      "alpha": false,
+      "sourceSha256": "941cdd19e54b6774735ae0d44f3caa24d83431552331208fcc03d7a90e50d729",
+      "provenance": "Restored with built-in image_gen using the supplied design as reference; not a pixel-exact crop."
+    },
+    {
+      "file": "board-frame.webp",
+      "width": 1100,
+      "height": 1019,
+      "bytes": 166400,
+      "alpha": true,
+      "sourceSha256": "e1b7a3d6f3d248e88341ed397ef4bf233f9b974cd4efafc33525814caad1522c",
+      "provenance": "Restored with built-in image_gen using the supplied design as reference; not a pixel-exact crop."
+    }
+  ],
+  "totalBytes": 1342268
+}

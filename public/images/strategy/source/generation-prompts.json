@@ -1,0 +1,32 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "strategy-section-original.png",
+  "note": "Independent reference-based restorations; not pixel-exact crops. Text and graph are rendered in code.",
+  "assets": [
+    {
+      "asset": "bg-paper-texture",
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Input image 1 is the reference for extracting reusable visual layers for a Korean gukbap restaurant web section. Generate ONLY the warm aged ivory/beige Korean hanji paper background texture matching the original image's underlying paper. Fill the entire landscape 3:2 canvas edge-to-edge with lightly mottled fibers, subtle warm patches and subtle weathering. Remove ALL foreground elements: no buildings, food, wood frame, cloud drawings, bamboo, text, symbols, badges, arrows, graphs, borders or shadows. Keep illumination even, avoid pronounced vignette; subdued fine organic grain. This is a clean independent background asset, not a finished advertisement."
+    },
+    {
+      "asset": "bg-hanok-left",
+      "transparent_background": true,
+      "prompt": "Use case: background-extraction. Input image 1 is the reference design. Extract and restore ONLY the traditional Korean hanok architecture illustration decorating the LEFT edge: a large grey-brown sepia ink wash tiled roof at upper-left, stone and wooden facade under it, smaller receding tiled roofs going toward the right, faint bamboo at the bottom left. Restore portions hidden behind the sign board. True transparent background outside ink strokes, irregular softly fading edges, especially on the right and bottom, so it can overlay beige paper. Portrait-ish 4:5 canvas. Keep building along left and top with open transparent room on the right. No board, no food, no labels or letters (blank the shop banner), no graph, no badges. Match the original's old Korean ink wash / charcoal architectural illustration, muted low contrast. Output one independent decorative layer with actual alpha transparency."
+    },
+    {
+      "asset": "board-frame",
+      "transparent_background": true,
+      "prompt": "Use case: precise-object-edit. Input image 1 is the edit target/reference. Isolate and restore ONLY the rectangular wooden framed paper notice board from upper-left of the image. Front-on flat view, nearly square width:height ratio 1.08:1. Keep warm dark brown cylindrical wood rails, natural grain, subtly lashed overlapping corners, narrow dark edge and fine ornamental details at inner corners. Center is completely EMPTY aged light cream beige paper, ready for HTML text overlay. Remove ALL writing, numbers, checks, red brushstrokes and shadows of removed writing; do not redraw any text. Frame should occupy about 96% of canvas width and height with a tiny uniform transparent margin outside it; true transparent exterior. No building, no background scene, no food, no graph, no badges. Match the supplied rustic Korean notice board faithfully, not a modern frame."
+    },
+    {
+      "asset": "bg-food-right",
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Input image 1 is the reference to restore the FOOD PHOTOGRAPH layer underneath the design. Create one landscape 3:2 full-bleed appetizing overhead photograph of several Korean pork gukbap soups in black earthenware bowls on a very dark rustic brown timber table, matching the original bowls, light and garnish. Main large milky broth pork soup at lower center-left, large spicy red broth pork soup at lower right with sliced scallions, chili and perilla, smaller milky pork bowl at upper center-right, cropped spicy bowl at right edge, small amber tea bowl at upper right. Warm natural light, generous pork slices, realistic rich soups and ceramic, dark inviting photographic mood. Extend/reconstruct the hidden table and bowls into a continuous full image. IMPORTANT: no beige paper or diagonal clipping in image; table covers all background. No arrows, graph lines, badges, labels, icons, text, frame, buildings, illustration, watermark or hands. Keep several bowls as ONE unified photo asset, not a grid. This will be diagonally masked in CSS later, so do not pre-mask."
+    },
+    {
+      "asset": "bg-food-mobile",
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Input image 1 is the reference for the exact Korean pork gukbap food photography, dark timber table, black earthenware bowls, garnish, lighting, and color palette. Create a dedicated portrait mobile version, recomposed rather than stretching or cropping the landscape image. Use a full-bleed dark rustic timber tabletop with one large milky pork broth bowl near the lower-left, one large spicy red pork broth bowl near the lower-right, one smaller milky pork broth bowl in the upper-right quadrant, and an optional amber tea bowl near the upper-right edge. Keep the upper-left half mostly uninterrupted wood for the rising graph and beige paper area after CSS clipping. Keep every main bowl recognizable and moderately sized with surrounding table visible. Photorealistic warm overhead restaurant photography. One continuous image; no pre-applied diagonal mask, beige paper, buildings, frame, hands, people, text, numbers, arrows, graph lines, badges, icons, logo, collage grid, or watermark."
+    }
+  ]
+}

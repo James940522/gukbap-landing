@@ -1,0 +1,46 @@
+{
+  "source": "public/images/hero/source/gate-original.png",
+  "outputDirectory": "public/images/hero",
+  "sourceWidth": 1492,
+  "sourceHeight": 1138,
+  "coordinateSystem": "Source pixels, top-left origin, half-open crop bounds; polygon sampled at pixel centers.",
+  "doorway": {
+    "polygon": [[352, 282], [477, 281], [645, 282], [751, 282], [928, 282], [1100, 282], [1145, 283], [1145, 445], [1146, 600], [1145, 780], [1145, 997], [968, 997], [750, 996], [550, 996], [350, 997], [350, 775], [351, 550], [352, 350]]
+  },
+  "leftDoor": {
+    "x": 350,
+    "y": 281,
+    "width": 401,
+    "height": 716,
+    "transformOrigin": "left center",
+    "asset": "gate-door-left.png"
+  },
+  "rightDoor": {
+    "x": 749,
+    "y": 282,
+    "width": 397,
+    "height": 715,
+    "transformOrigin": "right center",
+    "asset": "gate-door-right.png"
+  },
+  "hinge": { "left": 350, "right": 1146 },
+  "seam": { "x": 750, "overlapPixels": 2 },
+  "preview": {
+    "perspective": 1400,
+    "openAngle": 65,
+    "minAngle": 55,
+    "maxAngle": 70,
+    "durationMs": 1100,
+    "zIndex": { "background": 0, "doors": 20, "frame": 30 }
+  },
+  "encoding": {
+    "frame": { "lossless": true, "effort": 6 },
+    "doors": { "compressionLevel": 9, "adaptiveFiltering": true }
+  },
+  "notes": [
+    "Manually traced visible panel/jamb seams. Fixed jambs, hinge anchors, lamps, beam, threshold and steps stay in frame.",
+    "The center split follows the dark original seam between the two separate metal backplates; each complete ring stays on its own door.",
+    "Two identical source pixel columns overlap inside the dark center seam to avoid fractional CSS positioning gaps.",
+    "Binary alpha preserves exact reconstruction. No generated fill, inpainting, resampling, recoloring or invented door backs."
+  ]
+}

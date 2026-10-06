@@ -1,0 +1,30 @@
+{
+  "encoding": {
+    "frame": {
+      "lossless": true,
+      "effort": 6
+    },
+    "doors": {
+      "compressionLevel": 9,
+      "adaptiveFiltering": true
+    }
+  },
+  "compression": [
+    {
+      "asset": "gate-door-left.png",
+      "workingBytes": 636802,
+      "finalBytes": 420073
+    },
+    {
+      "asset": "gate-door-right.png",
+      "workingBytes": 650438,
+      "finalBytes": 422056
+    },
+    {
+      "asset": "gate-frame.webp",
+      "workingBytes": 2537569,
+      "finalBytes": 1089444
+    }
+  ],
+  "decision": "Lossless WebP frame and RGBA PNG doors preserve exact reconstruction; no downsampling or palette quantization."
+}

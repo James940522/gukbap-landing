@@ -1,0 +1,118 @@
+.section {
+  --strategy-red: #ad181b;
+  --strategy-ink: #28170e;
+  --strategy-brown: #492b13;
+  --strategy-paper: #ead9b8;
+  --heading-color: var(--strategy-ink);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--strategy-ink);
+  background: var(--strategy-paper);
+  container-type: inline-size;
+}
+
+.canvas {
+  position: relative;
+  width: 100%;
+  /* Match the other sections, retaining enough space on short, wide screens. */
+  height: max(var(--section-height), calc(100cqw * 968 / 1624));
+  container-type: size;
+}
+
+.paper { object-fit: cover; }
+.hanok { position: absolute; inset: 0 auto 0 0; width: 53%; opacity: 0.72; }
+.hanok img { object-fit: contain; object-position: left top; }
+
+.board {
+  position: absolute;
+  z-index: 3;
+  top: 5.2%;
+  left: 9.2%;
+  width: 32.4%;
+  aspect-ratio: 1.08;
+}
+
+.boardImage { object-fit: fill; }
+.boardContent { position: absolute; inset: 13% 10% 10%; }
+.title { display: flex; align-items: baseline; justify-content: center; gap: 1.25cqw; font-size: 4.3cqw; line-height: 1.15; font-weight: 900; letter-spacing: -0.065em; white-space: nowrap; }
+.threeWay { position: relative; color: var(--strategy-red); font-size: 5.5cqw; font-weight: 950; font-style: italic; letter-spacing: -0.065em; transform: rotate(-3deg); }
+.threeWay::after { content: ""; position: absolute; left: -3%; right: -4%; bottom: -2%; height: 0.38cqw; background: currentColor; clip-path: polygon(0 44%, 100% 0, 95% 65%, 4% 100%); }
+.description { margin: 1.45cqw auto 0; width: max-content; font-size: 1.5cqw; line-height: 1.4; font-weight: 550; letter-spacing: -0.04em; }
+.checklist { display: grid; gap: 0.42cqw; width: max-content; margin: 1.18cqw auto 0; padding: 0; list-style: none; }
+.checklist li { display: flex; align-items: center; gap: 0.7cqw; font-size: 2.25cqw; line-height: 1.32; font-weight: 850; letter-spacing: -0.055em; white-space: nowrap; }
+.check { width: 2.65cqw; height: 2.65cqw; margin-right: 0.3cqw; color: var(--strategy-red); overflow: visible; }
+.ok { color: var(--strategy-red); font-weight: 850; letter-spacing: -0.04em; }
+
+.graphStage { position: absolute; inset: 0; }
+.food { position: absolute; inset: 0; clip-path: var(--food-clip); }
+.foodImage { object-fit: cover; object-position: center; }
+.desktopGraph, .mobileGraph { position: absolute; inset: 0; pointer-events: none; }
+.mobileGraph { display: none; }
+.graphSvg { display: block; width: 100%; height: 100%; color: var(--strategy-red); overflow: visible; }
+.stem { stroke: var(--strategy-brown); }
+.nodePosition { position: absolute; aspect-ratio: 1; transform: translate(-50%, -50%); }
+.node { width: 100%; height: 100%; border: var(--node-border) solid var(--strategy-red); border-radius: 50%; background: var(--strategy-paper); }
+.badges { margin: 0; padding: 0; list-style: none; }
+.badgePosition { position: absolute; z-index: 2; left: var(--badge-x); top: var(--badge-y); width: 9.23645%; aspect-ratio: 1; transform: translate(-50%, -50%); }
+.badge { position: relative; display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 0.2cqw; background: var(--strategy-brown); color: #f6e9cb; border-radius: 50%; border: 1px solid #ead9b8; outline: 2px solid var(--strategy-brown); outline-offset: 2px; }
+.badge::after { content: ""; position: absolute; inset: -5px; border: 2px dashed var(--strategy-paper); border-radius: 50%; pointer-events: none; transform: rotate(-18deg); }
+.badge svg { width: 3.5cqw; height: 3.5cqw; }
+.badge span { font-size: max(13px, 1.32cqw); font-weight: 750; line-height: 1.13; letter-spacing: -0.055em; text-align: center; }
+.captionPosition {
+  position: absolute;
+  z-index: 2;
+  left: 66.5%;
+  top: 48%;
+  width: 26%;
+  /* Follow the last graph segment as the viewport's aspect ratio changes. */
+  transform-origin: bottom left;
+  transform: translateY(-100%) rotate(calc(-1 * atan2(36.467cqh, 23.953cqw)));
+}
+.graphCaption { color: var(--strategy-red); font-size: 2.65cqw; font-weight: 900; line-height: 1.16; letter-spacing: -0.065em; white-space: nowrap; }
+.graphCaption span, .graphCaption strong { display: block; }
+.graphCaption strong { font-size: 2.25cqw; font-weight: 900; }
+
+/* Recompose, rather than shrink, the reference on tablet and phone screens. */
+@media (max-width: 899px) {
+  .canvas { display: flex; flex-direction: column; height: auto; min-height: 0; padding-top: 22px; container-type: inline-size; }
+  .hanok { width: 100%; height: 65%; opacity: 0.42; }
+  .board { position: relative; top: auto; left: auto; flex-shrink: 0; width: min(92%, 570px); margin: 0 auto; }
+  .boardContent { inset: 12% 10% 10%; container-type: inline-size; }
+  .title { gap: 5cqw; font-size: 16cqw; }
+  .threeWay { font-size: 20cqw; }
+  .threeWay::after { height: 1.5cqw; }
+  .description { margin-top: 5cqw; font-size: 6.05cqw; }
+  .checklist { margin-top: 4cqw; gap: 1.6cqw; }
+  .checklist li { gap: 2.4cqw; font-size: 8.5cqw; }
+  .check { width: 10cqw; height: 10cqw; margin-right: 1cqw; }
+  .graphStage {
+    position: relative;
+    inset: auto;
+    flex: none;
+    width: 100%;
+    aspect-ratio: 600 / 680;
+    min-height: 0;
+    margin-top: 8px;
+  }
+  .food { clip-path: var(--food-clip-mobile); }
+  .foodImage {
+    /* The mobile source is composed for this portrait graph stage, so it can
+       fill the mask without enlarging a landscape photograph. */
+    object-position: center;
+  }
+  .desktopGraph { display: none; }
+  .mobileGraph { display: block; }
+  .badgePosition { left: var(--mobile-badge-x); top: var(--mobile-badge-y); width: 22%; }
+  .badge { gap: 0.5cqw; }
+  .badge svg { width: 8.5cqw; height: 8.5cqw; }
+  .badge span { font-size: max(12px, 3.25cqw); }
+  .captionPosition { top: 9.5%; left: 7%; width: 62%; transform: none; }
+  .graphCaption { font-size: 7cqw; line-height: 1.2; }
+  .graphCaption strong { font-size: 5.7cqw; }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .section [data-strategy-reveal] { opacity: 1 !important; transform: none !important; }
+  .section [data-strategy-draw] { opacity: 1 !important; stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
+}

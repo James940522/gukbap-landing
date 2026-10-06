@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>한옥 대문 레이어 검증 · 뚝손국밥</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; color: #f3eadb; background: #16110d; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 1164px; padding: 28px 24px 56px; margin: auto; }
+    header { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
+    .eyebrow { color: #cba45b; font-size: 11px; letter-spacing: .18em; margin: 0 0 8px; }
+    h1 { font-size: clamp(21px, 4vw, 28px); line-height: 1.35; margin: 0; font-weight: 650; }
+    p { color: #c8baaa; font-size: 14px; line-height: 1.65; }
+    header p { margin: 0; }
+    .controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; margin-bottom: 20px; }
+    .buttons { display: flex; gap: 8px; }
+    button { min-height: 44px; padding: 10px 22px; border: 1px solid #b78b3f77; border-radius: 4px; font: inherit; font-size: 12px; letter-spacing: .06em; color: #f3eadb; background: transparent; cursor: pointer; }
+    button[aria-pressed="true"] { color: #16110d; background: #cba45b; }
+    button:hover { border-color: #cba45b; }
+    label { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; color: #c8baaa; }
+    input { accent-color: #cba45b; }
+    input[type="range"] { width: 120px; height: 24px; }
+    output { min-width: 32px; color: #f3eadb; font-variant-numeric: tabular-nums; }
+    .stage-wrap { width: 100%; max-width: max(320px, calc((100svh - 260px) * __WIDTH__ / __HEIGHT__)); margin: auto; }
+    .stage { --angle: __OPEN_ANGLE__deg; position: relative; width: 100%; aspect-ratio: __ASPECT_RATIO__; background: #000; isolation: isolate; }
+    .doors-scene { position: absolute; inset: 0; z-index: __DOOR_Z__; perspective: __PERSPECTIVE__px; }
+    .door { position: absolute; display: block; backface-visibility: hidden; transform: rotateY(0deg); transition: transform __DURATION__ms cubic-bezier(.4, 0, .2, 1); }
+    .door img { display: block; width: 100%; height: 100%; }
+    .left { __LEFT_STYLE__ transform-origin: left center; }
+    .right { __RIGHT_STYLE__ transform-origin: right center; }
+    .stage[data-open="true"] .left { transform: rotateY(var(--angle)); }
+    .stage[data-open="true"] .right { transform: rotateY(calc(-1 * var(--angle))); }
+    .stage[data-frame-only="true"] .doors-scene { visibility: hidden; }
+    .stage[data-checker="true"] { background-color: #e8e4de; background-image: conic-gradient(#b4b0ab 25%, transparent 0 50%, #b4b0ab 0 75%, transparent 0); background-size: 24px 24px; }
+    .frame { position: absolute; inset: 0; width: 100%; height: 100%; z-index: __FRAME_Z__; pointer-events: none; }
+    .caption { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; font-size: 12px; color: #c8baaa; }
+    .details { margin-top: 28px; padding-top: 20px; border-top: 1px solid #b78b3f55; }
+    .details p { margin: 0 0 14px; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+    a { color: #d9b97b; text-underline-offset: 4px; font-size: 13px; }
+    :focus-visible { outline: 2px solid #cba45b; outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) { .door { transition: none; } }
+    @media (max-width: 600px) { main { padding: 20px 12px 40px; } header { display: block; } header p { margin-top: 12px; } .caption { flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><p class="eyebrow">DDUKSON · ASSET LAB</p><h1>한옥 대문 레이어 검증</h1></div>
+      <p>원본 __WIDTH__ × __HEIGHT__<br>문짝 2개 + 투명 Frame</p>
+    </header>
+    <div class="controls" aria-label="문 열기 검증 도구">
+      <div class="buttons">
+        <button type="button" id="open" aria-controls="stage" aria-pressed="false">OPEN</button>
+        <button type="button" id="close" aria-controls="stage" aria-pressed="true">CLOSE</button>
+      </div>
+      <label for="angle">열림 각도 <input id="angle" type="range" min="__MIN_ANGLE__" max="__MAX_ANGLE__" value="__OPEN_ANGLE__" step="1"><output id="angle-value" for="angle">__OPEN_ANGLE__°</output></label>
+      <label><input id="frame-only" type="checkbox">Frame만 보기</label>
+      <label><input id="checker" type="checkbox">투명도 배경</label>
+    </div>
+    <div class="stage-wrap">
+      <div class="stage" id="stage" role="img" aria-label="레이어를 재조립한 닫힌 한옥 대문" data-open="false">
+        <div class="doors-scene">
+          <div class="door left"><img src="../__LEFT_ASSET__" width="__LEFT_WIDTH__" height="__LEFT_HEIGHT__" alt="" draggable="false"></div>
+          <div class="door right"><img src="../__RIGHT_ASSET__" width="__RIGHT_WIDTH__" height="__RIGHT_HEIGHT__" alt="" draggable="false"></div>
+        </div>
+        <img class="frame" src="../gate-frame.webp" width="__WIDTH__" height="__HEIGHT__" alt="" draggable="false">
+      </div>
+    </div>
+    <div class="caption"><span id="status" role="status" aria-live="polite">닫힘 · 좌우 0°</span><span>Background 0 → Doors __DOOR_Z__ → Frame __FRAME_Z__</span></div>
+    <div class="details">
+      <p>문틀·기둥·조명·처마·문턱은 고정되어 있습니다. 각 문짝에는 해당 손잡이와 철물이 포함됩니다.</p>
+      <nav class="links" aria-label="검증 결과">
+        <a href="../source/gate-original.png" target="_blank" rel="noopener">원본</a>
+        <a href="gate-detection.png" target="_blank" rel="noopener">경계 가이드</a>
+        <a href="gate-mask-preview.png" target="_blank" rel="noopener">마스크</a>
+        <a href="gate-frame-checkerboard.png" target="_blank" rel="noopener">Frame 투명도</a>
+        <a href="gate-reconstructed.png" target="_blank" rel="noopener">재조립</a>
+        <a href="gate-validation.json" target="_blank" rel="noopener">픽셀 검증 수치</a>
+      </nav>
+    </div>
+  </main>
+  <script>
+    // Generated from gate-config.json. Do not edit the public copy manually.
+    const stage = document.getElementById("stage");
+    const scene = document.querySelector(".doors-scene");
+    const openButton = document.getElementById("open");
+    const closeButton = document.getElementById("close");
+    const angle = document.getElementById("angle");
+    const angleValue = document.getElementById("angle-value");
+    const frameOnly = document.getElementById("frame-only");
+    const status = document.getElementById("status");
+    function updateStatus() {
+      const open = stage.dataset.open === "true";
+      const description = frameOnly.checked ? "Frame만 표시 · 문 영역은 투명" : open ? `열림 · 왼쪽 +${angle.value}° / 오른쪽 −${angle.value}°` : "닫힘 · 좌우 0°";
+      status.textContent = description;
+      stage.setAttribute("aria-label", description);
+    }
+    function setOpen(open) {
+      stage.dataset.open = String(open);
+      openButton.setAttribute("aria-pressed", String(open));
+      closeButton.setAttribute("aria-pressed", String(!open));
+      updateStatus();
+    }
+    openButton.addEventListener("click", () => setOpen(true));
+    closeButton.addEventListener("click", () => setOpen(false));
+    angle.addEventListener("input", () => {
+      stage.style.setProperty("--angle", `${angle.value}deg`);
+      angleValue.textContent = `${angle.value}°`;
+      updateStatus();
+    });
+    frameOnly.addEventListener("change", () => {
+      stage.dataset.frameOnly = String(frameOnly.checked);
+      updateStatus();
+    });
+    document.getElementById("checker").addEventListener("change", (event) => {
+      stage.dataset.checker = String(event.target.checked);
+    });
+    // Scale focal length with the source, retaining the same view on mobile.
+    new ResizeObserver(() => {
+      scene.style.perspective = `${__PERSPECTIVE__ * stage.getBoundingClientRect().width / __WIDTH__}px`;
+    }).observe(stage);
+  </script>
+</body>
+</html>

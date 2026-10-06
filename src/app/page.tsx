@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingInquiry } from "@/components/layout/FloatingInquiry";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { StrategySection } from "@/components/sections/StrategySection";
 import { BrandStorySection } from "@/components/sections/BrandStorySection";
 import { NurungjiSection } from "@/components/sections/NurungjiSection";
 import { SignatureMenuSection } from "@/components/sections/SignatureMenuSection";
@@ -26,6 +27,7 @@ export default function Home() {
       <Header />
       <main id="main">
         <HeroSection />
+        <StrategySection />
         <LandscapeSection />
         <BrandStorySection />
         <NurungjiSection />
