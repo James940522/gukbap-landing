@@ -11,6 +11,7 @@ import { MenuOrbitSection } from "@/components/sections/MenuOrbitSection/MenuOrb
 import { PairingSection } from "@/components/sections/PairingSection";
 import { WhyDduksonSection } from "@/components/sections/WhyDduksonSection";
 import { FranchiseSection } from "@/components/sections/FranchiseSection";
+import { BrandGrowthSection } from "@/components/sections/BrandGrowthSection";
 import { TerritorySection } from "@/components/sections/TerritorySection";
 import { InquirySection } from "@/components/sections/InquirySection";
 import { StartupBenefitsSection } from "@/components/sections/StartupBenefitsSection";
@@ -47,6 +48,7 @@ export default function Home() {
         <CostRatioSection />
         <ProfitStructureSection />
         <SuccessRoadmapSection />
+        <BrandGrowthSection />
         <FranchiseSection />
         <PartnerSection />
         <StartupBenefitsSection />

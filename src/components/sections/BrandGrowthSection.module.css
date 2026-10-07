@@ -1,0 +1,172 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--background-deep);
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  aspect-ratio: 1777 / 885;
+  margin-inline: auto;
+}
+
+.background,
+.artwork {
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
+
+.background {
+  z-index: 0;
+}
+
+.layer {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.entrance {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Visible artwork bounds match the supplied 1777 × 885 final composition.
+   The source PNGs have different transparent margins, removed at export. */
+.brands {
+  left: 20.82%;
+  top: 22.6%;
+  width: 58.53%;
+  height: 17.85%;
+}
+
+.downturn {
+  left: 34.05%;
+  top: 38.98%;
+  width: 31.8%;
+  height: 14.92%;
+}
+
+.growth {
+  left: 24.87%;
+  top: 54.01%;
+  width: 51.21%;
+  height: 16.16%;
+}
+
+.badge {
+  left: 83.29%;
+  top: 3.05%;
+  width: 13.51%;
+  height: 26.21%;
+  filter: drop-shadow(0 0 18px rgb(210 137 44 / 0.36));
+}
+
+.plaque {
+  left: 5.85%;
+  top: 72.32%;
+  width: 88.29%;
+  height: 21.58%;
+}
+
+.intro {
+  left: 41.14%;
+  top: 75.59%;
+  width: 18.12%;
+  height: 5.08%;
+  z-index: 2;
+}
+
+.strength {
+  left: 32.64%;
+  top: 80.9%;
+  width: 35.17%;
+  height: 9.49%;
+  z-index: 2;
+}
+
+@media (min-width: 1921px) {
+  /* Extend the atmosphere at wide viewports without enlarging the lettering. */
+  .section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("/images/brand-growth/background.webp") center / cover;
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 767px) {
+  .scene {
+    aspect-ratio: 390 / 600;
+  }
+
+  .background {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .brands {
+    left: 3%;
+    top: 29%;
+    width: 94%;
+    height: 11%;
+  }
+
+  .downturn {
+    left: 21%;
+    top: 43%;
+    width: 58%;
+    height: 9.5%;
+  }
+
+  .growth {
+    left: 4%;
+    top: 55%;
+    width: 92%;
+    height: 10%;
+  }
+
+  .badge {
+    left: 69%;
+    top: 7%;
+    width: 27%;
+    height: 17.8%;
+    filter: drop-shadow(0 0 12px rgb(210 137 44 / 0.3));
+  }
+
+  .plaque {
+    left: 3%;
+    top: 71.5%;
+    width: 94%;
+    height: 18.5%;
+  }
+
+  .intro {
+    left: 28%;
+    top: 75%;
+    width: 44%;
+    height: 4.2%;
+  }
+
+  .strength {
+    left: 8%;
+    top: 80.2%;
+    width: 84%;
+    height: 7.7%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .entrance {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    filter: none !important;
+  }
+}

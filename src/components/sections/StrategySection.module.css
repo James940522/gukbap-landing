@@ -58,6 +58,19 @@
 .desktopGraph, .mobileGraph { position: absolute; inset: 0; pointer-events: none; }
 .mobileGraph { display: none; }
 .graphSvg { display: block; width: 100%; height: 100%; color: var(--strategy-red); overflow: visible; }
+.arrowTipPosition {
+  position: absolute;
+  height: var(--arrow-height);
+  transform-origin: right center;
+  /* Rotate in screen coordinates to keep the head symmetric on tall screens. */
+  transform: translate(-100%, -50%) rotate(calc(-1 * atan2(88.017cqh, 80.727cqw)));
+}
+.arrowTip {
+  width: 100%;
+  height: 100%;
+  background: var(--strategy-red);
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+}
 .stem { stroke: var(--strategy-brown); }
 .nodePosition { position: absolute; aspect-ratio: 1; transform: translate(-50%, -50%); }
 .node { width: 100%; height: 100%; border: var(--node-border) solid var(--strategy-red); border-radius: 50%; background: var(--strategy-paper); }
@@ -71,7 +84,7 @@
   position: absolute;
   z-index: 2;
   left: 66.5%;
-  top: 39.7%;
+  top: calc(39.7% - 2.4cqw);
   width: 26%;
   /* Follow the straight graph as the viewport's aspect ratio changes. */
   transform-origin: bottom left;
@@ -111,6 +124,7 @@
   }
   .desktopGraph { display: none; }
   .mobileGraph { display: block; }
+  .arrowTipPosition { transform: translate(-100%, -50%) rotate(calc(-1 * atan2(68cqw, 96.5cqw))); }
   .badgePosition { left: var(--mobile-badge-x); top: var(--mobile-badge-y); width: 22%; }
   .badge { gap: 0.5cqw; }
   .badge svg { width: 8.5cqw; height: 8.5cqw; }

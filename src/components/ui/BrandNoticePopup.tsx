@@ -91,7 +91,7 @@ export function BrandNoticePopup({ delayMs = 0 }: { delayMs?: number }) {
       <div className={styles.content}>
         <figure className={styles.poster}>
           <Image
-            src="/images/popup/founder-message.webp"
+            src="/images/popup/founder-message-v2.png"
             alt="뚝손국밥 대표가 전하는 가맹점주와 함께하는 프랜차이즈의 기준"
             width={1024}
             height={1536}

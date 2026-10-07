@@ -7,15 +7,25 @@
 }
 
 .visual {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100svh;
   padding: calc(var(--header-height) + 28px) 32px var(--orbit-bottom);
   overflow: hidden;
+  background-color: var(--charcoal);
+  background-image: url("/images/texture/menu-orbit-desktop.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .section[data-orbit-animated="true"] { height: 310svh; }
 .section[data-orbit-animated="true"] .visual { position: sticky; top: 0; }
+
+@media (orientation: portrait) {
+  .visual { background-image: url("/images/texture/menu-orbit-mobile.webp"); }
+}
 
 .eyebrow {
   flex-shrink: 0;
@@ -38,10 +48,11 @@
 
 .stage {
   --orbit-edge: 16px;
-  --bowl-size: min(clamp(220px, 19vw, 340px), 36cqh);
+  --orbit-max-scale: 1.15;
+  --bowl-size: min(clamp(260px, 22vw, 380px), 35cqh);
   --clearance-y: calc(clamp(22px, 2.35vw, 36px) * 1.5 + var(--bowl-size) / 2 + 8px);
-  --radius-x: max(0px, calc(50cqw - var(--bowl-size) / 2 - var(--orbit-edge)));
-  --radius-y: max(0px, calc(50cqh - var(--bowl-size) / 2 - var(--orbit-edge)));
+  --radius-x: max(0px, calc(50cqw - var(--bowl-size) * var(--orbit-max-scale) / 2 - var(--orbit-edge)));
+  --radius-y: max(0px, calc(50cqh - var(--bowl-size) * var(--orbit-max-scale) / 2 - var(--orbit-edge)));
   position: relative;
   container-type: size;
   width: 100%;
@@ -101,7 +112,8 @@
   }
   .stage {
     --orbit-edge: 8px;
-    --bowl-size: min(26vw, 36cqh, 190px);
+    --orbit-max-scale: 1.08;
+    --bowl-size: min(29vw, 32cqh, 220px);
     --clearance-y: 0px;
   }
   .copy {
@@ -117,15 +129,28 @@
     padding-inline: 12px;
   }
   .eyebrow { font-size: 9px; letter-spacing: 0.12em; margin-bottom: 12px; }
-  .stage { --bowl-size: min(32vw, 36cqh, 160px); }
-  .composition { gap: 16px; }
+  .composition {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+  .stage {
+    --bowl-size: min(32vw, calc((100cqw - 36px) / 3.24), calc((100cqh - 36px) / 3.24), 164px);
+    flex: 0 1 calc((100vw - 24px) * 1.6);
+    min-height: 0;
+    height: auto;
+  }
+  .bowl {
+    transform: translate(-50%, -50%) translate(calc(var(--compact-x) * var(--radius-x)), calc(var(--compact-y) * var(--radius-y)));
+  }
   .copy { grid-template-columns: 1fr; gap: 10px; }
   .statement { font-size: 19px; line-height: 1.4; }
   .statement span { display: inline; }
   .statement span + span { margin-left: 0.3em; }
 }
 
-/* Keep the six dishes and copy visible above an expanded inquiry form. */
+/* Keep the five dishes and copy visible above an expanded inquiry form. */
 .section[data-orbit-compact="true"] .visual {
   padding-top: calc(var(--header-height) + 12px);
 }

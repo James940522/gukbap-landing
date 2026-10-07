@@ -137,7 +137,6 @@ function ArrowGraph({ mode }: { mode: keyof typeof strategyGraphs }) {
           vectorEffect="non-scaling-stroke"
           strokeLinejoin="round"
         />
-        <path d={graph.arrow} fill="currentColor" />
       </g>
       {strategyPoints.map((point) => {
         const position = point[mode];
@@ -160,6 +159,25 @@ function ArrowGraph({ mode }: { mode: keyof typeof strategyGraphs }) {
         );
       })}
     </svg>
+    <div
+      className={styles.arrowTipPosition}
+      style={{
+        left: `${graph.tip.x / graph.width * 100}%`,
+        top: `${graph.tip.y / graph.height * 100}%`,
+        width: `${graph.tip.length / graph.width * 100}%`,
+        "--arrow-height": `${graph.tip.height / graph.width * 100}cqw`,
+      } as CSSProperties}
+      aria-hidden="true"
+    >
+      <motion.div
+        className={styles.arrowTip}
+        data-strategy-reveal
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1, transition: { delay: reduced ? 0 : timing.graph + timing.graphDuration * 0.92, duration: reduced ? 0 : 0.2 } },
+        }}
+      />
+    </div>
     {strategyPoints.map((point) => {
       const position = point[mode];
       const delay = timing.graph + timing.graphDuration * point.progress[mode];

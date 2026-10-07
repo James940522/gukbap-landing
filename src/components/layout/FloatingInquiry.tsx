@@ -28,15 +28,29 @@ function getServerSnapshot() {
   return false;
 }
 
+function subscribeToMenuOrbit(onChange: () => void) {
+  const section = document.getElementById("menu-orbit");
+  if (!section) return () => {};
+  const observer = new MutationObserver(onChange);
+  observer.observe(section, { attributes: true, attributeFilter: ["data-orbit-active"] });
+  return () => observer.disconnect();
+}
+
+function getMenuOrbitSnapshot() {
+  return document.getElementById("menu-orbit")?.dataset.orbitActive === "true";
+}
+
 // Adapted from udon-landing / omurice-landing's FloatingInquiry:
 // hero-triggered visibility, contact/footer suppression and a collapsible mobile desk.
 export function FloatingInquiry() {
   const isMobile = useSyncExternalStore(subscribeToMobile, getMobileSnapshot, getServerSnapshot);
+  const isMenuOrbitActive = useSyncExternalStore(subscribeToMenuOrbit, getMenuOrbitSnapshot, getServerSnapshot);
   const reducedMotion = useReducedMotion();
   const [hasPassedHero, setHasPassedHero] = useState(false);
   const [nearContact, setNearContact] = useState(false);
   const [nearFooter, setNearFooter] = useState(false);
   const [hasUserCollapsed, setHasUserCollapsed] = useState(false);
+  const [hasUserOpened, setHasUserOpened] = useState(false);
   const [formData, setFormData] = useState({ name: "", phone: "", region: "" });
   const [privacyAgree, setPrivacyAgree] = useState(false);
   const [errors, setErrors] = useState<InquiryErrors>({});
@@ -47,7 +61,8 @@ export function FloatingInquiry() {
   const restoreToggleFocus = useRef(false);
   const focusPanel = useRef(false);
   const shouldShow = hasPassedHero && !nearContact && !nearFooter;
-  const isExpanded = !isMobile || !hasUserCollapsed;
+  // Give the food space on mobile while preserving an explicitly opened form.
+  const isExpanded = !isMobile || (!hasUserCollapsed && (!isMenuOrbitActive || hasUserOpened));
 
   useEffect(() => {
     const hero = document.getElementById("hero");
@@ -58,7 +73,10 @@ export function FloatingInquiry() {
         ? hero.getBoundingClientRect().bottom <= window.innerHeight * 0.18
         : window.scrollY > window.innerHeight * 0.8;
       setHasPassedHero(passed);
-      if (!passed) setHasUserCollapsed(false);
+      if (!passed) {
+        setHasUserCollapsed(false);
+        setHasUserOpened(false);
+      }
     };
     const scheduleSync = () => {
       if (!frame) frame = requestAnimationFrame(syncPassedHero);
@@ -142,6 +160,7 @@ export function FloatingInquiry() {
             }}
             onClick={() => {
               focusPanel.current = true;
+              setHasUserOpened(true);
               setHasUserCollapsed(false);
             }}
           >
@@ -168,7 +187,7 @@ export function FloatingInquiry() {
               }
             }}
           >
-            <form ref={formRef} className={styles.form} onSubmit={handleSubmit} noValidate onChange={() => setChecked(false)}>
+            <form ref={formRef} className={styles.form} onSubmit={handleSubmit} noValidate onChange={() => setChecked(false)} onFocus={() => setHasUserOpened(true)}>
               {isMobile && (
                 <button
                   ref={closeRef}

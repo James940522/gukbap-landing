@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useLayoutEffect, useRef, type CSSProperties } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { menuOrbitCopy, menuOrbitItems } from "./menuOrbit.config";
+import { menuOrbitAnimation, menuOrbitCopy, menuOrbitItems } from "./menuOrbit.config";
 import { getCopyFrame, getOrbitFrame, type OrbitGeometry } from "./menuOrbit.utils";
 import styles from "./MenuOrbitSection.module.css";
 
@@ -33,14 +33,16 @@ export function MenuOrbitSection() {
 
         // CSS sticky supplies the pin; ScrollTrigger only scrubs the transforms.
         if (!reducedMotion) section.dataset.orbitAnimated = "true";
+        // Fade the group so overlapping dishes keep their natural silhouettes.
+        gsap.set(stage, { opacity: 1 });
         gsap.set(bowls, { x: 0, y: 0, xPercent: -50, yPercent: -50, scale: 1, opacity: 1 });
         gsap.set(statements, { opacity: 1, y: 0 });
+        const stageOpacity = gsap.quickSetter(stage, "opacity");
         const bowlSetters = bowls.map((bowl) => ({
           x: gsap.quickSetter(bowl, "x", "px"),
           y: gsap.quickSetter(bowl, "y", "px"),
           scaleX: gsap.quickSetter(bowl, "scaleX"),
           scaleY: gsap.quickSetter(bowl, "scaleY"),
-          opacity: gsap.quickSetter(bowl, "opacity"),
         }));
         const copySetters = statements.map((statement) => ({
           y: gsap.quickSetter(statement, "y", "px"),
@@ -49,12 +51,12 @@ export function MenuOrbitSection() {
 
         const render = () => {
           bowlSetters.forEach((setters, index) => {
-            const next = getOrbitFrame(driver.progress, menuOrbitItems[index].angle, geometry);
+            const next = getOrbitFrame(driver.progress, menuOrbitItems[index], geometry);
             setters.x(next.x);
             setters.y(next.y);
             setters.scaleX(next.scale);
             setters.scaleY(next.scale);
-            setters.opacity(next.opacity);
+            if (index === 0) stageOpacity(next.opacity);
           });
           const copy = getCopyFrame(driver.progress);
           copySetters.forEach((setters) => {
@@ -80,10 +82,14 @@ export function MenuOrbitSection() {
           section.dataset.orbitCompact = String(safeHeight < 320);
           const edge = parseFloat(getComputedStyle(stage).getPropertyValue("--orbit-edge")) || 8;
           const size = bowls[0]?.offsetWidth ?? 0;
+          const compact = window.matchMedia("(max-width: 899px)").matches;
+          const maxScale = compact ? menuOrbitAnimation.compactInitialScale : menuOrbitAnimation.initialScale;
           geometry = {
-            radiusX: Math.max(0, (stage.clientWidth - size) / 2 - edge),
-            radiusY: Math.max(0, (stage.clientHeight - size) / 2 - edge),
-            clearanceY: window.matchMedia("(min-width: 900px)").matches
+            radiusX: Math.max(0, (stage.clientWidth - size * maxScale) / 2 - edge),
+            radiusY: Math.max(0, (stage.clientHeight - size * maxScale) / 2 - edge),
+            compact,
+            narrow: window.matchMedia("(max-width: 599px)").matches,
+            clearanceY: !compact
               ? Math.max(...statements.map((statement) => statement.offsetHeight)) / 2 + size / 2 + 8
               : 0,
           };
@@ -93,12 +99,12 @@ export function MenuOrbitSection() {
           if (!frame) frame = requestAnimationFrame(measure);
         };
         const observer = new ResizeObserver(scheduleMeasure);
-        observer.observe(visual);
-        observer.observe(stage);
         const observeOverlays = () => {
           observer.disconnect();
           observer.observe(visual);
           observer.observe(stage);
+          if (bowls[0]) observer.observe(bowls[0]);
+          statements.forEach((statement) => observer.observe(statement));
           const desk = document.getElementById("quick-inquiry-panel");
           const toggle = document.querySelector<HTMLElement>('button[aria-label="빠른 가맹문의 열기"]');
           if (desk) observer.observe(desk);
@@ -175,13 +181,15 @@ export function MenuOrbitSection() {
                   "--orbit-y": Math.sin(item.angle * Math.PI / 180).toFixed(6),
                   "--orbit-y-absolute": Math.abs(Math.sin(item.angle * Math.PI / 180)).toFixed(6),
                   "--orbit-y-sign": Math.sign(Math.sin(item.angle * Math.PI / 180)),
+                  "--compact-x": (item.compactPosition.x * Math.SQRT1_2).toFixed(6),
+                  "--compact-y": (item.compactPosition.y * Math.SQRT1_2).toFixed(6),
                 } as CSSProperties}
               >
                 <Image
                   src={item.image.src}
                   alt={item.image.alt}
                   fill
-                  sizes="(max-width: 599px) 70vw, (max-width: 899px) 58vw, (max-width: 1199px) 44vw, 620px"
+                  sizes="(max-width: 599px) 36vw, (max-width: 899px) 32vw, (max-width: 1199px) 26vw, 440px"
                   className={styles.image}
                 />
               </div>

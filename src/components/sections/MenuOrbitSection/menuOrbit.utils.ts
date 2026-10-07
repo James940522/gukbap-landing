@@ -1,6 +1,13 @@
-import { menuOrbitAnimation } from "./menuOrbit.config";
+import { menuOrbitAnimation, type menuOrbitItems } from "./menuOrbit.config";
 
-export type OrbitGeometry = { radiusX: number; radiusY: number; clearanceY?: number };
+export type OrbitGeometry = {
+  radiusX: number;
+  radiusY: number;
+  clearanceY?: number;
+  compact?: boolean;
+  narrow?: boolean;
+};
+type OrbitItem = (typeof menuOrbitItems)[number];
 
 export function clampProgress(value: number) {
   return Math.min(1, Math.max(0, value));
@@ -14,10 +21,10 @@ function smoothStep(value: number) {
   return value * value * (3 - 2 * value);
 }
 
-export function getOrbitFrame(progress: number, finalAngle: number, geometry: OrbitGeometry) {
+export function getOrbitFrame(progress: number, item: OrbitItem, geometry: OrbitGeometry) {
   const config = menuOrbitAnimation;
   const p = clampProgress(progress);
-  const expansion = smoothStep(rangeProgress(p, config.spiralStart, config.settleEnd));
+  const zoom = smoothStep(rangeProgress(p, config.spiralStart, config.settleEnd));
   const travel = rangeProgress(p, config.spiralStart, config.settleEnd);
   const settling = rangeProgress(p, config.settleStart, config.settleEnd);
   const mainTravel = (config.settleStart - config.spiralStart) / (config.settleEnd - config.spiralStart);
@@ -25,19 +32,27 @@ export function getOrbitFrame(progress: number, finalAngle: number, geometry: Or
   const rotationProgress = p < config.settleStart
     ? travel / ((1 + mainTravel) / 2)
     : (mainTravel + (1 - mainTravel) * (settling - settling * settling / 2)) / ((1 + mainTravel) / 2);
-  const angle = (finalAngle - (1 - rotationProgress) * config.turns * 360) * Math.PI / 180;
-  const radius = config.initialRadiusRatio + (1 - config.initialRadiusRatio) * expansion;
-  const finalSine = Math.sin(finalAngle * Math.PI / 180);
+  const rotation = -(1 - rotationProgress) * config.turns * Math.PI * 2;
+  const angle = item.angle * Math.PI / 180 + rotation;
+  const visibility = smoothStep(rangeProgress(p, config.spiralStart, config.opacityEnd));
+  const initialScale = geometry.compact ? config.compactInitialScale : config.initialScale;
+  const initialOpacity = geometry.compact ? config.compactInitialOpacity : config.initialOpacity;
+  const finalSine = Math.sin(item.angle * Math.PI / 180);
   const finalY = Math.sign(finalSine) * Math.min(geometry.radiusY, Math.max(Math.abs(finalSine) * geometry.radiusY, geometry.clearanceY ?? 0));
   const settlingEase = smoothStep(settling);
-  const orbitY = Math.sin(angle) * geometry.radiusY * radius;
+  const orbitY = Math.sin(angle) * geometry.radiusY;
+  // Rotate the spaced formation at a fixed radius, including the narrow layout.
+  const pointX = item.compactPosition.x * Math.SQRT1_2;
+  const pointY = item.compactPosition.y * Math.SQRT1_2;
+  const compactX = (pointX * Math.cos(rotation) - pointY * Math.sin(rotation)) * geometry.radiusX;
+  const compactY = (pointX * Math.sin(rotation) + pointY * Math.cos(rotation)) * geometry.radiusY;
 
   return {
-    x: Math.cos(angle) * geometry.radiusX * radius,
+    x: geometry.narrow ? compactX : Math.cos(angle) * geometry.radiusX,
     // Open a shared central copy band during settlement; no per-dish coordinates.
-    y: orbitY + (finalY - orbitY) * settlingEase,
-    scale: config.initialScale + (1 - config.initialScale) * expansion,
-    opacity: 1,
+    y: geometry.narrow ? compactY : orbitY + (finalY - orbitY) * settlingEase,
+    scale: initialScale + (1 - initialScale) * zoom,
+    opacity: initialOpacity + (1 - initialOpacity) * visibility,
   };
 }
 

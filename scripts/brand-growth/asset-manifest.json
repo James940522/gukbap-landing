@@ -1,0 +1,92 @@
+[
+  {
+    "name": "background",
+    "width": 1672,
+    "height": 941,
+    "bytes": 365210
+  },
+  {
+    "name": "brands",
+    "crop": {
+      "left": 37,
+      "top": 180,
+      "width": 2101,
+      "height": 370
+    },
+    "width": 2101,
+    "height": 370,
+    "bytes": 459436
+  },
+  {
+    "name": "downturn",
+    "crop": {
+      "left": 68,
+      "top": 110,
+      "width": 2063,
+      "height": 534
+    },
+    "width": 2063,
+    "height": 534,
+    "bytes": 946592
+  },
+  {
+    "name": "growth",
+    "crop": {
+      "left": 42,
+      "top": 189,
+      "width": 2097,
+      "height": 376
+    },
+    "width": 2097,
+    "height": 376,
+    "bytes": 598970
+  },
+  {
+    "name": "badge",
+    "crop": {
+      "left": 55,
+      "top": 45,
+      "width": 1139,
+      "height": 1148
+    },
+    "width": 640,
+    "height": 645,
+    "bytes": 376002
+  },
+  {
+    "name": "plaque",
+    "crop": {
+      "left": 31,
+      "top": 187,
+      "width": 2111,
+      "height": 330
+    },
+    "width": 2111,
+    "height": 330,
+    "bytes": 510422
+  },
+  {
+    "name": "intro",
+    "crop": {
+      "left": 212,
+      "top": 235,
+      "width": 1750,
+      "height": 274
+    },
+    "width": 1750,
+    "height": 274,
+    "bytes": 159606
+  },
+  {
+    "name": "strength",
+    "crop": {
+      "left": 31,
+      "top": 201,
+      "width": 2118,
+      "height": 361
+    },
+    "width": 2118,
+    "height": 361,
+    "bytes": 450338
+  }
+]
