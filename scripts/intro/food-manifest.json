@@ -1,0 +1,18 @@
+{
+  "source": "assets/food/originals/gukbap-feast.png",
+  "sourceSha256": "16b6c4b833eb1b01bf6a8b85b2a855815ec1e271903a84f20842687ae169f6d9",
+  "sourceWidth": 1672,
+  "sourceHeight": 941,
+  "sourceBytes": 2638915,
+  "output": "/images/intro/gukbap-feast.webp",
+  "width": 1672,
+  "height": 941,
+  "bytes": 342034,
+  "encoding": {
+    "format": "webp",
+    "quality": 90,
+    "resized": false,
+    "cropped": false
+  },
+  "note": "User-supplied feast visual. Original preserved; cover crop and zoom are CSS only."
+}

@@ -1,0 +1,18 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  right: calc(-1 * var(--intro-gutter, 0px));
+  z-index: 10000;
+  width: auto;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--ivory);
+  touch-action: none;
+}
+
+.overlay:focus { outline: none; }
+
+@media print {
+  .overlay { display: none; }
+}

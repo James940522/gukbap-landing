@@ -20,6 +20,7 @@ import { ProfitStructureSection } from "@/components/sections/ProfitStructureSec
 import { CookingSystemSection } from "@/components/sections/CookingSystemSection";
 import { SuccessRoadmapSection } from "@/components/sections/SuccessRoadmapSection";
 import { BrandMarquee } from "@/components/ui/BrandMarquee";
+import { BrandIntro } from "@/components/intro/BrandIntro";
 
 export default function Home() {
   return (
@@ -53,6 +54,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingInquiry />
+      <BrandIntro />
     </div>
   );
 }

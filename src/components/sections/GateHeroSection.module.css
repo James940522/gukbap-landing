@@ -17,8 +17,12 @@
 }
 
 .title { margin: 0; }
-.logo { display: block; width: clamp(226px, 23vw, 300px); height: auto; margin-inline: auto; }
-.tagline { margin-top: 14px; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.04em; }
+.logo { display: block; width: clamp(280px, 28vw, 420px); height: auto; margin-inline: auto; }
+.tagline { margin-top: 20px; font-size: clamp(24px, 2vw, 30px); letter-spacing: -0.04em; }
+
+@media (max-width: 899px) {
+  .logo { width: clamp(226px, 38vw, 320px); }
+}
 
 @media (max-width: 599px) {
   .hero { min-height: max(650px, 100svh); }

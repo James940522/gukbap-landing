@@ -7,17 +7,23 @@ import styles from "./BrandNoticePopup.module.css";
 
 const HIDDEN_UNTIL_KEY = "ddukson-founder-notice-hidden-until";
 
-// Mounted by the hero only after its entrance has finished (or been skipped).
-export function BrandNoticePopup() {
+// Mounted after the fullscreen intro has unmounted; wait before opening the modal.
+export function BrandNoticePopup({ delayMs = 0 }: { delayMs?: number }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const [imageReady, setImageReady] = useState(false);
   const [hideToday, setHideToday] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [delayElapsed, setDelayElapsed] = useState(delayMs === 0);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!imageReady || dismissed) return;
+    const timeout = setTimeout(() => setDelayElapsed(true), delayMs);
+    return () => clearTimeout(timeout);
+  }, [delayMs]);
+
+  useEffect(() => {
+    if (!imageReady || !delayElapsed || dismissed) return;
 
     try {
       const hiddenUntil = Number(window.localStorage.getItem(HIDDEN_UNTIL_KEY));
@@ -30,6 +36,8 @@ export function BrandNoticePopup() {
     if (!dialog) return;
     const previousFocus = document.activeElement;
     const previousOverflow = document.body.style.overflow;
+    const previousGutter = document.documentElement.style.scrollbarGutter;
+    document.documentElement.style.scrollbarGutter = "stable";
     dialog.showModal();
     document.body.style.overflow = "hidden";
     closeRef.current?.focus({ preventScroll: true });
@@ -37,11 +45,12 @@ export function BrandNoticePopup() {
     return () => {
       dialog.close();
       document.body.style.overflow = previousOverflow;
+      document.documentElement.style.scrollbarGutter = previousGutter;
       if (previousFocus instanceof HTMLElement && previousFocus.isConnected) {
         previousFocus.focus({ preventScroll: true });
       }
     };
-  }, [imageReady, dismissed]);
+  }, [imageReady, delayElapsed, dismissed]);
 
   function closePopup() {
     if (hideToday) {
@@ -64,7 +73,7 @@ export function BrandNoticePopup() {
       className={styles.dialog}
       aria-label="뚝손국밥 대표의 이야기"
       initial={{ opacity: 0, y: reducedMotion ? 0 : 12 }}
-      animate={imageReady ? { opacity: 1, y: 0 } : { opacity: 0 }}
+      animate={imageReady && delayElapsed ? { opacity: 1, y: 0 } : { opacity: 0 }}
       transition={{ duration: reducedMotion ? 0 : 0.4, ease: [0.22, 0.61, 0.36, 1] }}
       onCancel={(event) => {
         event.preventDefault();

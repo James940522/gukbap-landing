@@ -90,6 +90,23 @@ Hero는 메인페이지 `/#hero`에 렌더링한다. 2026-10-06 사용자 요청
 
 ## 재생성
 
+### 2026-10-07 메인 히어로 이미지
+
+메인 히어로는 사용자 제공 가로·세로 사진을 반응형으로 사용한다. 인트로의 대문과 국밥 한 상 사진은 별도로 유지한다.
+
+| 화면 | 자산 | 크기 | 용량 |
+| --- | --- | --- | --- |
+| 900px 이상 | `public/images/hero/gukbap-desktop.webp` | 1672 × 941 | 258,852 bytes |
+| 899px 이하 | `public/images/hero/gukbap-mobile.webp` | 941 × 1672 | 232,470 bytes |
+
+원본은 `assets/food/originals/hero-gukbap-desktop.png`, `hero-gukbap-mobile.png`에 보존했다. WebP quality 90으로 변환했으며 resize·crop·이미지 생성은 하지 않았다. Hash와 인코딩 정보는 `responsive-food-manifest.json`에 기록한다. `<picture>`와 `next/image`를 함께 사용해 해당 화면의 사진만 로딩한다.
+
+데스크톱은 좌측 여백에 로고·카피를 배치하고, 모바일은 세로 이미지의 상단 여백을 사용한다. 태블릿에서는 중앙 crop으로 음식과 카피가 겹치지 않게 조정했다. 1440 × 900, 768 × 1024, 390 × 844 브라우저에서 사진 선택·가독성·가로 overflow를 확인했다. 모바일 CTA는 한 줄로 유지한다.
+
+아래 대문 재생성 파이프라인은 메인 히어로 사진을 수정하지 않는다. 이전 `prepare-food.mjs`는 기존 1280 × 960 사진용이다.
+
+### 대문 레이어 재생성
+
 기존 프로젝트의 Next.js 내부 sharp **0.35.5**를 사용한다.
 새 npm dependency나 React 라이브러리를 추가하지 않았다.
 로컬 Python은 실행 오류가 있고 ImageMagick은 없지만 이 파이프라인에는 필요하지 않다.

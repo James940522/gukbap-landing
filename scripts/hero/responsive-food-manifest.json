@@ -1,0 +1,32 @@
+[
+  {
+    "variant": "desktop",
+    "source": "assets/food/originals/hero-gukbap-desktop.png",
+    "sourceSha256": "52ed7f87f2b6521284003a22b5542f25de4eb123004fb3044f6e93427f233a24",
+    "output": "/images/hero/gukbap-desktop.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 258852,
+    "encoding": {
+      "format": "webp",
+      "quality": 90,
+      "resized": false,
+      "cropped": false
+    }
+  },
+  {
+    "variant": "mobile",
+    "source": "assets/food/originals/hero-gukbap-mobile.png",
+    "sourceSha256": "4ec3ed30248ab15ff66a5a030d047171e3eaebe42e602c6fe00f067eb7669751",
+    "output": "/images/hero/gukbap-mobile.webp",
+    "width": 941,
+    "height": 1672,
+    "bytes": 232470,
+    "encoding": {
+      "format": "webp",
+      "quality": 90,
+      "resized": false,
+      "cropped": false
+    }
+  }
+]

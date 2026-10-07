@@ -4,61 +4,39 @@
   overflow: hidden;
   background: #080706;
   isolation: isolate;
-  container-type: size;
 }
 
 .food {
   position: absolute;
-  inset: auto 0 0;
-  width: min(100%, calc(100cqh * 4 / 3));
-  aspect-ratio: 4 / 3;
-  margin-inline: auto;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   z-index: 0;
-  /* Blend the photograph's dark outer edges; retain the entire food composition. */
-  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
 }
 
-.food img { object-fit: contain; object-position: center bottom; }
+.food img { object-fit: cover; object-position: 70% bottom; }
+.food picture { position: absolute; inset: 0; display: block; }
 .food::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(#080706 0%, transparent 28%, transparent 94%, #080706 100%);
+  background:
+    linear-gradient(90deg, rgb(8 7 6 / 28%), rgb(8 7 6 / 12%) 38%, transparent 65%),
+    linear-gradient(0deg, #080706, transparent 16%);
   pointer-events: none;
 }
 
 .brand {
   position: absolute;
-  top: clamp(28px, 5svh, 48px);
-  inset-inline: 20px;
+  top: 50%;
+  left: max(32px, calc((100% - 1280px) / 2 + 32px));
+  width: min(38%, 460px);
+  transform: translateY(-50%);
   z-index: 10;
   text-align: center;
   pointer-events: none;
 }
-
-.gate { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
-.gateStage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(100%, calc(100cqh * var(--gate-ratio)));
-  aspect-ratio: var(--gate-ratio);
-  transform: translate(-50%, -50%);
-  container-type: inline-size;
-  /* Cover the area outside the original photo, leaving its doorway transparent. */
-  box-shadow: 0 0 0 100vmax #080706;
-}
-
-.doorSpace {
-  position: absolute;
-  inset: 0;
-  z-index: 20;
-  perspective: calc(100cqw * var(--perspective-ratio));
-}
-
-.door { position: absolute; backface-visibility: hidden; }
-.frame { z-index: 30; pointer-events: none; }
-.scene[data-gate-phase="complete"] .gate { visibility: hidden; }
 
 .footer {
   position: relative;
@@ -67,6 +45,7 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 24px;
+  width: 100%;
   max-width: 1280px;
   min-height: 96px;
   padding: 16px 32px 24px;
@@ -78,6 +57,9 @@
 .actions a { min-height: 48px; min-width: 158px; }
 
 @media (max-width: 899px) {
+  .brand { top: clamp(32px, 6svh, 64px); inset-inline: 20px; width: auto; transform: none; }
+  .food img { object-position: 62% bottom; }
+  .food::after { background: linear-gradient(180deg, rgb(8 7 6 / 18%), transparent 48%, rgb(8 7 6 / 22%) 92%, #080706); }
   .footer { gap: 12px; padding-inline: 24px; }
   .footnote { display: none; }
   .actions a { min-width: 140px; }
@@ -85,14 +67,11 @@
 
 @media (max-width: 599px) {
   .scene { min-height: 470px; }
-  .gateStage { width: calc(100cqh * var(--gate-ratio)); }
-  .brand { top: 22px; }
   .footer { display: flex; justify-content: center; min-height: 88px; padding: 12px 20px 16px; }
   .actions { width: 100%; gap: 10px; }
   .actions a { flex: 1; min-width: 0; padding-inline: 12px; font-size: 14px; }
 }
 
-@media (prefers-reduced-motion: reduce), print {
-  .gate { display: none !important; }
-  .brand, .food { opacity: 1 !important; transform: none !important; }
+@media (min-width: 600px) and (max-width: 899px) {
+  .food img { object-position: 62% center; }
 }

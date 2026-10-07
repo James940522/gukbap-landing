@@ -1,0 +1,106 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.table {
+  position: absolute;
+  inset: -4px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.tableZoom {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 65%;
+}
+
+.table img {
+  object-fit: cover;
+  object-position: center 58%;
+}
+
+.tableShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(5 4 3 / 12%), rgb(5 4 3 / 30%) 42%, rgb(5 4 3 / 16%) 75%, rgb(5 4 3 / 34%));
+}
+
+.logoPosition {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  z-index: 2;
+  width: min(44vw, 560px);
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  margin: 0;
+  transform-origin: center;
+}
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.scene[data-reduced-motion] .logoPosition { top: 50%; }
+
+.copyPosition {
+  position: absolute;
+  top: calc(38% + min(8.8vw, 112px) + 24px);
+  left: 50%;
+  z-index: 3;
+  width: min(calc(100vw - 48px), 800px);
+  min-height: 3em;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.copy {
+  position: absolute;
+  inset: 0 0 auto;
+  margin: 0;
+  color: var(--ivory, #f3eadb);
+  font-family: var(--font-display), Batang, serif;
+  font-size: clamp(24px, 2.6vw, 36px);
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 18px rgb(5 4 3 / 72%);
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+@media (max-width: 599px) {
+  .tableZoom { transform-origin: 50% 65%; }
+  .table img { object-position: center 62%; }
+  .logoPosition { top: 35%; width: min(82vw, 380px); }
+  .copyPosition {
+    top: calc(35% + min(16.4vw, 76px) + 24px);
+    width: calc(100vw - 36px);
+    min-height: 5em;
+  }
+  .copy { font-size: clamp(24px, 6.4vw, 30px); line-height: 1.65; }
+  .copyLine { display: block; }
+}
+
+@media (max-height: 500px) and (min-width: 600px) {
+  .logoPosition { top: 34%; width: min(38vw, 350px); }
+  .copyPosition { top: calc(34% + min(7.6vw, 70px) + 18px); }
+  .copy { font-size: 23px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .table { display: none; }
+  .logoPosition { top: 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoPosition { top: 50%; }
+}
