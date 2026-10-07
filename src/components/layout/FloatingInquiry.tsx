@@ -146,7 +146,7 @@ export function FloatingInquiry() {
             }}
           >
             <span>
-              <span className={styles.eyebrow}>FRANCHISE DESK</span>
+              <span className={styles.eyebrow}>창업 상담</span>
               <strong>빠른 가맹문의</strong>
             </span>
             <span className={styles.toggleAction}>열기<ArrowIcon /></span>
@@ -185,7 +185,7 @@ export function FloatingInquiry() {
               )}
               <div className={styles.identity}>
                 <div>
-                  <p className={styles.eyebrow}>FRANCHISE DESK</p>
+                  <p className={styles.eyebrow}>창업 상담</p>
                   <h2>빠른 가맹문의</h2>
                 </div>
                 <a href={brand.phoneHref} className={styles.phone}>{brand.phone}</a>

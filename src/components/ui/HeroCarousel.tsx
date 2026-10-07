@@ -113,7 +113,7 @@ export function HeroCarousel({ slides }: { slides: readonly HeroSlide[] }) {
     >
       <div className="hero-orbit" aria-hidden="true" />
       <Reveal effect="fade" className="hero-visual-top">
-        <span>THE WARMTH OF A BOWL</span>
+        <span>한 그릇의 온기</span>
         <span>뚝손의 한 그릇</span>
       </Reveal>
       <div className={styles.stage}>

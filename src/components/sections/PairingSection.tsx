@@ -11,7 +11,7 @@ export function PairingSection() {
       <div className="container">
         <div className="pairing-heading">
           <Reveal>
-            <SectionEyebrow number="04">BETTER TOGETHER</SectionEyebrow>
+            <SectionEyebrow number="04">함께 즐기는 한 상</SectionEyebrow>
             <h2 id="pairing-title" className="section-title">한 그릇에서,<br />한 상으로.</h2>
           </Reveal>
           <Reveal as="p" effect="fade" delay={0.15} className="body-copy">
@@ -25,7 +25,7 @@ export function PairingSection() {
             <MediaFrame
               image={pairingFeature.image}
               label="국밥과 곁들임 한 상"
-              englishLabel="ON THE DDUKSON TABLE"
+              caption="뚝손의 한 상"
               className="pairing-media"
               sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 1299px) calc(100vw - 64px), 1240px"
             />

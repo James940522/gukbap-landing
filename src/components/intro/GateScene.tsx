@@ -40,7 +40,7 @@ export function GateScene({ playing, timeline, onAssetLoad, onAssetError, onComp
         <div className={styles.stage}>
           <div className={styles.doorSpace}>
             {(["left", "right"] as const).map((side) => (
-              <motion.div key={side} className={styles.door} style={doorPosition(heroGate[side])} data-intro-door={side} initial={false} animate={{ rotateY: playing ? (side === "left" ? heroGate.angle : -heroGate.angle) : 0 }} transition={{ delay: playing ? timeline.doorOpen : 0, duration: playing ? timeline.doorDuration : 0, ease: [0.4, 0, 0.2, 1] }}>
+              <motion.div key={side} className={styles.door} style={doorPosition(heroGate[side])} data-intro-door={side} initial={false} animate={{ rotateY: playing ? (side === "left" ? -heroGate.angle : heroGate.angle) : 0 }} transition={{ delay: playing ? timeline.doorOpen : 0, duration: playing ? timeline.doorDuration : 0, ease: [0.4, 0, 0.2, 1] }}>
                 <Image src={side === "left" ? INTRO_ASSETS.leftDoor : INTRO_ASSETS.rightDoor} alt="" fill unoptimized priority sizes="50vw" draggable={false} onLoad={() => onAssetLoad(side)} onError={onAssetError} />
               </motion.div>
             ))}

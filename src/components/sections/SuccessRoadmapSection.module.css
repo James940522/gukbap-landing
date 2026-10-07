@@ -1,11 +1,107 @@
 .section {
   /* Local heading rules take precedence over the unlayered global heading reset. */
-  --heading-color: #f0dfc0;
+  --heading-color: var(--ivory);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: 88px;
+  color: var(--text-light);
+  background: #211810;
 }
 
-.section h2,
-.section h3 {
+.section::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--gold) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--gold) 5%, transparent) 1px, transparent 1px);
+  background-size: 88px 88px;
+  content: "";
+}
+
+.container {
+  width: min(1240px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 72px;
+  margin-bottom: 48px;
+}
+
+.introduction,
+.support {
+  min-width: 0;
+}
+
+.eyebrow,
+.stepLabel {
+  color: var(--gold-light);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0;
+}
+
+.section h2 {
+  margin-top: 20px;
+  font-size: 52px;
   font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.summary {
+  max-width: 620px;
+  margin-top: 24px;
+  color: var(--text-light);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.supportTitle {
+  color: var(--ivory);
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.signals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 16px 0 24px;
+  padding-block: 18px;
+  border-block: 1px solid var(--border-gold);
+}
+
+.signals > div {
+  padding-inline: 16px;
+}
+
+.signals > div:first-child {
+  padding-left: 0;
+}
+
+.signals > div:last-child {
+  padding-right: 0;
+}
+
+.signals > div + div {
+  border-left: 1px solid var(--border-subtle);
+}
+
+.signals dt {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.signals dd {
+  margin: 6px 0 0;
+  color: var(--ivory);
+  font-size: 16px;
+  font-weight: 750;
 }
 
 .inquiryLink {
@@ -13,10 +109,10 @@
   align-items: center;
   gap: 16px;
   min-height: 44px;
-  color: #f0dfc0;
+  color: var(--ivory);
   font-size: 18px;
   font-weight: 750;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
 }
 
 .inquiryLink svg {
@@ -29,25 +125,192 @@
   transform: translateX(4px);
 }
 
-@media (max-width: 767px) {
-  .cardContent {
-    position: static;
+.supportCopy {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  min-width: 0;
+}
+
+.card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  background: #2a2119;
+  transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--gold);
+}
+
+.cardHeading {
+  display: flex;
+  min-height: 96px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section h3 {
+  margin-top: 8px;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.numberBadge {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  background: var(--deep-brown);
+  color: var(--ivory);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.imageSlot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+  margin-top: 20px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--gold) 22%, transparent);
+  border-radius: 4px;
+  background: #201a14;
+}
+
+.imageNumber {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: color-mix(in srgb, var(--gold) 14%, transparent);
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1;
+  user-select: none;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+.description {
+  margin-top: 20px;
+  color: var(--text-light);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+@media (max-width: 1023px) {
+  .header {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 36px;
   }
 
-  .numberBadge {
-    position: absolute;
-    top: 18px;
-    right: 18px;
+  .support {
+    max-width: 440px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .section h2 {
+    font-size: 44px;
+  }
+
+  .section h3 {
+    font-size: 22px;
   }
 }
 
-@media (max-width: 359px) {
-  .section [data-roadmap-grid] {
+@media (max-width: 767px) {
+  .section {
+    padding-block: 64px;
+  }
+
+  .section::before {
+    opacity: 0.5;
+  }
+
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  .header {
+    gap: 28px;
+    margin-bottom: 32px;
+  }
+
+  .section h2 {
+    margin-top: 16px;
+    font-size: 34px;
+    line-height: 1.3;
+  }
+
+  .summary {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  .grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .cardHeading {
+    min-height: 72px;
+  }
+
+  .imageSlot {
+    margin-top: 16px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .inquiryLink svg { transition: none; }
-  .inquiryLink:hover svg { transform: none; }
+  .card,
+  .image,
+  .inquiryLink svg {
+    transition: none;
+  }
+
+  .card:hover .image,
+  .inquiryLink:hover svg {
+    transform: none;
+  }
 }

@@ -29,7 +29,7 @@ export function CostRatioSection() {
       <SectionBackground name="cost" />
       <div className="container">
         <Reveal effect="fade" className={styles.masthead}>
-          <SectionEyebrow>COST &amp; QUALITY</SectionEyebrow>
+          <SectionEyebrow>원가와 품질</SectionEyebrow>
           <span>뚝손의 운영 기준</span>
         </Reveal>
 
@@ -63,7 +63,7 @@ export function CostRatioSection() {
             </Reveal>
             <Reveal effect="fade" delay={0.36} className={styles.signature}>
               <span aria-hidden="true" />
-              QUALITY FIRST
+              품질을 먼저 생각합니다
             </Reveal>
           </div>
         </div>
@@ -71,7 +71,7 @@ export function CostRatioSection() {
         <div id="location-support" className={styles.locationSupport}>
           <Reveal className={styles.supportHeading}>
             <h3 id="location-support-title">입지 선정도, 꼼꼼하게.</h3>
-            <span aria-hidden="true">LOCATION SUPPORT</span>
+            <span aria-hidden="true">입지 상담</span>
           </Reveal>
           <ol className={styles.supportList} aria-labelledby="location-support-title">
             {locationSupport.map((item, index) => (

@@ -1,0 +1,7 @@
+도구: 기본 이미지 생성·편집 도구
+용도: 상권 비교 이미지의 영문 표기 한글화
+원본: public/images/franchise/territory-comparison.png
+결과: public/images/franchise/territory-comparison-ko.png
+
+최종 편집 요청:
+Use case: text-localization. Edit target: supplied side-by-side map comparison image for a Korean restaurant website. Preserve the entire map artwork, every boundary, street, Korean place name, brand logo, all colors, pins, proportions and layout. Change only the English/Latin text: remove BOTH 'MANAN-GU' subtitles under the large Korean '만안구' headings, seamlessly restoring the underlying background. On the LEFT map change the four pin letters A, B, C, D to Korean letters 가, 나, 다, 라 respectively, and change the small store labels A점, B점, C점, D점 to 가점, 나점, 다점, 라점. Use the same black clean sans-serif style and matching size/alignment. The right map stays exactly unchanged except removal of its 'MANAN-GU' subtitle. The resulting image must contain no English or Latin letters. Keep the original 4:3 aspect ratio, no crop, no new elements, no redesign.

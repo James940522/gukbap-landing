@@ -28,11 +28,10 @@
 .placeholder svg { width: 54px; height: 54px; margin-bottom: 5px; color: var(--gold-light); }
 .placeholder .photoNote { color: var(--text-muted); font-size: 12px; }
 .caption { margin-top: 29px; }
-.english { color: var(--gold-light); font-size: 11px; letter-spacing: 0.17em; font-weight: 600; white-space: normal; }
-.englishMobile { display: none; }
+.captionLabel { color: var(--gold-light); font-size: 12px; letter-spacing: 0.04em; font-weight: 600; white-space: normal; }
 .caption h3 { margin-top: 7px; font-size: 24px; font-weight: 700; letter-spacing: -0.035em; white-space: normal; }
 .multiply { display: none; }
-.signature { display: flex; align-items: center; gap: 24px; margin-top: var(--section-gap); color: var(--gold-light); font-size: 11px; letter-spacing: 0.24em; font-weight: 600; }
+.signature { display: flex; align-items: center; gap: 24px; margin-top: var(--section-gap); color: var(--gold-light); font-size: 12px; letter-spacing: 0.04em; font-weight: 600; }
 .signature::before, .signature::after { content: ""; flex: 1; height: 1px; background: var(--border-gold); }
 @media (max-width: 999px) {
   .composition { grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr); gap: 0 12px; max-width: 640px; margin-inline: auto; margin-top: 42px; }
@@ -57,9 +56,7 @@
   .placeholder .photoNote { font-size: 12px; }
   .caption { margin-top: 20px; }
   .caption h3 { margin-top: 8px; font-size: 18px; line-height: 1.5; white-space: normal; }
-  .english { font-size: 11px; line-height: 1.4; letter-spacing: 0.08em; white-space: normal; }
-  .englishDesktop { display: none; }
-  .englishMobile { display: block; }
+  .captionLabel { line-height: 1.4; }
   .multiply { font-size: 25px; }
-  .signature { margin-top: 42px; gap: 16px; font-size: 11px; }
+  .signature { margin-top: 42px; gap: 16px; }
 }

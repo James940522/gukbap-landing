@@ -9,14 +9,14 @@ export function SignatureMenuSection() {
   return (
     <section
       id="menu"
-      className="section section-light menu-section section-background-host"
+      className="section menu-section section-background-host"
       aria-labelledby="menu-title"
     >
-      <SectionBackground name="menu" />
+      <SectionBackground name="nurungji" className="menu-background" />
       <div className="container">
         <div className="section-heading menu-heading">
           <Reveal>
-            <SectionEyebrow number="03">SIGNATURE MENU</SectionEyebrow>
+            <SectionEyebrow number="03">뚝손의 메뉴</SectionEyebrow>
             <h2 id="menu-title" className="section-title">
               가장 자신 있는
               <br />
@@ -27,7 +27,7 @@ export function SignatureMenuSection() {
             <MediaFrame
               image={foodImages.sundae}
               label="젓가락으로 집어 올린 김이 나는 순대 한 점"
-              englishLabel="WITH YOUR BOWL"
+              caption="한 그릇에 곁들여"
               className="menu-intro-media"
               sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 999px) 40vw, 400px"
             />

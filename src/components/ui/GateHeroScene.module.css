@@ -27,17 +27,6 @@
   pointer-events: none;
 }
 
-.brand {
-  position: absolute;
-  top: 50%;
-  left: max(32px, calc((100% - 1280px) / 2 + 32px));
-  width: min(38%, 460px);
-  transform: translateY(-50%);
-  z-index: 10;
-  text-align: center;
-  pointer-events: none;
-}
-
 .footer {
   position: relative;
   z-index: 21;
@@ -52,16 +41,13 @@
   margin-inline: auto;
 }
 
-.footnote { color: var(--text-muted); font-size: 13px; letter-spacing: 0.04em; }
 .actions { display: flex; grid-column: 2; gap: 12px; }
 .actions a { min-height: 48px; min-width: 158px; }
 
 @media (max-width: 899px) {
-  .brand { top: clamp(32px, 6svh, 64px); inset-inline: 20px; width: auto; transform: none; }
   .food img { object-position: 62% bottom; }
   .food::after { background: linear-gradient(180deg, rgb(8 7 6 / 18%), transparent 48%, rgb(8 7 6 / 22%) 92%, #080706); }
   .footer { gap: 12px; padding-inline: 24px; }
-  .footnote { display: none; }
   .actions a { min-width: 140px; }
 }
 

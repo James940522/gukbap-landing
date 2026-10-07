@@ -36,7 +36,7 @@
 .boardImage { object-fit: fill; }
 .boardContent { position: absolute; inset: 13% 10% 10%; }
 .title { display: flex; align-items: baseline; justify-content: center; gap: 1.25cqw; font-size: 4.3cqw; line-height: 1.15; font-weight: 900; letter-spacing: -0.065em; white-space: nowrap; }
-.threeWay { position: relative; color: var(--strategy-red); font-size: 5.5cqw; font-weight: 950; font-style: italic; letter-spacing: -0.065em; transform: rotate(-3deg); }
+.threeWay { position: relative; color: var(--strategy-red); font-size: 5cqw; font-weight: 950; letter-spacing: -0.065em; transform: rotate(-3deg); }
 .threeWay::after { content: ""; position: absolute; left: -3%; right: -4%; bottom: -2%; height: 0.38cqw; background: currentColor; clip-path: polygon(0 44%, 100% 0, 95% 65%, 4% 100%); }
 .description { margin: 1.45cqw auto 0; width: max-content; font-size: 1.5cqw; line-height: 1.4; font-weight: 550; letter-spacing: -0.04em; }
 .checklist { display: grid; gap: 0.42cqw; width: max-content; margin: 1.18cqw auto 0; padding: 0; list-style: none; }
@@ -45,6 +45,14 @@
 .ok { color: var(--strategy-red); font-weight: 850; letter-spacing: -0.04em; }
 
 .graphStage { position: absolute; inset: 0; }
+.graphTrigger {
+  position: absolute;
+  inset-inline: 0;
+  /* Keep the arrow tip below the fixed header, including on short wide screens. */
+  top: min(89%, calc(13.6364% + 100dvh - var(--header-height) - 64px));
+  bottom: 0;
+  pointer-events: none;
+}
 .food { position: absolute; inset: 0; clip-path: var(--food-clip); }
 .foodImage { object-fit: cover; object-position: center; }
 .desktopGraph, .mobileGraph { position: absolute; inset: 0; pointer-events: none; }
@@ -79,8 +87,8 @@
   .hanok { width: 100%; height: 65%; opacity: 0.42; }
   .board { position: relative; top: auto; left: auto; flex-shrink: 0; width: min(92%, 570px); margin: 0 auto; }
   .boardContent { inset: 12% 10% 10%; container-type: inline-size; }
-  .title { gap: 5cqw; font-size: 16cqw; }
-  .threeWay { font-size: 20cqw; }
+  .title { gap: 3cqw; font-size: 16cqw; }
+  .threeWay { font-size: 18cqw; }
   .threeWay::after { height: 1.5cqw; }
   .description { margin-top: 5cqw; font-size: 6.05cqw; }
   .checklist { margin-top: 4cqw; gap: 1.6cqw; }
@@ -96,10 +104,10 @@
     margin-top: 8px;
   }
   .food { clip-path: var(--food-clip-mobile); }
+  .graphTrigger { top: min(86%, calc(26.1765% + 100dvh - var(--header-height) - 64px)); }
   .foodImage {
-    /* The mobile source is composed for this portrait graph stage, so it can
-       fill the mask without enlarging a landscape photograph. */
-    object-position: center;
+    /* Keep the center and right-hand bowls inside the portrait graph mask. */
+    object-position: 62% center;
   }
   .desktopGraph { display: none; }
   .mobileGraph { display: block; }

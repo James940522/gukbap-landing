@@ -11,7 +11,7 @@ export function NurungjiSection() {
       <SectionBackground name="nurungji" className="nurungji-background" />
       <div className="container nurungji-layout">
         <Reveal effect="from-left" className="nurungji-copy">
-          <SectionEyebrow number="02">NURUNGJI GUKBAP</SectionEyebrow>
+          <SectionEyebrow number="02">누룽지 국밥</SectionEyebrow>
           <h2 id="nurungji-title" className="section-title">
             누룽지를 더한<br />한 그릇.
           </h2>
@@ -38,7 +38,7 @@ export function NurungjiSection() {
               <MediaFrame
                 image={nurungjiFeature.image}
                 label="누룽지 국밥 한 그릇"
-                englishLabel="A BOWL WITH NURUNGJI"
+                caption="누룽지를 더한 한 그릇"
                 className="nurungji-media"
                 sizes="(max-width: 899px) calc(100vw - 48px), (max-width: 1299px) 48vw, 600px"
               />
@@ -48,7 +48,7 @@ export function NurungjiSection() {
           </Reveal>
           <Reveal as="p" effect="fade" delay={0.18} className="nurungji-visual-note">
             <span>{nurungjiFeature.image ? "뜨끈함에 고소함을 더하다." : "뚝배기 연출 이미지 · 메뉴 사진 준비 중"}</span>
-            <span>NURUNGJI × GUKBAP</span>
+            <span>누룽지 × 국밥</span>
           </Reveal>
         </div>
       </div>

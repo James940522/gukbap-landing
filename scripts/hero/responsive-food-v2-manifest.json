@@ -1,0 +1,42 @@
+[
+  {
+    "variant": "desktop",
+    "source": "assets/food/originals/hero-gukbap-desktop-v2.png",
+    "sourceSha256": "af2b85f0013bb2011b858cfb10dc9e94dfe016526f2e0d98bc656b1a234ff4a1",
+    "sourceWidth": 1672,
+    "sourceHeight": 941,
+    "sourceBytes": 2414122,
+    "output": "/images/hero/gukbap-desktop-v2.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 258494,
+    "encoding": {
+      "format": "webp",
+      "quality": 90,
+      "effort": 6,
+      "resized": false,
+      "cropped": false
+    },
+    "note": "User-supplied replacement hero visual. Original preserved byte-for-byte; no correction, crop, compositing, rotation or generative edits."
+  },
+  {
+    "variant": "mobile",
+    "source": "assets/food/originals/hero-gukbap-mobile-v2.png",
+    "sourceSha256": "78fd6e822b34c140c43056f771834029f368d49b76135138d58be7fa8ef6c093",
+    "sourceWidth": 941,
+    "sourceHeight": 1672,
+    "sourceBytes": 2266248,
+    "output": "/images/hero/gukbap-mobile-v2.webp",
+    "width": 941,
+    "height": 1672,
+    "bytes": 228938,
+    "encoding": {
+      "format": "webp",
+      "quality": 90,
+      "effort": 6,
+      "resized": false,
+      "cropped": false
+    },
+    "note": "User-supplied replacement hero visual. Original preserved byte-for-byte; no correction, crop, compositing, rotation or generative edits."
+  }
+]

@@ -3,8 +3,7 @@ import type { ReactNode } from "react";
 import { heroFood } from "@/data/heroScene";
 import styles from "./GateHeroScene.module.css";
 
-export function GateHeroScene({ children, actions }: {
-  children: ReactNode;
+export function GateHeroScene({ actions }: {
   actions: ReactNode;
 }) {
   return (
@@ -24,12 +23,8 @@ export function GateHeroScene({ children, actions }: {
             />
           </picture>
         </figure>
-        <div className={styles.brand}>
-          {children}
-        </div>
       </div>
       <div className={styles.footer}>
-        <p className={styles.footnote}>한 그릇을 제대로.</p>
         <div className={styles.actions}>{actions}</div>
       </div>
     </>

@@ -5,7 +5,7 @@ import { bowlImages } from "./bowlImages";
 // TODO: Add cooking times, staffing requirements, and detailed operating
 // procedures only after the brand supplies confirmed specifications.
 export const cooking = {
-  eyebrow: "THE DDUKSON WAY",
+  eyebrow: "뚝손의 조리 방식",
   lead: "깊은 맛을, 익숙한 조리의 흐름으로.",
   title: "조리는 차근차근,",
   highlight: "한 그릇은 제대로.",

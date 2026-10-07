@@ -12,7 +12,7 @@ export function WhyDduksonSection() {
       <SectionBackground name="standards" />
       <div className="container">
         <Reveal effect="fade" className={styles.heading}>
-          <SectionEyebrow number="05">WHY DDUKSON</SectionEyebrow>
+          <SectionEyebrow number="05">뚝손의 기준</SectionEyebrow>
           <p className={styles.kicker}>한 그릇을 완성하는 두 가지</p>
         </Reveal>
         <div className={styles.composition}>
@@ -43,15 +43,14 @@ export function WhyDduksonSection() {
                 )}
               </div>
               <figcaption className={styles.caption}>
-                <span className={`${styles.english} ${styles.englishDesktop}`}>{element.english}</span>
-                <span className={`${styles.english} ${styles.englishMobile}`}>{element.mobileEnglish}</span>
+                <span className={styles.captionLabel}>{element.caption}</span>
                 <h3>{element.label}</h3>
               </figcaption>
             </Reveal>
           ))}
           <Reveal as="span" effect="fade" delay={0.3} className={styles.multiply} aria-hidden>×</Reveal>
         </div>
-        <Reveal effect="fade" delay={0.2} className={styles.signature} aria-hidden><span>DDUKSON GUKBAP</span></Reveal>
+        <Reveal effect="fade" delay={0.2} className={styles.signature} aria-hidden><span>뚝손국밥</span></Reveal>
       </div>
     </section>
   );

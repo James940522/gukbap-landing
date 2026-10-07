@@ -48,14 +48,14 @@ export function PartnerSection() {
       <div className={styles.backgroundRings} aria-hidden="true" />
       <div className={`container ${styles.content}`}>
         <Reveal effect="fade" className={styles.masthead}>
-          <span>DDUKSON GUKBAP</span>
+          <span>뚝손국밥</span>
           <span>사람과 사람, 한 그릇으로 잇다.</span>
         </Reveal>
 
         <div className={styles.heading}>
           <Reveal effect="fade" className={styles.eyebrow}>
             <span aria-hidden="true" />
-            OUR PARTNERS
+            함께할 점주님
             <span aria-hidden="true" />
           </Reveal>
           <Reveal as="h2" id="partners-title" delay={0.08} className={`section-title ${styles.title}`}>
@@ -77,7 +77,7 @@ export function PartnerSection() {
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div className={styles.icon}><PartnerIcon kind={quality.id} /></div>
-                  <span className={styles.english}>{quality.english}</span>
+                  <span className={styles.keyword}>{quality.keyword}</span>
                   <h3>{quality.title}</h3>
                   <p className={styles.description}>
                     {quality.description.map((line) => <span key={line}>{line}</span>)}

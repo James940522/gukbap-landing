@@ -11,7 +11,7 @@ export function TerritorySection() {
       <BrandMarquee theme="territory" variant="rail" tone="dark" />
       <div className={`container ${styles.content}`}>
         <Reveal className={styles.heading}>
-          <SectionEyebrow>TERRITORY PROTECTION</SectionEyebrow>
+          <SectionEyebrow>상권 안내</SectionEyebrow>
           <h2 id="territory-title" className="section-title">
             한 그릇을 제대로.<br />
             <span>한 상권도 제대로.</span>
@@ -28,13 +28,13 @@ export function TerritorySection() {
               <span className={styles.label}>여러 매장이 함께하는 상권</span>
               <h3>하나의 상권, <br />여러 개의 간판.</h3>
               <p>같은 브랜드의 여러 매장이<br />한 상권 안에 자리하는 경우</p>
-              <span className={styles.index} aria-hidden="true">01 / SHARED AREA</span>
+              <span className={styles.index} aria-hidden="true">01 / 함께하는 상권</span>
             </Reveal>
             <Reveal effect="from-left" delay={0.14} className={`${styles.item} ${styles.highlight}`}>
               <span className={styles.label}>뚝손국밥의 상권 구상</span>
               <h3>한 상권에, <br /><span>하나의 뚝손.</span></h3>
               <p>한 매장의 운영에 집중하는<br />1상권 1가맹점 구상</p>
-              <span className={styles.index} aria-hidden="true">02 / DDUKSON AREA</span>
+              <span className={styles.index} aria-hidden="true">02 / 뚝손의 상권</span>
             </Reveal>
           </div>
 
@@ -42,8 +42,8 @@ export function TerritorySection() {
             <figure>
               <div className={styles.map}>
                 <Image
-                  src="/images/franchise/territory-comparison.png"
-                  alt="만안구를 예로 든 상권 비교. 왼쪽은 한 상권에 A·B·C·D 네 매장, 오른쪽은 뚝손국밥 한 매장이 배치된 구상도."
+                  src="/images/franchise/territory-comparison-ko.png"
+                  alt="만안구를 예로 든 상권 비교. 왼쪽은 한 상권에 가·나·다·라 네 매장, 오른쪽은 뚝손국밥 한 매장이 배치된 구상도."
                   width={1448}
                   height={1086}
                   sizes="(max-width: 899px) calc(100vw - 40px), (max-width: 1304px) 60vw, 756px"

@@ -9,7 +9,8 @@
   transform: translate(-50%, -50%);
   container-type: inline-size;
 }
-.doorSpace { position: absolute; inset: 0; z-index: 1; perspective: calc(100cqw * var(--perspective-ratio)); }
+/* Pulled doors swing in front of the fixed frame toward the viewer. */
+.doorSpace { position: absolute; inset: 0; z-index: 3; perspective: calc(100cqw * var(--perspective-ratio)); }
 .door { position: absolute; backface-visibility: hidden; }
 .door img, .frame { object-fit: fill; }
 .frame { z-index: 2; pointer-events: none; }

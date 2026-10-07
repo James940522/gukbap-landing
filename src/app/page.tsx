@@ -19,7 +19,6 @@ import { CostRatioSection } from "@/components/sections/CostRatioSection";
 import { ProfitStructureSection } from "@/components/sections/ProfitStructureSection";
 import { CookingSystemSection } from "@/components/sections/CookingSystemSection";
 import { SuccessRoadmapSection } from "@/components/sections/SuccessRoadmapSection";
-import { BrandMarquee } from "@/components/ui/BrandMarquee";
 import { BrandIntro } from "@/components/intro/BrandIntro";
 
 export default function Home() {
@@ -31,16 +30,13 @@ export default function Home() {
       <Header />
       <main id="main">
         <HeroSection />
-        <BrandMarquee theme="brand" />
         <StrategySection />
         <LandscapeSection />
         <BrandStorySection />
-        <BrandMarquee theme="menu" tone="dark" />
         <NurungjiSection />
         <FeaturedMenuSection />
         <SignatureMenuSection />
         <PairingSection />
-        <BrandMarquee theme="standard" />
         <WhyDduksonSection />
         <CookingSystemSection />
         <TerritorySection />

@@ -249,7 +249,7 @@ h4 {
   color: var(--accent-text);
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.04em;
 }
 .eyebrow-number {
   padding-right: 15px;
@@ -258,7 +258,7 @@ h4 {
 }
 .small-label {
   font-size: 13px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.04em;
   color: var(--accent-text);
   font-weight: 600;
 }
@@ -357,7 +357,13 @@ h4 {
   background: var(--ivory);
   color: var(--text-dark);
   color-scheme: light;
+  visibility: hidden;
+  pointer-events: none;
   transition: box-shadow 0.3s;
+}
+.header-visible {
+  visibility: visible;
+  pointer-events: auto;
 }
 .site-header::before {
   content: "";
@@ -396,7 +402,7 @@ h4 {
   opacity: 0.84;
 }
 .header-brand-note { padding-left: 22px; border-left: 1px solid var(--header-rule); }
-.header-brand-note > span { display: block; color: var(--gold-dark); font-size: 11px; font-weight: 650; letter-spacing: 0.17em; }
+.header-brand-note > span { display: block; color: var(--gold-dark); font-size: 12px; font-weight: 650; letter-spacing: 0.04em; }
 .header-brand-note p { margin-top: 5px; font-size: 14px; font-weight: 600; letter-spacing: -0.015em; }
 .desktop-nav {
   display: flex;
@@ -501,7 +507,7 @@ h4 {
 .mobile-nav::backdrop { background: rgb(16 12 9 / 60%); }
 .mobile-menu-content { display: flex; flex-direction: column; min-height: 100%; padding: 28px 26px calc(24px + env(safe-area-inset-bottom)); }
 .mobile-menu-heading { position: relative; padding-top: 14px; padding-bottom: 30px; }
-.mobile-menu-eyebrow { color: var(--gold-dark); font-size: 11px; font-weight: 650; letter-spacing: 0.16em; }
+.mobile-menu-eyebrow { color: var(--gold-dark); font-size: 12px; font-weight: 650; letter-spacing: 0.04em; }
 .mobile-menu-heading > p { margin-top: 24px; font-size: 31px; line-height: 1.55; letter-spacing: -0.05em; }
 .mobile-menu-close { position: absolute; top: 0; right: 0; width: 44px; height: 44px; border: 1px solid var(--header-rule); border-radius: 8px; background: transparent; }
 .mobile-menu-close span { position: absolute; left: 12px; top: 20px; width: 18px; height: 1.5px; background: var(--deep-brown); transform: rotate(45deg); }
@@ -630,8 +636,8 @@ h4 {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  font-size: 11px;
-  letter-spacing: 0.13em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   color: var(--text-muted);
   font-weight: 600;
 }
@@ -847,8 +853,8 @@ details[open] .details-plus::after {
 .inquiry-signature {
   margin-top: 55px;
   color: var(--text-muted);
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   font-weight: 600;
 }
 .inquiry-signature span {
@@ -1078,7 +1084,7 @@ details[open] .details-plus::after {
   display: block;
   color: var(--text-light);
   font-size: 14px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   font-weight: 650;
 }
 .footer-company p {
@@ -1140,7 +1146,7 @@ details[open] .details-plus::after {
 .draft-label {
   color: var(--text-muted);
   font-size: 8px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
 }
 @media (max-width: 1100px) {
   .inquiry-grid {
@@ -1212,7 +1218,7 @@ details[open] .details-plus::after {
     font-size: 12px;
     gap: 12px;
     margin-bottom: 21px;
-    letter-spacing: 0.17em;
+    letter-spacing: 0.04em;
   }
   .eyebrow-number {
     padding-right: 12px;
@@ -1767,16 +1773,22 @@ details[open] .details-plus::after {
 }
 .nurungji-visual-note span:last-child {
   color: var(--text-muted);
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   font-weight: 600;
 }
 
 /* Menu: a category rail beside the desktop slider; one card per view on mobile. */
 .menu-section {
-  --surface: var(--paper-raised);
-  --surface-elevated: var(--paper-inset);
-  background: var(--section-ivory);
+  --surface: var(--charcoal);
+  --surface-elevated: var(--deep-brown);
+  background: var(--background-deep);
+}
+.menu-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--background-deep) 30%, transparent);
 }
 .menu-heading {
   align-items: center;
@@ -1908,7 +1920,7 @@ details[open] .details-plus::after {
 .menu-card .media-frame {
   border: 0;
   border-radius: 0;
-  background: var(--paper-inset);
+  background: var(--surface-elevated);
 }
 .menu-card:hover .has-image img {
   transform: scale(1.03);
@@ -2202,8 +2214,8 @@ details[open] .details-plus::after {
   font-size: 14px;
 }
 .franchise-topics-heading > span:last-child {
-  font-size: 11px;
-  letter-spacing: 0.15em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   color: var(--accent-text);
   font-weight: 600;
 }

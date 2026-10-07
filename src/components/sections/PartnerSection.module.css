@@ -43,8 +43,8 @@
   margin-bottom: var(--section-gap);
   border-bottom: 1px solid var(--border-gold);
   color: var(--text-on-paper-muted);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   font-weight: 600;
 }
 
@@ -64,9 +64,9 @@
   gap: 14px;
   margin-bottom: 20px;
   color: var(--gold-dark);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.04em;
 }
 
 .eyebrow span {
@@ -161,11 +161,11 @@
   height: 42px;
 }
 
-.english {
+.keyword {
   display: block;
   color: var(--text-on-paper-muted);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   font-weight: 600;
 }
 
@@ -264,7 +264,7 @@
   .marker { grid-column: 1; grid-row: 1 / span 3; align-self: start; margin-top: 1px; }
   .icon { grid-column: 3; grid-row: 1 / span 2; width: 48px; height: 48px; margin: 0; border-radius: 8px; }
   .icon svg { width: 32px; height: 32px; }
-  .english { grid-column: 2; grid-row: 1; font-size: 11px; }
+  .keyword { grid-column: 2; grid-row: 1; }
   .item h3 { grid-column: 2; grid-row: 2; margin-top: 3px; font-size: 20px; }
   .description { grid-column: 2 / -1; grid-row: 3; margin-top: 9px; font-size: 16px; }
   .list li:last-child .item { padding-bottom: 0; border-bottom: 0; }

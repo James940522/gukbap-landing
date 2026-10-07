@@ -6,7 +6,6 @@ export type { Menu, MenuCategory } from "./menus";
 // Brand copy is a draft. Menu names were supplied by the brand owner.
 export const brand = {
   name: '뚝손국밥',
-  englishName: 'DDUKSON GUKBAP',
   company: '주식회사 산본에프앤비',
   representatives: '이호남',
   businessNumber: '589-86-02728',
@@ -38,17 +37,17 @@ export const foodImages = {
 
 export const brandValues = [
   {
-    english: 'SINCERITY',
+    keyword: '정성',
     title: '한 그릇의 정성',
     description: '익숙한 음식일수록, 더 마음을 씁니다.',
   },
   {
-    english: 'DEPTH',
+    keyword: '깊은 맛',
     title: '오래 남는 깊은 맛',
     description: '첫 숟갈의 온기가 좋은 기억으로 남도록.',
   },
   {
-    english: 'WARMTH',
+    keyword: '든든함',
     title: '속까지 든든하게',
     description: '잘 먹었다는 한마디를 생각합니다.',
   },
@@ -93,20 +92,18 @@ export const brothFeature = {
     {
       id: 'broth',
       label: '뚝손국밥 전용육수',
-      english: 'DDUKSON SIGNATURE BROTH',
-      mobileEnglish: 'SIGNATURE BROTH',
+      caption: '전용육수',
       placeholder: '전용육수 이미지',
       image: '/images/food/signature-broth-ai.webp' as string | null,
-      alt: '김이 오르는 뚝배기에 담긴 진한 육수 — AI 연출 이미지',
+      alt: '김이 오르는 뚝배기에 담긴 진한 육수 — 인공지능 연출 이미지',
     },
     {
       id: 'ingredients',
       label: '엄선된 재료',
-      english: 'SELECTED INGREDIENTS',
-      mobileEnglish: 'INGREDIENTS',
+      caption: '엄선한 재료',
       placeholder: '엄선된 재료 이미지',
       image: '/images/food/selected-ingredients-ai.webp' as string | null,
-      alt: '어두운 도자기 접시 위의 돼지고기와 대파, 마늘 — AI 연출 이미지',
+      alt: '어두운 도자기 접시 위의 돼지고기와 대파, 마늘 — 인공지능 연출 이미지',
     },
   ],
 };
@@ -115,7 +112,7 @@ export const standards = [
   {
     number: '01',
     title: '육수',
-    english: 'BROTH',
+    keyword: '육수',
     subtitle: '깊은 맛의 시작.',
     description:
       '한 숟갈에 전해지는 깊이. 뚝손이 한 그릇을 생각하는 첫 번째 기준입니다.',
@@ -123,7 +120,7 @@ export const standards = [
   {
     number: '02',
     title: '재료',
-    english: 'INGREDIENTS',
+    keyword: '재료',
     subtitle: '기본을 소중하게.',
     description:
       '좋은 한 끼의 시작은 재료에 있다고 믿습니다. 익숙한 맛의 기본을 생각합니다.',
@@ -131,7 +128,7 @@ export const standards = [
   {
     number: '03',
     title: '조리',
-    english: 'COOKING',
+    keyword: '조리',
     subtitle: '온기까지 담아서.',
     description:
       '첫 숟갈부터 마지막 숟갈까지. 따뜻하게 기억되는 한 그릇을 지향합니다.',
@@ -139,7 +136,7 @@ export const standards = [
   {
     number: '04',
     title: '운영',
-    english: 'CONSISTENCY',
+    keyword: '한결같음',
     subtitle: '한결같은 마음으로.',
     description:
       '다시 찾고 싶은 편안함. 한 그릇을 내놓는 마음이 브랜드의 기준이 됩니다.',

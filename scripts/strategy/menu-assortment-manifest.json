@@ -1,0 +1,20 @@
+{
+  "source": "assets/food/originals/menu-assortment.jpg",
+  "sourceSha256": "4d3387407435624c11383f4b382b644ca0ecef261be94fbb1702d6dc0ed85ada",
+  "sourceFormat": "jpeg",
+  "sourceWidth": 1280,
+  "sourceHeight": 960,
+  "sourceBytes": 762046,
+  "output": "/images/strategy/menu-assortment.webp",
+  "width": 1280,
+  "height": 960,
+  "bytes": 484838,
+  "encoding": {
+    "format": "webp",
+    "quality": 90,
+    "effort": 6,
+    "resized": false,
+    "cropped": false
+  },
+  "note": "User-supplied menu assortment photograph. Original preserved byte-for-byte. No crop, correction, compositing, rotation or generative edits."
+}

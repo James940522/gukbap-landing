@@ -3,7 +3,7 @@ import { BowlIcon } from "./Icons";
 
 type MediaFrameProps = {
   label: string;
-  englishLabel?: string;
+  caption?: string;
   className?: string;
   image?: string | null;
   sizes?: string;
@@ -12,7 +12,7 @@ type MediaFrameProps = {
 
 export function MediaFrame({
   label,
-  englishLabel = "DDUKSON GUKBAP",
+  caption = "뚝손국밥",
   className = "",
   image,
   sizes = "(max-width: 767px) 100vw, 50vw",
@@ -35,8 +35,8 @@ export function MediaFrame({
         </div>
       )}
       <figcaption className="media-caption">
-        <span>{englishLabel}</span>
-        <span>{image ? "" : "DDUKSON GUKBAP"}</span>
+        <span>{caption}</span>
+        <span>{image ? "" : "뚝손국밥"}</span>
       </figcaption>
     </figure>
   );

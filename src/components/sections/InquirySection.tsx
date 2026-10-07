@@ -15,7 +15,7 @@ export function InquirySection() {
       <BrandMarquee theme="inquiry" variant="backdrop" tone="paper" />
       <div className={`container inquiry-grid ${typography.content}`}>
         <Reveal effect="from-left" className="inquiry-copy">
-          <SectionEyebrow number="07">START WITH DDUKSON</SectionEyebrow>
+          <SectionEyebrow number="07">뚝손과 함께 시작</SectionEyebrow>
           <h2 id="inquiry-title" className="section-title display-font">
             뚝손국밥과
             <br />
@@ -43,12 +43,12 @@ export function InquirySection() {
                 전화 또는 이메일로 문의해주세요.
               </p>
               <a className="inquiry-email" href={`mailto:${brand.email}`}>
-                {brand.email}
+                이메일로 문의하기
               </a>
             </div>
           </div>
           <p className="inquiry-signature">
-            SANBON F&B <span>×</span> DDUKSON GUKBAP
+            산본에프앤비 <span>×</span> 뚝손국밥
           </p>
         </Reveal>
         <Reveal effect="fade" duration={0.65} delay={0.12}>

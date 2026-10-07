@@ -48,7 +48,7 @@ export const roadmapStrengths: RoadmapStrength[] = [
 ];
 
 export const roadmapSignals = [
-  { label: "System", value: "06 steps" },
-  { label: "Cooking", value: "조리 기준" },
-  { label: "Supply", value: "전용육수" },
+  { label: "운영 체계", value: "6단계" },
+  { label: "조리", value: "조리 기준" },
+  { label: "재료 공급", value: "전용육수" },
 ];

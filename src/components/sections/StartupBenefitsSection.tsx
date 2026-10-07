@@ -48,7 +48,7 @@ export function StartupBenefitsSection() {
       <div className="container">
         <Reveal className={styles.heading}>
           <div>
-            <p className={styles.eyebrow}>STARTUP BENEFIT</p>
+            <p className={styles.eyebrow}>창업 혜택</p>
             <h2 id="startup-benefits-title">시작의 부담은 덜고,<br /><span>꼭 필요한 것부터.</span></h2>
           </div>
           <div className={styles.intro}>

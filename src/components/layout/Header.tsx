@@ -9,17 +9,23 @@ import brandLogo from "../../../public/images/logos/ddukson-gukbap.png";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [hasPassedHeroMidpoint, setHasPassedHeroMidpoint] = useState(false);
   const [activeHref, setActiveHref] = useState("");
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const reducedMotion = useReducedMotion();
+  const visible = hasPassedHeroMidpoint || menuOpen;
 
   useEffect(() => {
+    const hero = document.getElementById("hero");
     const sections = [...navigation.map((item) => item.href), "#inquiry"]
       .map((href) => ({ href, element: document.getElementById(href.slice(1)) }));
     let frame = 0;
     const syncPosition = () => {
       frame = 0;
-      setScrolled(window.scrollY > 24);
+      const heroBounds = hero?.getBoundingClientRect();
+      setHasPassedHeroMidpoint(heroBounds
+        ? heroBounds.top + heroBounds.height / 2 <= 0
+        : window.scrollY >= window.innerHeight / 2);
       let current = "";
       for (const section of sections) {
         if (section.element && section.element.getBoundingClientRect().top <= 120)
@@ -35,12 +41,15 @@ export function Header() {
       if (desktop.matches) setMenuOpen(false);
       onScroll();
     };
+    const heroResizeObserver = new ResizeObserver(onScroll);
+    if (hero) heroResizeObserver.observe(hero);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     desktop.addEventListener("change", onResize);
     return () => {
       cancelAnimationFrame(frame);
+      heroResizeObserver.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       desktop.removeEventListener("change", onResize);
@@ -48,8 +57,12 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      className={`site-header ${scrolled || menuOpen ? "header-solid" : ""}`}
+    <motion.header
+      className={`site-header ${visible ? "header-visible header-solid" : ""}`}
+      aria-hidden={!visible}
+      initial={false}
+      animate={{ y: visible || reducedMotion ? 0 : "-100%", opacity: visible ? 1 : 0 }}
+      transition={{ duration: reducedMotion ? 0 : 0.5, ease: [0.22, 0.61, 0.36, 1] }}
     >
       <div className="container header-inner">
         <div className="header-brand">
@@ -67,7 +80,7 @@ export function Header() {
             />
           </a>
           <div className="header-brand-note">
-            <span>DDUKSON GUKBAP</span>
+            <span>뚝손국밥</span>
             <p>한 그릇을 제대로.</p>
           </div>
         </div>
@@ -105,7 +118,7 @@ export function Header() {
       <AnimatePresence>
         {menuOpen && <MobileNavigation activeHref={activeHref} returnFocusRef={toggleRef} onClose={() => setMenuOpen(false)} />}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
 
@@ -177,7 +190,7 @@ function MobileNavigation({ activeHref, onClose, returnFocusRef }: {
     >
       <div className="mobile-menu-content">
         <div className="mobile-menu-heading">
-          <span className="mobile-menu-eyebrow">DDUKSON GUKBAP</span>
+          <span className="mobile-menu-eyebrow">뚝손국밥</span>
           <button ref={closeRef} type="button" className="mobile-menu-close" aria-label="메뉴 닫기" onClick={onClose}>
             <span /><span />
           </button>
@@ -195,7 +208,7 @@ function MobileNavigation({ activeHref, onClose, returnFocusRef }: {
         <div className="mobile-menu-footer">
           <p>함께할 다음 한 그릇.</p>
           <a href="#inquiry" className="button button-primary" onClick={onClose}>창업 문의<ArrowIcon /></a>
-          <div><span>SANBON F&B</span><a href={brand.phoneHref}>{brand.phone}</a></div>
+          <div><span>산본에프앤비</span><a href={brand.phoneHref}>{brand.phone}</a></div>
         </div>
       </div>
     </motion.dialog>

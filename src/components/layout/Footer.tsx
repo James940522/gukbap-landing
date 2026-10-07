@@ -29,7 +29,7 @@ export function Footer() {
                 className="footer-company-logo"
                 sizes="(max-width: 599px) 82px, 96px"
               />
-              <strong>SANBON F&B</strong>
+              <strong>산본에프앤비</strong>
             </div>
             <p>{brand.company}</p>
             <p>대표자 : {brand.representatives}</p>
@@ -39,7 +39,7 @@ export function Footer() {
               대표번호 : <a href={brand.phoneHref}>{brand.phone}</a>
             </p>
             <p className="footer-contact-row">
-              이메일 : <a href={`mailto:${brand.email}`}>{brand.email}</a>
+              이메일 : <a href={`mailto:${brand.email}`}>문의 보내기</a>
             </p>
           </div>
           <a className="back-top" href="#top" aria-label="페이지 맨 위로">
@@ -48,7 +48,7 @@ export function Footer() {
         </Reveal>
         <div className="footer-bottom">
           <small>
-            © {new Date().getFullYear()} SANBON F&B. All rights reserved.
+            © {new Date().getFullYear()} 산본에프앤비. 모든 권리 보유.
           </small>
           <nav aria-label="하단 메뉴">
             {navigation.map((item) => (
@@ -57,7 +57,7 @@ export function Footer() {
               </a>
             ))}
           </nav>
-          <span className="draft-label">BRAND WEBSITE DRAFT</span>
+          <span className="draft-label">브랜드 홈페이지 시안</span>
         </div>
       </div>
     </footer>

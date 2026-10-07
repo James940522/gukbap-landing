@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { useSyncExternalStore, type CSSProperties } from "react";
+import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
+import { useId, useRef, useSyncExternalStore, type CSSProperties } from "react";
 import {
   strategyAssets,
   strategyContent,
@@ -31,7 +31,7 @@ function entrance(delay: number, reduced: boolean | null, duration = 0.5): Varia
     visible: {
       opacity: 1,
       y: 0,
-      transition: { delay: reduced ? 0 : delay, duration: reduced ? 0 : duration, ease },
+      transition: { type: "tween", delay: reduced ? 0 : delay, duration: reduced ? 0 : duration, ease },
     },
   };
 }
@@ -96,32 +96,49 @@ function StrategyBoard() {
 
 function ArrowGraph({ mode }: { mode: keyof typeof strategyGraphs }) {
   const reduced = useReducedMotion();
+  const revealId = useId();
   const graph = strategyGraphs[mode];
   const nodeBorder = mode === "desktop" ? 6 : 4;
 
   return (
     <>
-    <svg className={styles.graphSvg} viewBox={`0 0 ${graph.width} ${graph.height}`} preserveAspectRatio="none" fill="none" aria-hidden="true">
-      <motion.path
-        d={graph.path}
-        stroke="currentColor"
-        style={{ strokeWidth: `${graph.strokeWidth / graph.width * 100}cqw` }}
-        vectorEffect="non-scaling-stroke"
-        strokeLinejoin="round"
-        data-strategy-draw
-        variants={{
-          hidden: { pathLength: 0, opacity: 0 },
-          visible: {
-            pathLength: 1,
-            opacity: 1,
-            transition: {
-              pathLength: { delay: reduced ? 0 : timing.graph, duration: reduced ? 0 : timing.graphDuration, ease: "linear" },
-              opacity: { delay: reduced ? 0 : timing.graph, duration: 0 },
-            },
-          },
-        }}
-      />
-      <motion.path d={graph.arrow} fill="currentColor" data-strategy-reveal variants={entrance(timing.graph + timing.graphDuration - 0.08, reduced, 0.2)} />
+    <svg className={styles.graphSvg} viewBox={`0 0 ${graph.width} ${graph.height}`} preserveAspectRatio="none" fill="none" aria-hidden="true" data-strategy-graph={mode}>
+      <defs>
+        <mask id={revealId} maskUnits="userSpaceOnUse" x={-graph.revealWidth} y={-graph.revealWidth} width={graph.width + graph.revealWidth * 2} height={graph.height + graph.revealWidth * 2} style={{ maskType: "alpha" }}>
+          <motion.path
+            // Animate a normally scaled mask, so dash lengths follow the path
+            // even when the SVG stretches to match a different screen ratio.
+            d={graph.revealPath}
+            stroke="white"
+            strokeWidth={graph.revealWidth}
+            strokeLinecap="butt"
+            strokeLinejoin="round"
+            data-strategy-draw
+            data-strategy-sweep
+            variants={{
+              hidden: { pathLength: 0, opacity: 0 },
+              visible: {
+                pathLength: 1,
+                opacity: 1,
+                transition: {
+                  pathLength: { type: "tween", delay: reduced ? 0 : timing.graph, duration: reduced ? 0 : timing.graphDuration, ease: "linear" },
+                  opacity: { delay: reduced ? 0 : timing.graph, duration: 0 },
+                },
+              },
+            }}
+          />
+        </mask>
+      </defs>
+      <g mask={`url(#${revealId})`}>
+        <path
+          d={graph.path}
+          stroke="currentColor"
+          style={{ strokeWidth: `${graph.strokeWidth / graph.width * 100}cqw` }}
+          vectorEffect="non-scaling-stroke"
+          strokeLinejoin="round"
+        />
+        <path d={graph.arrow} fill="currentColor" />
+      </g>
       {strategyPoints.map((point) => {
         const position = point[mode];
         const delay = timing.graph + timing.graphDuration * point.progress[mode];
@@ -132,12 +149,11 @@ function ArrowGraph({ mode }: { mode: keyof typeof strategyGraphs }) {
               // while the graph stretches vertically to fill the viewport.
               d={`M ${position.x} ${position.y} V ${position.badgeY}`}
               className={styles.stem}
-              style={{ strokeWidth: `${(mode === "desktop" ? 3 : 2) / graph.width * 100}cqw` }}
-              vectorEffect="non-scaling-stroke"
+              strokeWidth={mode === "desktop" ? 3 : 2}
               data-strategy-draw
               variants={{
                 hidden: { pathLength: 0, opacity: 0 },
-                visible: { pathLength: 1, opacity: 1, transition: { delay: reduced ? 0 : delay, duration: reduced ? 0 : 0.35 } },
+                visible: { pathLength: 1, opacity: 1, transition: { type: "tween", delay: reduced ? 0 : delay, duration: reduced ? 0 : 0.35, ease } },
               }}
             />
           </g>
@@ -164,7 +180,7 @@ function ArrowGraph({ mode }: { mode: keyof typeof strategyGraphs }) {
             data-strategy-reveal
             variants={{
               hidden: { opacity: 0, scale: 0.7 },
-              visible: { opacity: 1, scale: 1, transition: { delay: reduced ? 0 : delay, duration: reduced ? 0 : 0.25 } },
+              visible: { opacity: 1, scale: 1, transition: { type: "tween", delay: reduced ? 0 : delay, duration: reduced ? 0 : 0.3, ease } },
             }}
           />
         </div>
@@ -179,7 +195,7 @@ function StrategyBadges() {
   const compact = useSyncExternalStore(subscribeToLayout, getCompactLayout, getServerLayout);
 
   return (
-    <ul className={styles.badges} aria-label="3WAY 운영 전략" data-strategy-layer="badges">
+    <ul className={styles.badges} aria-label="세 가지 운영 전략" data-strategy-layer="badges">
       {strategyPoints.map((point) => {
         const icon = icons[point.icon];
         const position = {
@@ -211,6 +227,8 @@ function StrategyBadges() {
 /** The landing page's second section, immediately after the hero. */
 export function StrategySection() {
   const reduced = useReducedMotion();
+  const graphTriggerRef = useRef<HTMLDivElement>(null);
+  const graphInView = useInView(graphTriggerRef, { once: true, margin: "0px 0px -40px 0px" });
   const clipStyles = {
     "--food-clip": strategyGraphs.desktop.foodClip,
     "--food-clip-mobile": strategyGraphs.mobile.foodClip,
@@ -227,18 +245,16 @@ export function StrategySection() {
           <Image src={strategyAssets.hanok} alt="" fill sizes="(max-width: 899px) 100vw, 52vw" />
         </div>
         <StrategyBoard />
-        <motion.div className={styles.graphStage} initial="hidden" whileInView="visible" viewport={viewport}>
+        <motion.div className={styles.graphStage} initial="hidden" animate={graphInView ? "visible" : "hidden"} data-strategy-graph-started={graphInView}>
+          <div ref={graphTriggerRef} className={styles.graphTrigger} aria-hidden="true" />
           <div className={styles.food} data-strategy-layer="food">
-            <picture>
-              <source media="(max-width: 899px)" srcSet={strategyAssets.foodMobile} type="image/webp" />
-              <Image
-                src={strategyAssets.food}
-                alt="짙은 나무 상 위에 놓인 맑은 국밥과 얼큰한 국밥 뚝배기 연출 이미지"
-                fill
-                sizes="100vw"
-                className={styles.foodImage}
-              />
-            </picture>
+            <Image
+              src={strategyAssets.food}
+              alt="석재 테이블 위에 놓인 여섯 가지 국밥과 순대, 수육 한 상"
+              fill
+              sizes="100vw"
+              className={styles.foodImage}
+            />
           </div>
           <div className={styles.desktopGraph} data-strategy-layer="graph"><ArrowGraph mode="desktop" /></div>
           <div className={styles.mobileGraph} data-strategy-layer="graph"><ArrowGraph mode="mobile" /></div>

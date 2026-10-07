@@ -5,7 +5,7 @@ import { BrandNoticePopup } from "@/components/ui/BrandNoticePopup";
 import { GateScene } from "./GateScene";
 import { BrandScene } from "./BrandScene";
 import { RevealCurtain } from "./RevealCurtain";
-import { fitIntroTimeline, INTRO_ASSET_TIMEOUT_MS, INTRO_MODE, INTRO_POPUP_DELAY_MS, INTRO_REDUCED_TIMELINE, INTRO_STORAGE_KEY, INTRO_TIMELINE } from "./intro.constants";
+import { INTRO_ASSET_TIMEOUT_MS, INTRO_MODE, INTRO_POPUP_DELAY_MS, INTRO_REDUCED_TIMELINE, INTRO_STORAGE_KEY, INTRO_TIMELINE } from "./intro.constants";
 import styles from "./BrandIntro.module.css";
 
 function subscribeToReducedMotion(onChange: () => void) {
@@ -33,14 +33,12 @@ export function BrandIntro() {
 
 function IntroPlayer({ onComplete }: { onComplete: () => void }) {
   const overlayRef = useRef<HTMLDivElement>(null);
-  const mountedAt = useRef(0);
   const [loadedAssets, setLoadedAssets] = useState<string[]>([]);
   const [playing, setPlaying] = useState(false);
   const [gateComplete, setGateComplete] = useState(false);
   const [skipping, setSkipping] = useState(false);
-  const [playbackTimeline, setPlaybackTimeline] = useState(INTRO_TIMELINE);
   const reducedMotion = useSyncExternalStore(subscribeToReducedMotion, getReducedMotion, () => false);
-  const timeline = reducedMotion ? INTRO_REDUCED_TIMELINE : playbackTimeline;
+  const timeline = reducedMotion ? INTRO_REDUCED_TIMELINE : INTRO_TIMELINE;
   const requiredAssets = reducedMotion ? ["logo"] : ["frame", "left", "right", "logo", "table"];
   const assetsReady = requiredAssets.every((id) => loadedAssets.includes(id));
 
@@ -56,7 +54,6 @@ function IntroPlayer({ onComplete }: { onComplete: () => void }) {
   }, [onComplete]);
 
   useLayoutEffect(() => {
-    mountedAt.current = performance.now();
     const root = document.documentElement;
     const body = document.body;
     const overlay = overlayRef.current;
@@ -108,7 +105,6 @@ function IntroPlayer({ onComplete }: { onComplete: () => void }) {
     }
     if (!assetsReady || playing || skipping) return;
     const frame = requestAnimationFrame(() => {
-      setPlaybackTimeline(fitIntroTimeline((performance.now() - mountedAt.current) / 1000));
       setPlaying(true);
     });
     return () => cancelAnimationFrame(frame);

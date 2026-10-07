@@ -119,7 +119,7 @@ function MenuSlider({ category, autoAdvance, interactionVersion, onComplete }: {
           <Reveal as="article" key={menu.id} delay={(index % 3) * 0.08} duration={0.65} className="menu-card">
             <MediaFrame
               label={`${menu.name} 이미지`}
-              englishLabel={category.english}
+              caption={category.caption}
               image={menu.image}
               className="menu-media"
               sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 899px) calc((100vw - 72px) / 2), (max-width: 1343px) calc((100vw - 330px) / 3), 338px"
@@ -176,7 +176,7 @@ function MenuCategoryPanel({ category, autoAdvance, interactionVersion, onComple
     <>
       <Reveal effect="fade" duration={0.45} className="menu-category-heading">
         <h3>{category.name}</h3>
-        <span>{category.english}<i />{String(category.items.length).padStart(2, "0")} ITEMS</span>
+        <span>전체 메뉴<i />{category.items.length}가지</span>
       </Reveal>
       {groups ? (
         <>

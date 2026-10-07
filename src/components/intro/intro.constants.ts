@@ -16,24 +16,24 @@ export const INTRO_ASSETS = {
 };
 
 export const INTRO_TIMELINE = {
-  approach: 0.3,
-  doorOpen: 0.53,
-  doorDuration: 1.12,
-  pushIn: 0.59,
-  gateEnd: 1.77,
+  approach: 0.7,
+  doorOpen: 1.2,
+  doorDuration: 2.6,
+  pushIn: 1.4,
+  gateEnd: 4.2,
   // The feast is already behind the gate; zoom into it before the logo lands.
-  tableZoomStart: 1.15,
-  tableZoomDuration: 0.8,
-  logoIn: 1.95,
-  logoDuration: 0.45,
-  copyIn: [2.4, 3.4],
-  copyOut: [3.17, 4.18],
-  copyDuration: 0.18,
-  brandExit: 4.36,
-  brandExitDuration: 0.3,
-  curtainStart: 4.72,
-  curtainDuration: 0.88,
-  total: 5.6,
+  tableZoomStart: 2.7,
+  tableZoomDuration: 1.9,
+  logoIn: 4.65,
+  logoDuration: 0.95,
+  copyIn: [5.9, 8.5],
+  copyOut: [7.95, 10.65],
+  copyDuration: 0.4,
+  brandExit: 11.1,
+  brandExitDuration: 0.75,
+  curtainStart: 12.1,
+  curtainDuration: 2.1,
+  total: 14.2,
 };
 
 export const INTRO_REDUCED_TIMELINE: typeof INTRO_TIMELINE = {
@@ -53,12 +53,3 @@ export const INTRO_REDUCED_TIMELINE: typeof INTRO_TIMELINE = {
   curtainDuration: 0.35,
   total: 0.65,
 };
-
-export function fitIntroTimeline(loadingSeconds: number): typeof INTRO_TIMELINE {
-  // The user requested a slower rhythm. Include preparation in a six-second budget.
-  const factor = Math.min(1, Math.max(4.2, 6 - loadingSeconds) / INTRO_TIMELINE.total);
-  return Object.fromEntries(Object.entries(INTRO_TIMELINE).map(([key, value]) => [
-    key,
-    Array.isArray(value) ? value.map((time) => time * factor) : value * factor,
-  ])) as typeof INTRO_TIMELINE;
-}

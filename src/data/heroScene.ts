@@ -11,9 +11,9 @@ export const heroGate = {
 };
 
 export const heroFood = {
-  src: "/images/hero/gukbap-desktop.webp",
-  mobileSrc: "/images/hero/gukbap-mobile.webp",
+  src: "/images/hero/gukbap-desktop-v2.webp",
+  mobileSrc: "/images/hero/gukbap-mobile-v2.webp",
   width: 1672,
   height: 941,
-  alt: "김이 오르는 검은 뚝배기 국밥에 고기와 대파를 올리고 김치와 깍두기를 곁들인 한 상",
+  alt: "김이 오르는 검은 뚝배기 국밥에 고기와 부추, 양념을 올리고 김치와 깍두기를 곁들인 한 상",
 };

@@ -10,7 +10,7 @@ export function BrandStorySection() {
       <div className="container">
         <div className="brand-heading">
           <Reveal>
-            <SectionEyebrow number="01">ABOUT DDUKSON</SectionEyebrow>
+            <SectionEyebrow number="01">뚝손 이야기</SectionEyebrow>
             <h2 id="brand-title" className="section-title display-font">
               뚝배기에 담은<br />우리의 손맛.
             </h2>
@@ -28,7 +28,7 @@ export function BrandStorySection() {
             <MediaFrame
               image={foodImages.cooking}
               label="김이 오르는 가마솥 위로 고기와 순대를 들어 올리는 모습"
-              englishLabel="THE MAKING OF DDUKSON"
+              caption="뚝손의 손맛"
               className="brand-media"
               sizes="(max-width: 899px) calc(100vw - 48px), (max-width: 1299px) 62vw, 760px"
             />
@@ -36,10 +36,10 @@ export function BrandStorySection() {
           </Reveal>
           <div className="brand-values">
             {brandValues.map((value, i) => (
-              <Reveal key={value.english} effect="from-right" delay={i * 0.09} className="brand-value">
+              <Reveal key={value.keyword} effect="from-right" delay={i * 0.09} className="brand-value">
                 <span className="value-number">0{i + 1}</span>
                 <div>
-                  <span className="small-label">{value.english}</span>
+                  <span className="small-label">{value.keyword}</span>
                   <h3>{value.title}</h3>
                   <p>{value.description}</p>
                 </div>
