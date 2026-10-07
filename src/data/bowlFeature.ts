@@ -1,9 +1,12 @@
+import type { StaticImageData } from "next/image";
+import { bowlImages } from "./bowlImages";
+
 export const bowlFeature: {
   eyebrow: string;
   title: string;
   highlight: string;
   description: string[];
-  image: { src: string; alt: string } | null;
+  image: { src: string | StaticImageData; alt: string } | null;
 } = {
   eyebrow: "한 그릇에 담은 깊은 맛, 뚝손국밥",
   title: "속까지 전해지는",
@@ -13,7 +16,5 @@ export const bowlFeature: {
     "바쁜 하루에도, 제대로 된 한 끼를 누릴 수 있도록.",
     "뚝손은 오늘도 한 그릇에 마음을 담습니다.",
   ],
-  // TODO: Add the brand's food photograph when supplied.
-  // A transparent cutout will blend into the hanji background without a frame.
-  image: null,
+  image: bowlImages.pork,
 };

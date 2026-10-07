@@ -23,13 +23,23 @@
 }
 
 .visual {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 0;
+  padding: 80px 24px;
+}
+
+.bowl {
+  position: relative;
+  width: min(100%, 680px);
+  aspect-ratio: 1;
+  filter: drop-shadow(0 22px 24px rgb(51 41 31 / 0.18));
 }
 
 .food {
   object-fit: contain;
-  object-position: left bottom;
+  object-position: center;
 }
 
 .copy {
@@ -105,10 +115,11 @@
   }
 
   .visual {
-    height: clamp(220px, 65vw, 420px);
+    padding: 12px 20px 56px;
   }
 
-  .food {
-    object-position: center bottom;
+  .bowl {
+    max-width: 460px;
+    filter: drop-shadow(0 14px 18px rgb(51 41 31 / 0.16));
   }
 }

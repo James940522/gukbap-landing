@@ -1,4 +1,9 @@
-// Brand copy is a draft. Menu names below were supplied by the brand owner.
+import { menuCategories } from "./menus";
+
+export { menuCategories } from "./menus";
+export type { Menu, MenuCategory } from "./menus";
+
+// Brand copy is a draft. Menu names were supplied by the brand owner.
 export const brand = {
   name: '뚝손국밥',
   englishName: 'DDUKSON GUKBAP',
@@ -49,95 +54,6 @@ export const brandValues = [
   },
 ];
 
-export type Menu = {
-  id: string;
-  name: string;
-  image: string | null;
-  badge?: string;
-};
-
-export type MenuCategory = {
-  id: string;
-  name: string;
-  english: string;
-  items: Menu[];
-};
-
-// TODO: Add actual photographs, prices, and descriptions once provided.
-export const menuCategories: MenuCategory[] = [
-  {
-    id: 'gukbap',
-    name: '국밥',
-    english: 'GUKBAP',
-    names: [
-      '돼지국밥',
-      '누룽지 돼지국밥',
-      '내장국밥',
-      '순대국밥',
-      '누룽지 순대국밥',
-      '황태해장국',
-    ],
-  },
-  {
-    id: 'clear',
-    name: '맑은 국밥',
-    english: 'CLEAR BROTH',
-    names: ['맑은 돼지국밥'],
-  },
-  {
-    id: 'spicy',
-    name: '얼큰 국밥',
-    english: 'SPICY BROTH',
-    names: [
-      '얼큰 돼지국밥',
-      '얼큰 누룽지 돼지국밥',
-      '얼큰 내장국밥',
-      '[해장 No.1] 얼큰 순대국밥',
-      '황태 얼큰국밥',
-    ],
-  },
-  {
-    id: 'yukgaejang',
-    name: '육개장 국밥',
-    english: 'YUKGAEJANG',
-    names: ['돈개장', '황태 육개장국밥'],
-  },
-  {
-    id: 'side',
-    name: '사이드',
-    english: 'SIDE DISHES',
-    names: ['보쌈', '찰순대'],
-  },
-  {
-    id: 'mandu',
-    name: '만두',
-    english: 'MANDU',
-    names: ['김치왕만두', '고기왕만두', '반반만두', '갈비만두'],
-  },
-  {
-    id: 'jeon',
-    name: '전',
-    english: 'JEON',
-    names: ['김치전', '부추전', '동그랑땡', '동태전', '육전', '옥수수전'],
-  },
-  {
-    id: 'drinks',
-    name: '음료',
-    english: 'DRINKS',
-    names: ['갈아만든 배', '식혜', '콜라', '사이다', '제로콜라', '제로사이다'],
-  },
-].map(category => ({
-  id: category.id,
-  name: category.name,
-  english: category.english,
-  items: category.names.map((name, index) => ({
-    id: `${category.id}-${index + 1}`,
-    name: name.replace('[해장 No.1] ', ''),
-    badge: name.startsWith('[해장 No.1]') ? '해장 No.1' : undefined,
-    image: null,
-  })),
-}));
-
 // TODO: Add confirmed nurungji and table-setting photographs.
 export const nurungjiFeature = {
   image: null as string | null,
@@ -152,17 +68,17 @@ export const pairingFeature = {
   suggestions: [
     {
       title: '든든하게 채우고 싶은 날',
-      dishes: ['돼지국밥', '보쌈'],
+      dishes: ['돼지국밥', '수육'],
       description: '뜨끈한 한 그릇에, 고기 한 점을 더해.',
     },
     {
       title: '얼큰하게 즐기고 싶은 날',
-      dishes: ['얼큰 순대국밥', '부추전'],
+      dishes: ['얼큰순대국밥', '부추전'],
       description: '얼큰한 국밥 한 숟갈, 전 한 점의 즐거움.',
     },
     {
       title: '따뜻하게 나누고 싶은 날',
-      dishes: ['맑은 돼지국밥', '고기왕만두'],
+      dishes: ['맑은돼지국밥', '고기왕만두'],
       description: '맑은 국밥 곁에, 함께 나누는 만두 한 접시.',
     },
   ],

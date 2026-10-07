@@ -18,17 +18,19 @@ export function LandscapeSection() {
         className={styles.background}
       />
       <div className={styles.layout}>
-        <Reveal effect="settle" duration={0.9} className={styles.visual} aria-hidden={!bowlFeature.image || undefined}>
+        <div className={styles.visual} aria-hidden={!bowlFeature.image || undefined}>
           {bowlFeature.image && (
-            <Image
-              src={bowlFeature.image.src}
-              alt={bowlFeature.image.alt}
-              fill
-              sizes="(max-width: 767px) 100vw, 48vw"
-              className={styles.food}
-            />
+            <Reveal effect="rotate-in" duration={1.1} delay={0.12} className={styles.bowl}>
+              <Image
+                src={bowlFeature.image.src}
+                alt={bowlFeature.image.alt}
+                fill
+                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1599px) 43vw, 680px"
+                className={styles.food}
+              />
+            </Reveal>
           )}
-        </Reveal>
+        </div>
         <div className={styles.copy}>
           <Reveal as="p" effect="fade" className={styles.eyebrow}>{bowlFeature.eyebrow}</Reveal>
           <Reveal as="span" effect="line" delay={0.08} className={styles.divider} aria-hidden />

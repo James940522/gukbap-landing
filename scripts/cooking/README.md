@@ -24,16 +24,21 @@ the ring and the images in phase. Playback starts while the circle is
 visible and stops outside the viewport. Reduced-motion and no-JavaScript
 settings show a static presentation. No playback controls are exposed.
 
-Food assets are the user's photographs, reused from `/images/food/`.
-The initial bowl is the upper-left sundae-gukbap in the supplied table photo.
-Its source is preserved in `public/images/cooking/source/table-original.jpg`.
-Regenerate the 376×376 WebP crop with:
+Wedge photographs are reused from `/images/food/`. The initial bowl now uses
+the transparent sundae image supplied on 2026-10-07, from `/images/bowls/`.
+All six supplied bowls have unchanged PNG originals in that folder's `source/`
+directory, plus 1254×1254 WebP assets that preserve transparency and framing.
+The previous table-photo crop has been removed; the table original is retained.
+Regenerate the six WebP files from the saved PNG originals with:
 
 ```sh
 node scripts/cooking/prepare-bowl.mjs
 ```
 
-The source crop is `{ left: 226, top: 73, width: 376, height: 376 }`.
+To import the six images again, pass their containing directory as the first
+argument. `bowl-manifest.json` maps the original filenames to stable asset names.
+The script imports only those six files and does not crop or flatten them.
+Reusable image imports and alt text live in `src/data/bowlImages.ts`.
 Wedge photo positions and brand copy live in `src/data/cooking.ts`.
 No reference brand logo, food photograph, or unconfirmed five-minute claim
 is carried into the page.

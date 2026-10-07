@@ -20,6 +20,7 @@ const entrances = {
   "from-left": { opacity: 0, x: -20 },
   "from-right": { opacity: 0, x: 20 },
   settle: { opacity: 0, scale: 1.035 },
+  "rotate-in": { opacity: 0, y: 24, rotate: -12, scale: 0.96 },
   line: { opacity: 0, scaleX: 0 },
 } satisfies Record<string, TargetAndTransition>;
 
@@ -58,7 +59,7 @@ export function Reveal({
       whileInView="visible"
       variants={{
         hidden: entrances[effect],
-        visible: { opacity: 1, x: 0, y: 0, scale: 1, scaleX: 1 },
+        visible: { opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, scaleX: 1 },
       }}
       viewport={revealViewport}
       transition={{

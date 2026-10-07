@@ -30,6 +30,11 @@ export const sectionBackgrounds = {
     opacity: 0.75,
     mobileOpacity: 0.48,
   },
+  featuredMenu: {
+    image: "warm-hanji",
+    opacity: 0.22,
+    mobileOpacity: 0.12,
+  },
   pairing: {
     image: "wood-table",
     opacity: 0.46,

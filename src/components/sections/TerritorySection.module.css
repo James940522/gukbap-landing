@@ -1,6 +1,19 @@
 .section {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
   background: var(--deep-brown);
   border-bottom: 1px solid var(--border-gold);
+}
+
+.content {
+  position: relative;
+}
+
+@media (min-width: 1200px) {
+  .content {
+    width: min(1240px, calc(100% - 256px));
+  }
 }
 
 .heading {

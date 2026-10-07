@@ -2,15 +2,18 @@ import { InquiryForm } from "@/components/ui/InquiryForm";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { brand } from "@/data/site";
+import { BrandMarquee } from "@/components/ui/BrandMarquee";
+import typography from "./SectionTypography.module.css";
 
 export function InquirySection() {
   return (
     <section
       id="inquiry"
-      className="section section-light inquiry-section"
+      className={`section section-light inquiry-section ${typography.backdropSection}`}
       aria-labelledby="inquiry-title"
     >
-      <div className="container inquiry-grid">
+      <BrandMarquee theme="inquiry" variant="backdrop" tone="paper" />
+      <div className={`container inquiry-grid ${typography.content}`}>
         <Reveal effect="from-left" className="inquiry-copy">
           <SectionEyebrow number="07">START WITH DDUKSON</SectionEyebrow>
           <h2 id="inquiry-title" className="section-title display-font">

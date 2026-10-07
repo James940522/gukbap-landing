@@ -3,12 +3,15 @@ import { ArrowIcon, BowlIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { SectionBackground } from "@/components/ui/SectionBackground";
+import { BrandMarquee } from "@/components/ui/BrandMarquee";
+import typography from "./SectionTypography.module.css";
 
 export function FranchiseSection() {
   return (
-    <section id="franchise" className="section franchise-section section-background-host" aria-labelledby="franchise-title">
+    <section id="franchise" className={`section franchise-section section-background-host ${typography.backdropSection}`} aria-labelledby="franchise-title">
       <SectionBackground name="franchise" />
-      <div className="container franchise-layout">
+      <BrandMarquee theme="franchise" variant="backdrop" tone="dark" />
+      <div className={`container franchise-layout ${typography.content}`}>
         <Reveal effect="from-left" duration={0.85} className="franchise-invitation">
           <SectionEyebrow number="06">FRANCHISE</SectionEyebrow>
           <h2 id="franchise-title" className="section-title">좋은 한 그릇이,<br />좋은 시작이 되도록.</h2>

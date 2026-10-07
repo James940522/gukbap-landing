@@ -1,3 +1,5 @@
+import { bowlImages } from "./bowlImages";
+
 // Brand-adapted draft based on the supplied cooking-system reference.
 // Uses the confirmed dedicated-broth/selected-ingredients positioning.
 // TODO: Add cooking times, staffing requirements, and detailed operating
@@ -11,10 +13,7 @@ export const cooking = {
     "뚝손의 전용육수와 엄선된 재료로 시작해",
     "내놓는 순간까지, 한 그릇의 기준을 생각합니다.",
   ],
-  image: {
-    src: "/images/cooking/sundae-gukbap.webp",
-    alt: "검은 뚝배기에 순대와 부추를 담은 순대국밥",
-  },
+  image: bowlImages.sundae,
   principles: [
     { emphasis: "전용육수", detail: "로 시작하는 깊은 맛" },
     { emphasis: "분명한 순서", detail: "로 이어지는 조리" },

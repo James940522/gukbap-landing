@@ -39,7 +39,6 @@ export function SignatureMenuSection() {
           </Reveal>
         </div>
         <MenuGallery />
-        <p className="menu-footnote">메뉴별 사진과 상세 정보는 순차적으로 준비하고 있습니다.</p>
       </div>
     </section>
   );
