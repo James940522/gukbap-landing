@@ -71,11 +71,11 @@
   position: absolute;
   z-index: 2;
   left: 66.5%;
-  top: 48%;
+  top: 39.7%;
   width: 26%;
-  /* Follow the last graph segment as the viewport's aspect ratio changes. */
+  /* Follow the straight graph as the viewport's aspect ratio changes. */
   transform-origin: bottom left;
-  transform: translateY(-100%) rotate(calc(-1 * atan2(36.467cqh, 23.953cqw)));
+  transform: translateY(-100%) rotate(calc(-1 * atan2(88.017cqh, 80.727cqw)));
 }
 .graphCaption { color: var(--strategy-red); font-size: 2.65cqw; font-weight: 900; line-height: 1.16; letter-spacing: -0.065em; white-space: nowrap; }
 .graphCaption span, .graphCaption strong { display: block; }

@@ -112,6 +112,12 @@ export function MenuOrbitSection() {
         observeOverlays();
         measure();
 
+        // The static reduced-motion layout still needs landscape overlay sizing.
+        const visibilityObserver = reducedMotion ? new IntersectionObserver((entries) => {
+          section.dataset.orbitActive = String(entries[0].isIntersecting);
+        }) : null;
+        visibilityObserver?.observe(section);
+
         if (!reducedMotion) {
           gsap.to(driver, {
             progress: 1,
@@ -138,6 +144,7 @@ export function MenuOrbitSection() {
           cancelAnimationFrame(frame);
           observer.disconnect();
           mutationObserver.disconnect();
+          visibilityObserver?.disconnect();
           delete section.dataset.orbitAnimated;
           delete section.dataset.orbitActive;
           delete section.dataset.orbitCompact;
