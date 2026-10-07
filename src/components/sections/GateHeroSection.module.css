@@ -7,6 +7,24 @@
   isolation: isolate;
 }
 
+.eyebrow {
+  margin-bottom: 12px;
+  color: var(--gold-light);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.title { margin: 0; }
+.logo { display: block; width: clamp(280px, 28vw, 420px); height: auto; }
+.tagline { margin-top: 20px; font-size: clamp(24px, 2vw, 30px); letter-spacing: -0.04em; }
+
+@media (max-width: 899px) {
+  .logo { width: clamp(226px, 38vw, 320px); margin-inline: auto; }
+}
+
 @media (max-width: 599px) {
   .hero { min-height: max(650px, 100svh); }
+  .eyebrow { margin-bottom: 8px; font-size: 11px; }
+  .tagline { margin-top: 10px; font-size: 20px; }
 }

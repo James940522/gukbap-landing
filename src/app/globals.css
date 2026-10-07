@@ -1,4 +1,11 @@
 @import "tailwindcss";
+
+/* On landscape phones the menu orbit leaves room for the inquiry form. */
+@media (max-width: 899px) and (max-height: 500px) {
+  body:has([data-orbit-active="true"]) #quick-inquiry-panel {
+    max-height: 32svh;
+  }
+}
 @import "./cursors.css";
 
 :root {

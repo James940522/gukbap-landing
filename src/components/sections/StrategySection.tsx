@@ -252,7 +252,10 @@ export function StrategySection() {
               src={strategyAssets.food}
               alt="석재 테이블 위에 놓인 여섯 가지 국밥과 순대, 수육 한 상"
               fill
-              sizes="100vw"
+              // Portrait cover scales by height: request enough source pixels
+              // for the hidden horizontal crop as well as the visible width.
+              sizes="(max-width: 899px) 151.6vw, 100vw"
+              quality={90}
               className={styles.foodImage}
             />
           </div>

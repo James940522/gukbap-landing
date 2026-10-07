@@ -12,7 +12,7 @@ export const strategyContent = {
 export const strategyAssets = {
   paper: "/images/strategy/bg-paper-texture.webp",
   hanok: "/images/strategy/bg-hanok-left.webp",
-  food: "/images/strategy/menu-assortment.webp",
+  food: "/images/strategy/menu-assortment-hq.webp",
   board: "/images/strategy/board-frame.webp",
 } as const;
 

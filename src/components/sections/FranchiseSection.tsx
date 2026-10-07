@@ -3,14 +3,12 @@ import { ArrowIcon, BowlIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { SectionBackground } from "@/components/ui/SectionBackground";
-import { BrandMarquee } from "@/components/ui/BrandMarquee";
 import typography from "./SectionTypography.module.css";
 
 export function FranchiseSection() {
   return (
     <section id="franchise" className={`section franchise-section section-background-host ${typography.backdropSection}`} aria-labelledby="franchise-title">
       <SectionBackground name="franchise" />
-      <BrandMarquee theme="franchise" variant="backdrop" tone="dark" />
       <div className={`container franchise-layout ${typography.content}`}>
         <Reveal effect="from-left" duration={0.85} className="franchise-invitation">
           <SectionEyebrow number="06">창업 안내</SectionEyebrow>

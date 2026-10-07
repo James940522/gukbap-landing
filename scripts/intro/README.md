@@ -51,7 +51,7 @@ Gate는 0~4.20초, Brand 장면은 Gate 뒤에서 0~11.85초까지 겹쳐 존재
 - `src/components/intro/intro.constants.ts`: 자산, 문구, 방문 정책, 일반·Reduced Motion 타임라인.
 - 각 컴포넌트의 CSS Module: fullscreen 배치와 반응형 구도.
 
-기존 `GateHeroScene`은 음식·CTA를 첫 렌더부터 표시하는 Server Component로 유지한다. 로고와 카피는 인트로에서 한 번 보여주고, 커튼 뒤 메인 히어로에서 반복하지 않는다. 메인페이지의 `h1`은 스크린리더용으로 유지한다.
+기존 `GateHeroScene`은 음식·로고·카피·CTA를 첫 렌더부터 표시하는 Server Component로 유지한다. 커튼이 걷힌 뒤에도 실제 홈페이지의 브랜드명과 문구는 유지한다. 메인 히어로의 `h1`은 로고 이미지와 대체 텍스트로 표시한다.
 
 ## Used Assets
 

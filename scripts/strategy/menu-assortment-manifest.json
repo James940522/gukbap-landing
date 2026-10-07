@@ -1,20 +1,20 @@
 {
-  "source": "assets/food/originals/menu-assortment.jpg",
-  "sourceSha256": "4d3387407435624c11383f4b382b644ca0ecef261be94fbb1702d6dc0ed85ada",
+  "source": "09.22148918.jpg",
+  "sourceSha256": "4f8ef7286ff217c2cfba1da550407cb333913374cc3fc56cf27f95c055415b37",
   "sourceFormat": "jpeg",
-  "sourceWidth": 1280,
-  "sourceHeight": 960,
-  "sourceBytes": 762046,
-  "output": "/images/strategy/menu-assortment.webp",
-  "width": 1280,
-  "height": 960,
-  "bytes": 484838,
+  "sourceWidth": 11608,
+  "sourceHeight": 8708,
+  "sourceBytes": 107018229,
+  "output": "/images/strategy/menu-assortment-hq.webp",
+  "width": 5120,
+  "height": 3841,
+  "bytes": 7149432,
   "encoding": {
     "format": "webp",
     "quality": 90,
     "effort": 6,
-    "resized": false,
+    "resized": true,
     "cropped": false
   },
-  "note": "User-supplied menu assortment photograph. Original preserved byte-for-byte. No crop, correction, compositing, rotation or generative edits."
+  "note": "User-supplied high-resolution original, downsampled for QHD at up to 2x pixel density. No generative edits or color correction. Original file remains untouched."
 }

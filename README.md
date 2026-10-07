@@ -17,7 +17,12 @@ pnpm dev
 ```bash
 pnpm lint
 pnpm build
+node scripts/check-menu-assets.mjs
 ```
+
+메뉴 이미지 URL은 Git에 저장된 한글 파일명과 동일한 NFC 형식을 사용합니다.
+`check-menu-assets.mjs`는 macOS에서 가려지는 한글 정규화 차이도 검사하여
+Linux 배포에서 메뉴 이미지가 404로 누락되는 문제를 확인합니다.
 
 ## UI 초안
 

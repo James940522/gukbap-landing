@@ -2,13 +2,11 @@ import Image from "next/image";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { BrandMarquee } from "@/components/ui/BrandMarquee";
 import styles from "./TerritorySection.module.css";
 
 export function TerritorySection() {
   return (
     <section id="territory" className={`section ${styles.section}`} aria-labelledby="territory-title">
-      <BrandMarquee theme="territory" variant="rail" tone="dark" />
       <div className={`container ${styles.content}`}>
         <Reveal className={styles.heading}>
           <SectionEyebrow>상권 안내</SectionEyebrow>

@@ -24,11 +24,11 @@ type MenuFolder = {
 };
 
 function fromFolder({ id, name, caption, folder, names }: MenuFolder): MenuGroup {
-  // Preserve the decomposed Korean filenames copied from the iCloud folder.
-  // Encode each segment so the same asset URLs also work on Linux deployments.
+  // Git stores these filenames in NFC. macOS also resolves NFD paths, but
+  // Linux deployments require the URL to match the committed filename exactly.
   const assetFolder = folder
     .split("/")
-    .map((segment) => encodeURIComponent(segment.normalize("NFD")))
+    .map((segment) => encodeURIComponent(segment.normalize("NFC")))
     .join("/");
 
   return {
@@ -38,7 +38,7 @@ function fromFolder({ id, name, caption, folder, names }: MenuFolder): MenuGroup
     items: names.map((menuName, index) => ({
       id: `${id}-${index + 1}`,
       name: menuName,
-      image: `/asset/menu/${assetFolder}/${encodeURIComponent(`${menuName}.jpg`.normalize("NFD"))}`,
+      image: `/asset/menu/${assetFolder}/${encodeURIComponent(`${menuName}.jpg`.normalize("NFC"))}`,
     })),
   };
 }

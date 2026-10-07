@@ -101,7 +101,7 @@ Hero는 메인페이지 `/#hero`에 렌더링한다. 2026-10-06 사용자 요청
 
 원본은 `assets/food/originals/hero-gukbap-desktop-v2.png`, `hero-gukbap-mobile-v2.png`에 보존했다. WebP quality 90으로 변환했으며 resize·crop·이미지 생성은 하지 않았다. Hash와 인코딩 정보는 `responsive-food-v2-manifest.json`에 기록한다. `<picture>`와 `next/image`를 함께 사용해 해당 화면의 사진만 로딩한다. 기존 v1 이미지와 manifest는 이전 원본 기록으로 유지한다.
 
-로고·카피는 fullscreen 인트로에서 한 번 보여주며, 커튼 뒤의 메인 히어로는 음식 사진과 CTA 중심으로 표시한다. 메인페이지 제목은 스크린리더용 `h1`으로 유지한다. 태블릿은 중앙 crop, 모바일은 세로 사진을 사용하며 CTA는 한 줄로 유지한다.
+데스크톱은 왼쪽 상단 여백에 로고·카피를 왼쪽 정렬하고, 모바일은 세로 이미지의 상단 여백에서 가운데 정렬한다. 커튼이 걷힌 뒤에도 실제 홈페이지의 브랜드명과 문구는 유지한다. 태블릿은 중앙 crop으로 음식과 카피가 겹치지 않게 조정하며, 모바일 CTA는 한 줄로 유지한다.
 
 아래 대문 재생성 파이프라인은 메인 히어로 사진을 수정하지 않는다. 이전 `prepare-food.mjs`는 기존 1280 × 960 사진용이다.
 
