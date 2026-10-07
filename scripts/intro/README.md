@@ -1,5 +1,22 @@
 # 뚝손국밥 Fullscreen Brand Intro 구현 보고
 
+## 현재 인트로 — 사용자 제공 영상 (2026-10-07)
+
+메인페이지의 기존 `BrandIntro` import와 JSX 호출은 주석 처리했다. 아래에 기록된 기존 대문·로고·커튼 애니메이션 코드와 자산은 삭제하지 않고 보관한다. 현재는 `VideoIntro.tsx`와 `VideoIntro.module.css`가 홈페이지 접속/새로고침마다 영상 인트로를 재생한다.
+
+- 899px 이하: `public/videos/intro/mobile.mp4` (784×1168)
+- 900px 이상: `public/videos/intro/pc.mp4` (1280×720)
+- 접속 시 해당 화면의 영상 하나만 로드하며, 재생 중 화면 크기가 바뀌어도 다시 시작하지 않는다.
+- 두 영상 모두 6.04초이며, 종료 이벤트 뒤 0.8초 동안 opacity를 낮춰 메인페이지를 공개한다. Reduced Motion에서는 전환을 0.15초로 줄인다.
+- 원본 `/Users/james/Documents/project/guk-asset/intro/{mobile,pc}.mp4`는 변경하지 않았다. 웹용 파일은 `ffmpeg -i INPUT -map 0:v:0 -c:v copy -an -movflags +faststart OUTPUT`으로 오디오·첨부 썸네일 트랙을 제거하고 영상 스트림은 재인코딩 없이 보존했다.
+- 영상에는 오디오 트랙이 없으며, 플레이어도 `muted`, `defaultMuted`, `volume=0`, `playsInline`을 적용한다. 재생 조작 UI는 추가하지 않는다.
+- 영상 구도와 로고를 유지하기 위해 `object-fit: contain`을 사용한다. 화면 비율에 따라 여백이 생길 수 있다.
+- 로드/재생 실패, 10초 동안 재생이 진행되지 않는 경우, Escape 입력 시에도 페이드로 종료한다. 완료 후 스크롤·배경 inert를 복구하고 기존 안내 팝업을 1초 뒤 표시한다.
+
+검증: `pnpm lint`, `pnpm build --webpack` 통과. 기본 `pnpm build`는 기존 Turbopack worker의 `binding to a port / Operation not permitted` 오류가 재현되었다. Chrome 1440×900, 390×844, 768×1024에서 영상 선택·자동재생·음소거를 확인했고, 영상 종료 이벤트·페이드 후 overlay 제거·scroll/inert 복구·Escape 종료를 확인했다. 새 브라우저 콘솔 오류는 없으며, 기존 이미지 LCP 및 metadataBase 경고는 유지된다.
+
+아래 내용은 보관 중인 기존 코드 인트로의 구현 기록이다.
+
 ## Intro Flow
 
 기존 홈페이지를 처음부터 렌더링하고, 고정된 fullscreen overlay에서 인트로만 재생한다. 종료 후 `IntroPlayer` DOM을 제거하고 페이지 탐색을 복구한다.

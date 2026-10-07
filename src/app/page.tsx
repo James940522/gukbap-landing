@@ -19,7 +19,9 @@ import { CostRatioSection } from "@/components/sections/CostRatioSection";
 import { ProfitStructureSection } from "@/components/sections/ProfitStructureSection";
 import { CookingSystemSection } from "@/components/sections/CookingSystemSection";
 import { SuccessRoadmapSection } from "@/components/sections/SuccessRoadmapSection";
-import { BrandIntro } from "@/components/intro/BrandIntro";
+// 기존 코드 인트로는 보관하고 영상 인트로를 사용합니다.
+// import { BrandIntro } from "@/components/intro/BrandIntro";
+import { VideoIntro } from "@/components/intro/VideoIntro";
 
 export default function Home() {
   return (
@@ -50,7 +52,8 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingInquiry />
-      <BrandIntro />
+      {/* <BrandIntro /> */}
+      <VideoIntro />
     </div>
   );
 }
