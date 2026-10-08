@@ -127,7 +127,6 @@ function MenuSlider({ category, autoAdvance, interactionVersion, onComplete }: {
             <div className="menu-info">
               <div className="menu-title-row">
                 <h4>{menu.name}</h4>
-                <span className="menu-number">{String(index + 1).padStart(2, "0")}</span>
               </div>
             </div>
           </Reveal>

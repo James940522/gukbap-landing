@@ -85,9 +85,8 @@ export function Header() {
           </div>
         </div>
         <nav className="desktop-nav" aria-label="주요 메뉴">
-          {navigation.map((item, index) => (
+          {navigation.map((item) => (
             <a key={item.href} href={item.href} aria-current={activeHref === item.href ? "location" : undefined}>
-              <span className="header-nav-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <span>{item.label}</span>
             </a>
           ))}
@@ -197,9 +196,8 @@ function MobileNavigation({ activeHref, onClose, returnFocusRef }: {
           <p className="display-font">한 그릇을<br />제대로.</p>
         </div>
         <nav className="mobile-menu-links" aria-label="모바일 메뉴">
-          {navigation.map((item, index) => (
+          {navigation.map((item) => (
             <a key={item.href} href={item.href} onClick={onClose} aria-current={activeHref === item.href ? "location" : undefined}>
-              <span className="mobile-nav-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <span>{item.label}</span>
               <ArrowIcon />
             </a>

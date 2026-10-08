@@ -81,15 +81,6 @@
   line-height: 1.85;
 }
 
-.index {
-  display: block;
-  margin-top: 24px;
-  color: var(--text-muted);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  font-weight: 600;
-}
-
 .highlight {
   background: var(--accent-tint);
   border-color: var(--border-gold);
@@ -97,8 +88,7 @@
 }
 
 .highlight .label,
-.highlight h3 span,
-.highlight .index {
+.highlight h3 span {
   color: var(--gold-light);
 }
 
@@ -177,7 +167,6 @@
   .item h3 { font-size: clamp(25px, 2vw, 30px); }
   .item h3 br,
   .item p br { display: none; }
-  .index { margin-top: 16px; }
   .footer { margin-top: var(--section-gap); padding-top: 16px; }
 }
 
@@ -197,7 +186,6 @@
   .item h3 br { display: none; }
   .item p { font-size: 16px; }
   .item p br { display: none; }
-  .index { font-size: 11px; letter-spacing: 0.06em; }
   .mapLabels { font-size: 14px; }
   .mapLabels span { padding: 14px 8px; }
   .footer { flex-direction: column; gap: 8px; margin-top: 28px; }

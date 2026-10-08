@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/Footer";
 import { FloatingInquiry } from "@/components/layout/FloatingInquiry";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { StrategySection } from "@/components/sections/StrategySection";
-import { BrandStorySection } from "@/components/sections/BrandStorySection";
 import { NurungjiSection } from "@/components/sections/NurungjiSection";
 import { SignatureMenuSection } from "@/components/sections/SignatureMenuSection";
 import { FeaturedMenuSection } from "@/components/sections/FeaturedMenuSection";
@@ -11,7 +10,6 @@ import { MenuOrbitSection } from "@/components/sections/MenuOrbitSection/MenuOrb
 import { PairingSection } from "@/components/sections/PairingSection";
 import { WhyDduksonSection } from "@/components/sections/WhyDduksonSection";
 import { FranchiseSection } from "@/components/sections/FranchiseSection";
-import { BrandGrowthSection } from "@/components/sections/BrandGrowthSection";
 import { TerritorySection } from "@/components/sections/TerritorySection";
 import { InquirySection } from "@/components/sections/InquirySection";
 import { StartupBenefitsSection } from "@/components/sections/StartupBenefitsSection";
@@ -36,7 +34,6 @@ export default function Home() {
         <HeroSection />
         <StrategySection />
         <LandscapeSection />
-        <BrandStorySection />
         <NurungjiSection />
         <MenuOrbitSection />
         <FeaturedMenuSection />
@@ -48,7 +45,6 @@ export default function Home() {
         <CostRatioSection />
         <ProfitStructureSection />
         <SuccessRoadmapSection />
-        <BrandGrowthSection />
         <FranchiseSection />
         <PartnerSection />
         <StartupBenefitsSection />

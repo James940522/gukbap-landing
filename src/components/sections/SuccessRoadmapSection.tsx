@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import type { CSSProperties } from 'react';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { roadmapStrengths, roadmapSignals, type RoadmapStrength } from '@/data/roadmap';
 import { ArrowIcon } from '@/components/ui/Icons';
@@ -35,12 +36,9 @@ function TimelineItem({
       <article className={styles.card}>
         <div className={styles.cardHeading}>
           <div>
-            <p className={styles.stepLabel}>{strength.number}단계 · 운영 기준</p>
+            <p className={styles.stepLabel}>뚝손의 운영 기준</p>
             <h3>{strength.title}</h3>
           </div>
-          <span className={styles.numberBadge} aria-hidden="true">
-            {strength.number}
-          </span>
         </div>
 
         <div
@@ -51,14 +49,17 @@ function TimelineItem({
           {strength.image ? (
             <Image
               src={strength.image}
-              alt={strength.title}
+              alt={strength.imageAlt}
               fill
               className={styles.image}
+              style={{
+                objectPosition: strength.imagePosition ?? '50% 50%',
+                transformOrigin: strength.imageOrigin ?? 'center',
+                '--roadmap-image-scale': strength.imageScale ?? 1,
+              } as CSSProperties}
               sizes="(max-width: 767px) calc(100vw - 86px), (max-width: 1023px) calc((100vw - 184px) / 2), (max-width: 1303px) calc((100vw - 262px) / 3), 347px"
             />
-          ) : (
-            <span className={styles.imageNumber}>{strength.number}</span>
-          )}
+          ) : null}
         </div>
 
         <p className={styles.description}>{strength.desc}</p>

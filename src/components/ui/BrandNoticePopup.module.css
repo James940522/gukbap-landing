@@ -1,28 +1,38 @@
 .dialog {
   position: fixed;
   inset: 0 auto 0 clamp(20px, 3vw, 48px);
-  width: min(480px, calc(100vw - 40px), calc((100dvh - 104px) * 2 / 3));
+  width: max-content;
   max-width: none;
   max-height: calc(100dvh - 40px);
   margin-block: auto;
   margin-inline: 0;
   padding: 0;
   overflow: hidden;
-  border: 1px solid var(--border-gold);
-  border-radius: 8px;
-  background: var(--background-deep);
+  border: 0;
+  background: transparent;
   color: var(--text-primary);
-  box-shadow: 0 20px 64px rgb(0 0 0 / 35%);
 }
 
 .dialog::backdrop {
   background: rgb(16 12 9 / 52%);
 }
 
+.notices {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .content {
   display: flex;
   flex-direction: column;
+  width: min(480px, calc((100vw - 116px) / 2), max(300px, calc((100dvh - 104px) * 2 / 3)));
   max-height: calc(100dvh - 42px);
+  overflow: hidden;
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  background: var(--background-deep);
+  box-shadow: 0 20px 64px rgb(0 0 0 / 35%);
 }
 
 .poster {
@@ -88,22 +98,20 @@
   outline-offset: 3px;
 }
 
-@media (max-width: 599px) {
+@media (max-width: 767px) {
   .dialog {
     inset-inline: 0;
-    width: min(400px, calc(100vw - 32px));
     max-height: calc(100dvh - 32px);
     margin-inline: auto;
   }
 
   .content {
+    width: min(400px, calc(100vw - 32px));
     max-height: calc(100dvh - 34px);
   }
-}
 
-@media (max-height: 480px) and (min-width: 600px) {
-  .dialog {
-    width: min(400px, calc(100vw - 40px));
+  .content:not(:first-child) {
+    display: none;
   }
 }
 

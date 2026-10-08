@@ -11,7 +11,7 @@ export function NurungjiSection() {
       <SectionBackground name="nurungji" className="nurungji-background" />
       <div className="container nurungji-layout">
         <Reveal effect="from-left" className="nurungji-copy">
-          <SectionEyebrow number="02">누룽지 국밥</SectionEyebrow>
+          <SectionEyebrow>누룽지 국밥</SectionEyebrow>
           <h2 id="nurungji-title" className="section-title">
             누룽지를 더한<br />한 그릇.
           </h2>
@@ -22,9 +22,8 @@ export function NurungjiSection() {
             오늘은 누룽지 국밥으로 만나보세요.
           </p>
           <ol className="nurungji-menu-list" aria-label="누룽지 국밥 메뉴">
-            {nurungjiFeature.menus.map((menu, index) => (
+            {nurungjiFeature.menus.map((menu) => (
               <li key={menu.id}>
-                <span className="nurungji-menu-number">0{index + 1}</span>
                 <h3>{menu.name}</h3>
               </li>
             ))}

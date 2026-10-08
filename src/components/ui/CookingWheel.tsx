@@ -58,7 +58,7 @@ export function CookingWheel() {
               <div className={styles.shade} />
               <div className={styles.caption}>
                 <BowlIcon />
-                <span className={styles.stepNumber}>{step.number} {step.label}</span>
+                <span className={styles.stepLabel}>{step.label}</span>
                 <p>{step.caption.map((line) => <span key={line}>{line}</span>)}</p>
               </div>
             </motion.div>

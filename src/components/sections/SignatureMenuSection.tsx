@@ -14,7 +14,7 @@ export function SignatureMenuSection() {
       <div className="container">
         <div className="section-heading menu-heading">
           <Reveal>
-            <SectionEyebrow number="03">뚝손의 메뉴</SectionEyebrow>
+            <SectionEyebrow>뚝손의 메뉴</SectionEyebrow>
             <h2 id="menu-title" className="section-title">
               가장 자신 있는
               <br />

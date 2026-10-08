@@ -81,7 +81,7 @@
   stroke-width: 1.7;
 }
 
-.stepNumber {
+.stepLabel {
   display: block;
   margin-bottom: 9px;
   color: var(--gold-light);
@@ -120,7 +120,7 @@
 @media (max-width: 599px) {
   .caption svg { width: 28px; margin-bottom: 3px; }
   .caption p { font-size: clamp(12px, 3.3vw, 18px); line-height: 1.5; }
-  .stepNumber { margin-bottom: 5px; font-size: 10px; letter-spacing: 0.07em; }
+  .stepLabel { margin-bottom: 5px; font-size: 10px; letter-spacing: 0.07em; }
   .caption { width: 41%; }
   .right .caption { left: 73%; top: 40%; }
   .left .caption { left: 27%; top: 40%; }

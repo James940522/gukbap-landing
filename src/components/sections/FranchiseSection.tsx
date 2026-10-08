@@ -11,7 +11,7 @@ export function FranchiseSection() {
       <SectionBackground name="franchise" />
       <div className={`container franchise-layout ${typography.content}`}>
         <Reveal effect="from-left" duration={0.85} className="franchise-invitation">
-          <SectionEyebrow number="06">창업 안내</SectionEyebrow>
+          <SectionEyebrow>창업 안내</SectionEyebrow>
           <h2 id="franchise-title" className="section-title">좋은 한 그릇이,<br />좋은 시작이 되도록.</h2>
           <p className="body-copy">뚝손의 다음 한 그릇을<br />함께할 분을 기다립니다.</p>
           <a href="#inquiry" className="button button-primary">창업 문의하기<ArrowIcon /></a>
@@ -23,7 +23,6 @@ export function FranchiseSection() {
             <Reveal effect="from-right" delay={index * 0.1} key={item.number}>
               <details className="franchise-topic">
                 <summary>
-                  <span className="topic-number">{item.number}</span>
                   <span className="topic-copy">
                     <span className="topic-title">{item.title}</span>
                     <span className="topic-description">{item.description}</span>

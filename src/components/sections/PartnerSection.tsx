@@ -68,14 +68,10 @@ export function PartnerSection() {
         </div>
 
         <div className={styles.qualities}>
-          <Reveal effect="line" duration={0.9} className={styles.connectingLine} aria-hidden />
           <ol className={styles.list} aria-label="뚝손국밥과 함께할 점주님의 다섯 가지 마음">
             {partnerQualities.map((quality, index) => (
               <li key={quality.id}>
                 <Reveal delay={index * 0.09} duration={0.8} className={styles.item}>
-                  <span className={styles.marker} aria-hidden="true">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   <div className={styles.icon}><PartnerIcon kind={quality.id} /></div>
                   <span className={styles.keyword}>{quality.keyword}</span>
                   <h3>{quality.title}</h3>

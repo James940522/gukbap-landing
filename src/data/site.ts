@@ -22,7 +22,7 @@ export const brand = {
 };
 
 export const navigation = [
-  { label: '브랜드', href: '#brand' },
+  { label: '브랜드', href: '#one-bowl' },
   { label: '메뉴', href: '#menu' },
   { label: '뚝손의 기준', href: '#standard' },
   { label: '창업 안내', href: '#franchise' },
@@ -59,28 +59,6 @@ export const nurungjiFeature = {
   menus: menuCategories
     .flatMap(category => category.items)
     .filter(menu => menu.name.includes('누룽지')),
-};
-
-export const pairingFeature = {
-  image: null as string | null,
-  // Editorial suggestions using existing dishes, not fixed sets or promotions.
-  suggestions: [
-    {
-      title: '든든하게 채우고 싶은 날',
-      dishes: ['돼지국밥', '수육'],
-      description: '뜨끈한 한 그릇에, 고기 한 점을 더해.',
-    },
-    {
-      title: '얼큰하게 즐기고 싶은 날',
-      dishes: ['얼큰순대국밥', '부추전'],
-      description: '얼큰한 국밥 한 숟갈, 전 한 점의 즐거움.',
-    },
-    {
-      title: '따뜻하게 나누고 싶은 날',
-      dishes: ['맑은돼지국밥', '고기왕만두'],
-      description: '맑은 국밥 곁에, 함께 나누는 만두 한 접시.',
-    },
-  ],
 };
 
 // User-supplied copy with AI concept imagery. Prompts: assets/food/generated/manifest.json.

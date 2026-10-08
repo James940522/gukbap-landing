@@ -12,7 +12,7 @@ export function GateHeroSection() {
         actions={(
           <>
             <a href="#inquiry" className="button button-primary">창업 문의<ArrowIcon /></a>
-            <a href="#brand" className="button button-secondary">브랜드 이야기<ArrowIcon /></a>
+            <a href="#one-bowl" className="button button-secondary">브랜드 이야기<ArrowIcon /></a>
           </>
         )}
       >

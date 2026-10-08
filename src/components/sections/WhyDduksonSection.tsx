@@ -12,7 +12,7 @@ export function WhyDduksonSection() {
       <SectionBackground name="standards" />
       <div className="container">
         <Reveal effect="fade" className={styles.heading}>
-          <SectionEyebrow number="05">뚝손의 기준</SectionEyebrow>
+          <SectionEyebrow>뚝손의 기준</SectionEyebrow>
           <p className={styles.kicker}>한 그릇을 완성하는 두 가지</p>
         </Reveal>
         <div className={styles.composition}>

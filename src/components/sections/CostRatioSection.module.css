@@ -163,16 +163,6 @@
   word-break: keep-all;
 }
 
-.stepNumber {
-  display: block;
-  margin-bottom: 16px;
-  color: var(--cost-accent);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  font-variant-numeric: tabular-nums;
-}
-
 .supportItem p {
   color: var(--text-on-paper-secondary);
   font-size: 19px;
@@ -222,7 +212,6 @@
   .supportHeading { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
   .supportHeading h3 { font-size: 23px; }
   .supportList { grid-template-columns: 1fr; }
-  .supportItem { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 16px; padding: 26px 22px; text-align: left; }
-  .stepNumber { margin: 5px 0 0; }
+  .supportItem { padding: 26px 22px; text-align: left; }
   .supportItem h4 { font-size: 20px; }
 }

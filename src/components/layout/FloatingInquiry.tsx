@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { brand } from "@/data/site";
 import { ArrowIcon } from "@/components/ui/Icons";
-import { sanitizePhoneInput, validateInquiry, type InquiryErrors } from "@/lib/inquiry";
+import { sanitizePhoneInput, inquiryPrivacyNotice } from "@/lib/inquiry";
+import { useInquirySubmission } from "@/lib/useInquirySubmission";
 import styles from "./FloatingInquiry.module.css";
 
 const mobileQuery = "(max-width: 899px)";
@@ -53,9 +54,7 @@ export function FloatingInquiry() {
   const [hasUserOpened, setHasUserOpened] = useState(false);
   const [formData, setFormData] = useState({ name: "", phone: "", region: "" });
   const [privacyAgree, setPrivacyAgree] = useState(false);
-  const [errors, setErrors] = useState<InquiryErrors>({});
-  const [checked, setChecked] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
+  const { formRef, errors, isSubmitting, status, handleSubmit: submitInquiry } = useInquirySubmission("floating");
   const toggleRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const restoreToggleFocus = useRef(false);
@@ -115,23 +114,11 @@ export function FloatingInquiry() {
     };
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [isMobile, isExpanded, shouldShow]);
+  }, [isMobile, isExpanded, shouldShow, formRef]);
 
   function collapse() {
     restoreToggleFocus.current = true;
     setHasUserCollapsed(true);
-  }
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const nextErrors = validateInquiry(new FormData(event.currentTarget));
-    setErrors(nextErrors);
-    setChecked(Object.keys(nextErrors).length === 0);
-    const firstError = Object.keys(nextErrors)[0];
-    if (firstError)
-      formRef.current?.querySelector<HTMLInputElement>(`[name="${firstError}"]`)?.focus();
-    // This project has no lead endpoint yet. Match the existing inquiry preview:
-    // validate locally, without transmitting or persisting personal information.
   }
 
   const transition = { duration: reducedMotion ? 0 : 0.3, ease: "easeOut" as const };
@@ -187,7 +174,13 @@ export function FloatingInquiry() {
               }
             }}
           >
-            <form ref={formRef} className={styles.form} onSubmit={handleSubmit} noValidate onChange={() => setChecked(false)} onFocus={() => setHasUserOpened(true)}>
+            <form ref={formRef} className={styles.form} onSubmit={async (event) => {
+              if (await submitInquiry(event)) {
+                setFormData({ name: "", phone: "", region: "" });
+                setPrivacyAgree(false);
+              }
+            }} noValidate aria-busy={isSubmitting} onFocus={() => setHasUserOpened(true)}>
+              <input className="inquiry-honeypot" name="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
               {isMobile && (
                 <button
                   ref={closeRef}
@@ -213,6 +206,7 @@ export function FloatingInquiry() {
                 <div key={field.name} className={styles.field}>
                   <label className="sr-only" htmlFor={`quick-inquiry-${field.name}`}>{field.label}</label>
                   <input
+                    disabled={isSubmitting}
                     name={field.name}
                     type={field.type}
                     autoComplete={field.autoComplete}
@@ -234,6 +228,7 @@ export function FloatingInquiry() {
               <div className={styles.consent}>
                 <label>
                   <input
+                    disabled={isSubmitting}
                     type="checkbox"
                     name="consent"
                     checked={privacyAgree}
@@ -242,18 +237,18 @@ export function FloatingInquiry() {
                     aria-invalid={!!errors.consent}
                     aria-describedby={errors.consent ? "quick-consent-error" : "quick-inquiry-notice"}
                   />
-                  개인정보 동의
+                  <span title={inquiryPrivacyNotice}>개인정보 동의</span>
                 </label>
                 {errors.consent && <p id="quick-consent-error" className={styles.error}>{errors.consent}</p>}
               </div>
-              <button type="submit" className={`button button-primary ${styles.submit}`}>
-                상담 내용 확인<ArrowIcon />
+              <button disabled={isSubmitting} type="submit" className={`button button-primary ${styles.submit}`}>
+                {isSubmitting ? "접수 중…" : "가맹문의 신청"}<ArrowIcon />
               </button>
               <p id="quick-inquiry-notice" className={styles.notice}>
-                온라인 접수 준비 중 · 입력 정보는 전송·저장되지 않습니다.
+                <a href="#inquiry">개인정보 수집·이용 안내</a> · 담당자에게 문자로 전달됩니다.
               </p>
               <div className={styles.status} role="status" aria-live="polite">
-                {checked && <p>입력 내용을 확인했습니다. 아직 접수되지 않았으니 <a href={brand.phoneHref}>전화 상담</a>으로 문의해주세요.</p>}
+                {status && <p>{status}</p>}
               </div>
             </form>
           </motion.aside>

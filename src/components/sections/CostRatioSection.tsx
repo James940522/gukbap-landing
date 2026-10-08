@@ -77,9 +77,6 @@ export function CostRatioSection() {
             {locationSupport.map((item, index) => (
               <li key={item.title}>
                 <Reveal delay={index * 0.12} className={styles.supportItem}>
-                  <span className={styles.stepNumber} aria-hidden="true">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   <div>
                     <p>
                       {item.description[0]}<br />

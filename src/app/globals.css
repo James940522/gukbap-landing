@@ -265,11 +265,6 @@ h4 {
   font-weight: 600;
   letter-spacing: 0.04em;
 }
-.eyebrow-number {
-  padding-right: 15px;
-  border-right: 1px solid var(--border-gold);
-  letter-spacing: 0.06em;
-}
 .small-label {
   font-size: 13px;
   letter-spacing: 0.04em;
@@ -438,7 +433,6 @@ h4 {
   white-space: nowrap;
   transition: color 0.2s, background-color 0.2s;
 }
-.header-nav-number { color: var(--text-on-paper-muted); font-size: 9px; letter-spacing: 0.03em; font-variant-numeric: tabular-nums; }
 .desktop-nav a::after {
   content: "";
   position: absolute;
@@ -530,7 +524,7 @@ h4 {
 .mobile-menu-links { border-top: 1px solid var(--gold-dark); }
 .mobile-menu-links a {
   display: grid;
-  grid-template-columns: 24px 1fr 20px;
+  grid-template-columns: 1fr 20px;
   align-items: center;
   min-height: 68px;
   font-size: 18px;
@@ -547,12 +541,6 @@ h4 {
 .mobile-menu-links a:is(:hover, :focus-visible, [aria-current]) {
   color: var(--gold-dark);
   background: color-mix(in srgb, var(--gold) 10%, transparent);
-}
-.mobile-nav-number {
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--text-on-paper-muted);
-  letter-spacing: 0.08em;
 }
 .mobile-menu-footer { margin-top: auto; padding-top: 36px; }
 .mobile-menu-footer > p { margin-bottom: 12px; color: var(--text-on-paper-secondary); font-size: 14px; }
@@ -759,11 +747,6 @@ h4 {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-}
-.menu-number {
-  font-size: 12px;
-  color: var(--accent-text);
-  font-weight: 600;
 }
 .menu-footnote {
   margin-top: 26px;
@@ -1234,9 +1217,6 @@ details[open] .details-plus::after {
     margin-bottom: 21px;
     letter-spacing: 0.04em;
   }
-  .eyebrow-number {
-    padding-right: 12px;
-  }
   .body-copy {
     font-size: 16px;
   }
@@ -1563,13 +1543,6 @@ details[open] .details-plus::after {
   font-weight: 650;
   letter-spacing: -0.035em;
 }
-.hero-note-index {
-  align-self: flex-start;
-  margin-left: auto;
-  font-size: 12px;
-  color: var(--gold-dark);
-  font-weight: 600;
-}
 .hero-foot {
   display: flex;
   justify-content: space-between;
@@ -1676,12 +1649,6 @@ details[open] .details-plus::after {
   padding-block: 29px;
   border-bottom: 1px solid var(--border-subtle);
 }
-.value-number {
-  font-size: 12px;
-  color: var(--accent-text);
-  padding-top: 4px;
-  font-weight: 600;
-}
 .brand-value h3 {
   font-size: 22px;
   letter-spacing: -0.04em;
@@ -1725,11 +1692,6 @@ details[open] .details-plus::after {
   gap: 20px;
   padding-block: 16px;
   border-bottom: 1px solid var(--border-subtle);
-}
-.nurungji-menu-number {
-  font-size: 12px;
-  color: var(--accent-text);
-  font-weight: 600;
 }
 .nurungji-menu-list h3 {
   font-size: 20px;
@@ -1959,132 +1921,6 @@ details[open] .details-plus::after {
   font-weight: 600;
 }
 
-/* Pairings: a shared table above three recommendations, without extra cards. */
-.pairing-section {
-  background: var(--charcoal);
-}
-.pairing-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 40px;
-  margin-bottom: var(--section-gap);
-}
-.pairing-heading .body-copy {
-  padding-bottom: 8px;
-  font-size: 18px;
-}
-.pairing-visual {
-  position: relative;
-}
-.pairing-media {
-  aspect-ratio: 3.6;
-  max-height: clamp(200px, 32svh, 360px);
-  background: var(--surface-elevated);
-}
-.pairing-media:not(.has-image) {
-  background: color-mix(in srgb, var(--background) 38%, transparent);
-}
-.table-setting {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: 16px;
-  pointer-events: none;
-  color: color-mix(in srgb, var(--gold-light) 16%, transparent);
-}
-.table-bowl,
-.table-plate {
-  position: absolute;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-}
-.table-bowl {
-  width: 27%;
-  aspect-ratio: 1;
-  left: 4%;
-  top: 16%;
-}
-.table-plate {
-  width: 27%;
-  aspect-ratio: 1.35;
-  right: 7%;
-  top: -16%;
-  transform: rotate(-24deg);
-}
-.table-bowl::after,
-.table-plate::after {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border: 1px solid currentColor;
-  border-radius: inherit;
-}
-.table-chopsticks {
-  position: absolute;
-  width: 11px;
-  height: 65%;
-  right: 15%;
-  top: 40%;
-  border-inline: 1px solid currentColor;
-  transform: rotate(28deg);
-}
-.pairing-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 36px;
-}
-.pairing-item {
-  padding: 4px 28px;
-  border-left: 1px solid var(--border-gold);
-}
-.pairing-item:first-child {
-  padding-left: 0;
-  border-left: 0;
-}
-.pairing-item:last-child {
-  padding-right: 0;
-}
-.pairing-occasion {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-.pairing-occasion span {
-  color: var(--accent-text);
-  font-size: 9px;
-}
-.pairing-item h3 {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 9px;
-  margin-top: 17px;
-  font-size: 22px;
-  letter-spacing: -0.045em;
-  line-height: 1.6;
-}
-.pairing-plus {
-  color: var(--accent-text);
-  font-size: 15px;
-  font-weight: 400;
-}
-.pairing-description {
-  margin-top: 9px;
-  color: var(--text-secondary);
-  font-size: 17px;
-  line-height: 1.8;
-  word-break: keep-all;
-}
-.pairing-footnote {
-  margin-top: 36px;
-  color: var(--text-muted);
-  font-size: 14px;
-  line-height: 1.8;
-}
-
 /* Standards: a bowl-shaped brand motif connects four principles. */
 .standards-section {
   background: var(--section-ivory);
@@ -2116,10 +1952,6 @@ details[open] .details-plus::after {
   display: flex;
   align-items: center;
   gap: 14px;
-}
-.standard-number {
-  font-size: 11px;
-  color: var(--accent-text);
 }
 .standard-name h3 {
   font-size: 27px;
@@ -2258,13 +2090,6 @@ details[open] .details-plus::after {
 .franchise-topic[open] {
   border-top-color: var(--gold);
 }
-.topic-number {
-  color: var(--accent-text);
-  font-size: 12px;
-  align-self: flex-start;
-  padding-top: 9px;
-  font-weight: 600;
-}
 .topic-copy {
   flex: 1;
 }
@@ -2285,7 +2110,7 @@ details[open] .details-plus::after {
   color: var(--accent-text);
 }
 .franchise-topic > p {
-  margin: -3px 0 25px 36px;
+  margin: -3px 0 25px;
   padding: 16px 18px;
   border-radius: 8px;
   background: var(--surface);
@@ -2314,11 +2139,6 @@ details[open] .details-plus::after {
   font-size: 14px;
   background: var(--accent-tint);
   font-weight: 600;
-}
-.inquiry-topics i {
-  font-size: 9px;
-  font-style: normal;
-  color: var(--accent-text);
 }
 
 /* Links share the same accent response across both section tones. */
@@ -2485,10 +2305,6 @@ details[open] .details-plus::after {
   .brand-value {
     display: block;
     padding-block: 22px;
-  }
-  .value-number {
-    display: block;
-    margin-bottom: 10px;
   }
   .brand-value h3 {
     font-size: 20px;
@@ -2736,9 +2552,6 @@ details[open] .details-plus::after {
     gap: 22px;
     padding-block: 23px;
   }
-  .value-number {
-    margin: 0;
-  }
   .brand-value h3 {
     font-size: 21px;
   }
@@ -2848,7 +2661,6 @@ details[open] .details-plus::after {
     font-size: 16px;
   }
   .franchise-topic > p {
-    margin-left: 26px;
     font-size: 16px;
   }
   .inquiry-topics {
@@ -2894,16 +2706,10 @@ details[open] .details-plus::after {
   }
 }
 
-/* Responsive layouts for the two editorial sections. */
+/* Responsive layouts for the nurungji section. */
 @media (max-width: 1100px) {
   .nurungji-layout {
     gap: 44px;
-  }
-  .pairing-item {
-    padding-inline: 20px;
-  }
-  .pairing-item h3 {
-    font-size: 19px;
   }
 }
 
@@ -2923,16 +2729,6 @@ details[open] .details-plus::after {
   }
   .nurungji-menu-list {
     max-width: 520px;
-  }
-  .pairing-heading {
-    align-items: start;
-  }
-  .pairing-heading .body-copy {
-    padding-top: 41px;
-    font-size: 16px;
-  }
-  .pairing-media {
-    aspect-ratio: 2.6;
   }
 }
 
@@ -2967,51 +2763,28 @@ details[open] .details-plus::after {
   .nurungji-visual-note span:last-child {
     font-size: 11px;
   }
-  .pairing-heading {
-    display: block;
-    margin-bottom: 30px;
-  }
-  .pairing-heading .body-copy {
-    padding-top: 22px;
-  }
-  .pairing-media {
-    aspect-ratio: 1.35;
-  }
-  .table-bowl {
-    width: 48%;
-    left: -26%;
-    top: 31%;
-  }
-  .table-plate {
-    width: 57%;
-    right: -24%;
-    top: -4%;
-  }
-  .table-chopsticks {
-    height: 45%;
-    right: 8%;
-    top: 64%;
-  }
-  .pairing-list {
-    grid-template-columns: 1fr;
-    margin-top: 10px;
-  }
-  .pairing-item,
-  .pairing-item:first-child,
-  .pairing-item:last-child {
-    padding: 26px 0;
-    border-left: 0;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  .pairing-item h3 {
-    margin-top: 10px;
-    font-size: 22px;
-  }
-  .pairing-description {
-    margin-top: 6px;
-  }
-  .pairing-footnote {
-    margin-top: 23px;
-    font-size: 14px;
-  }
+}
+
+/* Supplied contact artwork: use each composition at its intended viewport. */
+.inquiry-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.inquiry-background img {
+  object-fit: cover;
+  object-position: center;
+}
+.inquiry-background-mobile { display: none; }
+.inquiry-section .inquiry-form {
+  background: rgba(255, 251, 244, 0.92);
+  border-color: rgba(143, 104, 47, 0.4);
+  border-radius: 12px;
+}
+.inquiry-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.inquiry-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; }
+@media (max-width: 767px) {
+  .inquiry-background-desktop { display: none; }
+  .inquiry-background-mobile { display: block; }
 }

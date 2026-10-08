@@ -10,7 +10,7 @@ export function BrandStorySection() {
       <div className="container">
         <div className="brand-heading">
           <Reveal>
-            <SectionEyebrow number="01">뚝손 이야기</SectionEyebrow>
+            <SectionEyebrow>뚝손 이야기</SectionEyebrow>
             <h2 id="brand-title" className="section-title display-font">
               뚝배기에 담은<br />우리의 손맛.
             </h2>
@@ -37,7 +37,6 @@ export function BrandStorySection() {
           <div className="brand-values">
             {brandValues.map((value, i) => (
               <Reveal key={value.keyword} effect="from-right" delay={i * 0.09} className="brand-value">
-                <span className="value-number">0{i + 1}</span>
                 <div>
                   <span className="small-label">{value.keyword}</span>
                   <h3>{value.title}</h3>

@@ -1,0 +1,545 @@
+{
+  "description": "All supplied original section files and all 16 user attachment images archived without modification. Runtime assets optimized separately.",
+  "sourceDirectory": "/Users/james/Downloads/ttukson_section_assets",
+  "canvas": {
+    "width": 1916,
+    "height": 821
+  },
+  "files": [
+    {
+      "file": "01_background_pc.png",
+      "sha256": "7959bf5ab29495a8ec054e80fd64e6ea0f1a2dcfeb4d53f34f813f8eb6b02cb6",
+      "bytes": 2014632,
+      "image": {
+        "width": 1916,
+        "height": 821,
+        "channels": 3,
+        "hasAlpha": false,
+        "alpha": {
+          "transparent": 0,
+          "semiTransparent": 0,
+          "opaque": 1573036
+        }
+      },
+      "runtime": {
+        "file": "01_background_pc.webp",
+        "bytes": 296798,
+        "encoding": "WebP quality 94"
+      }
+    },
+    {
+      "file": "01b_background_mobile.png",
+      "sha256": "7dceb2bf72376bb17fd04c9d4538fa172847001b4aeb99986005295b78aabc46",
+      "bytes": 1634086,
+      "image": {
+        "width": 1080,
+        "height": 1920,
+        "channels": 3,
+        "hasAlpha": false,
+        "alpha": {
+          "transparent": 0,
+          "semiTransparent": 0,
+          "opaque": 2073600
+        }
+      },
+      "runtime": {
+        "file": "01b_background_mobile.webp",
+        "bytes": 196464,
+        "encoding": "WebP quality 94"
+      }
+    },
+    {
+      "file": "02_title_line1.png",
+      "sha256": "e42ee6b004013e5e61b20491445429dabc03e4b447c7dc4e17b6239ddec0fcb4",
+      "bytes": 151274,
+      "image": {
+        "width": 923,
+        "height": 96,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 56762,
+          "semiTransparent": 9023,
+          "opaque": 22823
+        }
+      },
+      "runtime": {
+        "file": "02_title_line1.webp",
+        "bytes": 56224,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "03_title_line2.png",
+      "sha256": "5a36b3678efaa5098f23d73fe2caa397d574e0ee92c0aff3466e3775947d54e7",
+      "bytes": 72705,
+      "image": {
+        "width": 535,
+        "height": 93,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 33911,
+          "semiTransparent": 3934,
+          "opaque": 11910
+        }
+      },
+      "runtime": {
+        "file": "03_title_line2.webp",
+        "bytes": 24870,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "04_subtitle.png",
+      "sha256": "faad9232390fb741e11d6b7265eaa88dbbcc06531f5d093653c4558b746dba02",
+      "bytes": 56510,
+      "image": {
+        "width": 694,
+        "height": 44,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 22122,
+          "semiTransparent": 6267,
+          "opaque": 2147
+        }
+      },
+      "runtime": {
+        "file": "04_subtitle.webp",
+        "bytes": 20946,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "05_card_left_top.png",
+      "sha256": "a7d41a8cc1ee66008aea10df3cb0d6fb03f735062d60df9eb4871b353fe637cb",
+      "bytes": 96902,
+      "image": {
+        "width": 368,
+        "height": 172,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 7698,
+          "semiTransparent": 3926,
+          "opaque": 51672
+        }
+      },
+      "runtime": {
+        "file": "05_card_left_top.webp",
+        "bytes": 50288,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "06_card_left_bottom.png",
+      "sha256": "a1ff8b76e54537cfe20386189ef365d86c7675a546279b70f7ae09c776e63b3a",
+      "bytes": 108833,
+      "image": {
+        "width": 378,
+        "height": 180,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 7899,
+          "semiTransparent": 4062,
+          "opaque": 56079
+        }
+      },
+      "runtime": {
+        "file": "06_card_left_bottom.webp",
+        "bytes": 57878,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "07_card_right_top.png",
+      "sha256": "a669fd24bf7cc40cd682c3c22bd06485b67349fca405febeef5effa9a525441e",
+      "bytes": 103232,
+      "image": {
+        "width": 373,
+        "height": 175,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 7841,
+          "semiTransparent": 3980,
+          "opaque": 53454
+        }
+      },
+      "runtime": {
+        "file": "07_card_right_top.webp",
+        "bytes": 55062,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "08_card_right_bottom.png",
+      "sha256": "6c003ffe0fe3537fcea036a4cdc5b018cbd7f8269bb3aad8cc04e1106104984b",
+      "bytes": 116102,
+      "image": {
+        "width": 392,
+        "height": 181,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 9427,
+          "semiTransparent": 4148,
+          "opaque": 57377
+        }
+      },
+      "runtime": {
+        "file": "08_card_right_bottom.webp",
+        "bytes": 60910,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "09_profit_chart.png",
+      "sha256": "b7aa4b93013d975b9901a90dabfac09ecbe0ece433c647f93a952dfd55a355d4",
+      "bytes": 404561,
+      "image": {
+        "width": 578,
+        "height": 497,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 82373,
+          "semiTransparent": 12875,
+          "opaque": 192018
+        }
+      },
+      "runtime": {
+        "file": "09_profit_chart.webp",
+        "bytes": 188358,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "10_connector_left_top.png",
+      "sha256": "b0be03413c0e94a0ff8c0e4ba0f56f359bb07c3c24fd5a85c38ddddefad4c8f1",
+      "bytes": 15748,
+      "image": {
+        "width": 151,
+        "height": 84,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 11993,
+          "semiTransparent": 673,
+          "opaque": 18
+        }
+      },
+      "runtime": {
+        "file": "10_connector_left_top.webp",
+        "bytes": 2544,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "11_connector_left_bottom.png",
+      "sha256": "c11f4eaa195f5d1489c18589eb30ac0476256695132d626fec4d721bcd28df2a",
+      "bytes": 10628,
+      "image": {
+        "width": 118,
+        "height": 59,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 6688,
+          "semiTransparent": 181,
+          "opaque": 93
+        }
+      },
+      "runtime": {
+        "file": "11_connector_left_bottom.webp",
+        "bytes": 888,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "12_connector_right_top.png",
+      "sha256": "52d6ecbd8f82e3db248e07f5cb358dfd79bcc63abaa02ce8eb23a2048defdd21",
+      "bytes": 12553,
+      "image": {
+        "width": 115,
+        "height": 70,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 7633,
+          "semiTransparent": 411,
+          "opaque": 6
+        }
+      },
+      "runtime": {
+        "file": "12_connector_right_top.webp",
+        "bytes": 1526,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "13_connector_right_bottom.png",
+      "sha256": "6522882c91c5ea5a489cd6a0618551fe3604df5bead0484ffb8c7bb46a688ce7",
+      "bytes": 19665,
+      "image": {
+        "width": 141,
+        "height": 84,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 10420,
+          "semiTransparent": 564,
+          "opaque": 860
+        }
+      },
+      "runtime": {
+        "file": "13_connector_right_bottom.webp",
+        "bytes": 2500,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "14_disclaimer.png",
+      "sha256": "095f39744da6100435b0d43ef3350b44216e74c03c1f283d1d4b1a53a386bad0",
+      "bytes": 73903,
+      "image": {
+        "width": 554,
+        "height": 74,
+        "channels": 4,
+        "hasAlpha": true,
+        "alpha": {
+          "transparent": 32294,
+          "semiTransparent": 7390,
+          "opaque": 1312
+        }
+      },
+      "runtime": {
+        "file": "14_disclaimer.webp",
+        "bytes": 21012,
+        "encoding": "lossless WebP, alpha retained"
+      }
+    },
+    {
+      "file": "README.md",
+      "sha256": "7baeff470ea406785b1ee0dee684bc1cd0c04dc3c13818aa09742c59e3a29988",
+      "bytes": 2270
+    },
+    {
+      "file": "TtuksonProfitSection.module.css",
+      "sha256": "4d1cbf14df56d7fba2fb48632abc251652135db048ee8bcb414535fa7d425234",
+      "bytes": 1688
+    },
+    {
+      "file": "TtuksonProfitSection.tsx",
+      "sha256": "074d4026e30897590e2f9c82cd92720e64be3e9bd994263dc175a9bbcc253ed6",
+      "bytes": 4266
+    },
+    {
+      "file": "asset_positions.json",
+      "sha256": "0df7e1c3abd593f7f38b41cbd5541202c6e36283612a612a7d0daaa5ccd475b4",
+      "bytes": 3009
+    }
+  ],
+  "attachments": [
+    {
+      "number": 1,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-c558adc1-a9c1-42a8-9f85-9129c05a4ea0.png",
+      "archivedPath": "source/attachments/image-01.png",
+      "relatedSplitAsset": "04_subtitle.png",
+      "bytes": 56510,
+      "sha256": "faad9232390fb741e11d6b7265eaa88dbbcc06531f5d093653c4558b746dba02",
+      "width": 694,
+      "height": 44,
+      "hasAlpha": true
+    },
+    {
+      "number": 2,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-b0ea3605-1434-4178-a1d2-0a3593eab282.png",
+      "archivedPath": "source/attachments/image-02.png",
+      "relatedSplitAsset": "01_background_pc.png",
+      "bytes": 2014632,
+      "sha256": "7959bf5ab29495a8ec054e80fd64e6ea0f1a2dcfeb4d53f34f813f8eb6b02cb6",
+      "width": 1916,
+      "height": 821,
+      "hasAlpha": false
+    },
+    {
+      "number": 3,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-d50922e9-02a5-4be3-933c-3c98e8289776.png",
+      "archivedPath": "source/attachments/image-03.png",
+      "relatedSplitAsset": "01b_background_mobile.png",
+      "bytes": 1634086,
+      "sha256": "7dceb2bf72376bb17fd04c9d4538fa172847001b4aeb99986005295b78aabc46",
+      "width": 1080,
+      "height": 1920,
+      "hasAlpha": false
+    },
+    {
+      "number": 4,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-41fa3ecf-aa08-449e-a935-3e9cd6162551.png",
+      "archivedPath": "source/attachments/image-04.png",
+      "relatedSplitAsset": "02_title_line1.png",
+      "bytes": 151274,
+      "sha256": "e42ee6b004013e5e61b20491445429dabc03e4b447c7dc4e17b6239ddec0fcb4",
+      "width": 923,
+      "height": 96,
+      "hasAlpha": true
+    },
+    {
+      "number": 5,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-a35fc370-ca9a-4ec9-a611-0c11823a0245.png",
+      "archivedPath": "source/attachments/image-05.png",
+      "relatedSplitAsset": "03_title_line2.png",
+      "bytes": 72705,
+      "sha256": "5a36b3678efaa5098f23d73fe2caa397d574e0ee92c0aff3466e3775947d54e7",
+      "width": 535,
+      "height": 93,
+      "hasAlpha": true
+    },
+    {
+      "number": 6,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-0a95aecc-d000-4987-854e-68278fb93f11.png",
+      "archivedPath": "source/attachments/image-06.png",
+      "relatedSplitAsset": "05_card_left_top.png",
+      "bytes": 96902,
+      "sha256": "a7d41a8cc1ee66008aea10df3cb0d6fb03f735062d60df9eb4871b353fe637cb",
+      "width": 368,
+      "height": 172,
+      "hasAlpha": true
+    },
+    {
+      "number": 7,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-94285c93-d942-4127-b02f-c510ee83bc6c.png",
+      "archivedPath": "source/attachments/image-07.png",
+      "relatedSplitAsset": "06_card_left_bottom.png",
+      "bytes": 108833,
+      "sha256": "a1ff8b76e54537cfe20386189ef365d86c7675a546279b70f7ae09c776e63b3a",
+      "width": 378,
+      "height": 180,
+      "hasAlpha": true
+    },
+    {
+      "number": 8,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-48e84d44-2565-4d61-83e1-f8c8013f3348.png",
+      "archivedPath": "source/attachments/image-08.png",
+      "relatedSplitAsset": "07_card_right_top.png",
+      "bytes": 103232,
+      "sha256": "a669fd24bf7cc40cd682c3c22bd06485b67349fca405febeef5effa9a525441e",
+      "width": 373,
+      "height": 175,
+      "hasAlpha": true
+    },
+    {
+      "number": 9,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-3a9cac0d-3e13-4922-ade7-fda864adde6b.png",
+      "archivedPath": "source/attachments/image-09.png",
+      "relatedSplitAsset": "08_card_right_bottom.png",
+      "bytes": 116102,
+      "sha256": "6c003ffe0fe3537fcea036a4cdc5b018cbd7f8269bb3aad8cc04e1106104984b",
+      "width": 392,
+      "height": 181,
+      "hasAlpha": true
+    },
+    {
+      "number": 10,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-2b362cc2-7ac9-4fca-95fa-3f82c987e3c5.png",
+      "archivedPath": "source/attachments/image-10.png",
+      "relatedSplitAsset": "09_profit_chart.png",
+      "bytes": 404561,
+      "sha256": "b7aa4b93013d975b9901a90dabfac09ecbe0ece433c647f93a952dfd55a355d4",
+      "width": 578,
+      "height": 497,
+      "hasAlpha": true
+    },
+    {
+      "number": 11,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-a5b8220f-4c39-406b-bd6f-b8517f57c27a.png",
+      "archivedPath": "source/attachments/image-11.png",
+      "relatedSplitAsset": "10_connector_left_top.png",
+      "bytes": 15748,
+      "sha256": "b0be03413c0e94a0ff8c0e4ba0f56f359bb07c3c24fd5a85c38ddddefad4c8f1",
+      "width": 151,
+      "height": 84,
+      "hasAlpha": true
+    },
+    {
+      "number": 12,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-fe6e2dd3-71bf-4897-a390-665595319cfc.png",
+      "archivedPath": "source/attachments/image-12.png",
+      "relatedSplitAsset": "11_connector_left_bottom.png",
+      "bytes": 10628,
+      "sha256": "c11f4eaa195f5d1489c18589eb30ac0476256695132d626fec4d721bcd28df2a",
+      "width": 118,
+      "height": 59,
+      "hasAlpha": true
+    },
+    {
+      "number": 13,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-d6990f24-3fdb-4422-86d1-9f82d4050871.png",
+      "archivedPath": "source/attachments/image-13.png",
+      "relatedSplitAsset": "12_connector_right_top.png",
+      "bytes": 12553,
+      "sha256": "52d6ecbd8f82e3db248e07f5cb358dfd79bcc63abaa02ce8eb23a2048defdd21",
+      "width": 115,
+      "height": 70,
+      "hasAlpha": true
+    },
+    {
+      "number": 14,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-2d06e2dc-943a-4251-b539-54fcda898dd8.png",
+      "archivedPath": "source/attachments/image-14.png",
+      "relatedSplitAsset": "13_connector_right_bottom.png",
+      "bytes": 19665,
+      "sha256": "6522882c91c5ea5a489cd6a0618551fe3604df5bead0484ffb8c7bb46a688ce7",
+      "width": 141,
+      "height": 84,
+      "hasAlpha": true
+    },
+    {
+      "number": 15,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-875af57b-56fc-4848-81f8-b774857368c9.png",
+      "archivedPath": "source/attachments/image-15.png",
+      "relatedSplitAsset": "14_disclaimer.png",
+      "bytes": 73903,
+      "sha256": "095f39744da6100435b0d43ef3350b44216e74c03c1f283d1d4b1a53a386bad0",
+      "width": 554,
+      "height": 74,
+      "hasAlpha": true
+    },
+    {
+      "number": 16,
+      "originalPath": "/var/folders/x_/wp36g93x3mn5_m35m49v38jh0000gn/T/codex-clipboard-75cfb878-aa27-4e39-a9f5-2a5e4fdf231c.png",
+      "archivedPath": "source/attachments/image-16.png",
+      "relatedSplitAsset": null,
+      "bytes": 2413430,
+      "sha256": "170837092287f64d2bf28054503e056783983c0f30e90d599218e2dfa65e15a5",
+      "width": 1916,
+      "height": 821,
+      "hasAlpha": true
+    }
+  ],
+  "finalReference": {
+    "source": "source/attachments/image-16.png",
+    "runtime": "public/images/ttukson-profit/final-reference.webp",
+    "png": "public/images/ttukson-profit/final-reference.png",
+    "width": 1916,
+    "height": 821,
+    "encoding": "lossless WebP, alpha retained",
+    "bytes": 1166766
+  },
+  "audit": {
+    "sourceFiles": 19,
+    "attachmentFiles": 16,
+    "backgroundsMatchFinalArtwork": false,
+    "layerCompositionMeanAbsoluteRGBDifference": 18.5394260949315,
+    "notes": [
+      "The supplied empty backgrounds were reconstructed and differ from the last attached artwork.",
+      "The masks leave small background fragments and trim portions of rounded card corners.",
+      "The right connector fragments and coordinates do not reconstruct complete connector paths.",
+      "Use animated split layers for entrance and the supplied final reference for a final desktop frame that matches the requested artwork.",
+      "Supplied chart percentages sum to 97.4%; values and chart were supplied by the user and are preserved without invention."
+    ]
+  }
+}

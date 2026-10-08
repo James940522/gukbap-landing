@@ -90,15 +90,6 @@
   margin-top: var(--section-gap);
 }
 
-.connectingLine {
-  position: absolute;
-  top: 18px;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: var(--border-gold);
-}
-
 .list {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -121,27 +112,11 @@
 .list li + li .item::after {
   content: "";
   position: absolute;
-  top: 80px;
+  top: 0;
   bottom: 8px;
   left: 0;
   width: 1px;
   background: var(--border-gold);
-}
-
-.marker {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 37px;
-  height: 37px;
-  margin-inline: auto;
-  border: 1px solid var(--border-gold);
-  border-radius: 50%;
-  background: var(--partner-paper);
-  color: var(--gold-dark);
-  font-size: 12px;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
 }
 
 .icon {
@@ -149,7 +124,7 @@
   place-items: center;
   width: 68px;
   height: 68px;
-  margin: 28px auto 19px;
+  margin: 0 auto 19px;
   border: 1px solid var(--border-gold);
   border-radius: 12px;
   color: var(--gold-dark);
@@ -234,7 +209,6 @@
   .list li { grid-column: span 2; }
   .list li:nth-child(4) { grid-column: 2 / span 2; }
   .list li:nth-child(4) .item::after { display: none; }
-  .connectingLine { display: none; }
   .item { padding-inline: 18px; }
   .item h3 { font-size: 20px; }
   .description { font-size: 16px; }
@@ -255,18 +229,17 @@
   .list li + li .item::after { display: none; }
   .item {
     display: grid;
-    grid-template-columns: 37px minmax(0, 1fr) 48px;
+    grid-template-columns: minmax(0, 1fr) 48px;
     column-gap: 14px;
     padding: 0 0 22px;
     text-align: left;
     border-bottom: 1px solid var(--border-gold);
   }
-  .marker { grid-column: 1; grid-row: 1 / span 3; align-self: start; margin-top: 1px; }
-  .icon { grid-column: 3; grid-row: 1 / span 2; width: 48px; height: 48px; margin: 0; border-radius: 8px; }
+  .icon { grid-column: 2; grid-row: 1 / span 2; width: 48px; height: 48px; margin: 0; border-radius: 8px; }
   .icon svg { width: 32px; height: 32px; }
-  .keyword { grid-column: 2; grid-row: 1; }
-  .item h3 { grid-column: 2; grid-row: 2; margin-top: 3px; font-size: 20px; }
-  .description { grid-column: 2 / -1; grid-row: 3; margin-top: 9px; font-size: 16px; }
+  .keyword { grid-column: 1; grid-row: 1; }
+  .item h3 { grid-column: 1; grid-row: 2; margin-top: 3px; font-size: 20px; }
+  .description { grid-column: 1 / -1; grid-row: 3; margin-top: 9px; font-size: 16px; }
   .list li:last-child .item { padding-bottom: 0; border-bottom: 0; }
   .footer { flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 30px; padding-top: 22px; }
   .signature { font-size: 16px; gap: 10px; }

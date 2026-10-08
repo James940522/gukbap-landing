@@ -53,6 +53,13 @@ export const sectionBackgrounds = {
     position: "center",
     mobilePosition: "38% center",
   },
+  territory: {
+    image: "territory-contours",
+    opacity: 0.72,
+    mobileOpacity: 0.4,
+    position: "center",
+    mobilePosition: "72% center",
+  },
   franchise: {
     image: "hanok-window",
     opacity: 0.34,

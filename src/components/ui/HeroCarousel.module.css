@@ -49,18 +49,6 @@
   transition: opacity 0.25s;
 }
 
-.thumbnail span {
-  position: absolute;
-  bottom: 5px;
-  left: 6px;
-  padding: 0 4px;
-  color: var(--ivory);
-  background: var(--background);
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  font-weight: 600;
-}
-
 .thumbnail[aria-pressed="true"],
 .thumbnail:hover {
   border-color: var(--gold-light);

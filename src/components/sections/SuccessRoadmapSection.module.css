@@ -176,20 +176,6 @@
   letter-spacing: 0;
 }
 
-.numberBadge {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  place-items: center;
-  border: 1px solid var(--border-gold);
-  border-radius: 6px;
-  background: var(--deep-brown);
-  color: var(--ivory);
-  font-size: 18px;
-  font-weight: 800;
-}
-
 .imageSlot {
   position: relative;
   width: 100%;
@@ -202,25 +188,14 @@
   background: #201a14;
 }
 
-.imageNumber {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: color-mix(in srgb, var(--gold) 14%, transparent);
-  font-size: 72px;
-  font-weight: 800;
-  line-height: 1;
-  user-select: none;
-}
-
 .image {
   object-fit: cover;
+  transform: scale(var(--roadmap-image-scale, 1));
   transition: transform 0.5s ease;
 }
 
 .card:hover .image {
-  transform: scale(1.03);
+  transform: scale(calc(var(--roadmap-image-scale, 1) * 1.03));
 }
 
 .description {
@@ -309,7 +284,10 @@
     transition: none;
   }
 
-  .card:hover .image,
+  .card:hover .image {
+    transform: scale(var(--roadmap-image-scale, 1));
+  }
+
   .inquiryLink:hover svg {
     transform: none;
   }

@@ -160,7 +160,6 @@ export function HeroCarousel({ slides }: { slides: readonly HeroSlide[] }) {
             <span>뚝손이 담고 싶은 것</span>
             <strong>한 숟갈의 깊이.<br /> 한 끼의 든든함.</strong>
           </div>
-          <span className="hero-note-index" aria-hidden="true">{String(active + 1).padStart(2, "0")}</span>
         </Reveal>
       </div>
       <div className={styles.controls}>
@@ -177,7 +176,6 @@ export function HeroCarousel({ slides }: { slides: readonly HeroSlide[] }) {
                 onClick={() => goTo(index)}
               >
                 <Image src={slide.image} alt="" fill sizes="120px" draggable={false} />
-                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               </button>
             ))}
           </div>

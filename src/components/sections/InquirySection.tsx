@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { InquiryForm } from "@/components/ui/InquiryForm";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Reveal } from "@/components/ui/Reveal";
@@ -8,12 +9,16 @@ export function InquirySection() {
   return (
     <section
       id="inquiry"
-      className={`section section-light inquiry-section ${typography.backdropSection}`}
+      className={`section section-light section-background-host inquiry-section ${typography.backdropSection}`}
       aria-labelledby="inquiry-title"
     >
+      <div className="inquiry-background" aria-hidden="true">
+        <Image className="inquiry-background-desktop" src="/images/inquiry/contact-desktop.webp" alt="" fill sizes="(max-width: 767px) 1px, 100vw" />
+        <Image className="inquiry-background-mobile" src="/images/inquiry/contact-mobile.webp" alt="" fill sizes="(max-width: 767px) 100vw, 1px" />
+      </div>
       <div className={`container inquiry-grid ${typography.content}`}>
         <Reveal effect="from-left" className="inquiry-copy">
-          <SectionEyebrow number="07">뚝손과 함께 시작</SectionEyebrow>
+          <SectionEyebrow>뚝손과 함께 시작</SectionEyebrow>
           <h2 id="inquiry-title" className="section-title display-font">
             뚝손국밥과
             <br />
@@ -24,9 +29,9 @@ export function InquirySection() {
             <br />그 시작에 뚝손이 함께하고 싶습니다.
           </p>
           <div className="inquiry-topics" aria-label="상담 주제">
-            <span><i>01</i>브랜드 이야기</span>
-            <span><i>02</i>메뉴 구성</span>
-            <span><i>03</i>창업 상담</span>
+            <span>브랜드 이야기</span>
+            <span>메뉴 구성</span>
+            <span>창업 상담</span>
           </div>
           <div className="inquiry-note">
             <span className="status-dot" />
@@ -38,7 +43,7 @@ export function InquirySection() {
               <p>
                 브랜드와 창업에 대해 궁금한 점을
                 <br />
-                전화 또는 이메일로 문의해주세요.
+                아래 상담 폼 또는 전화로 문의해주세요.
               </p>
               <a className="inquiry-email" href={`mailto:${brand.email}`}>
                 이메일로 문의하기
