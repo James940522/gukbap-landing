@@ -1,31 +1,9 @@
 import Image from "next/image";
 import { pairingFeature } from "@/data/pairing";
-import { BowlIcon } from "@/components/ui/Icons";
 import { PairingSuggestions } from "@/components/ui/PairingSuggestions";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { SectionBackground } from "@/components/ui/SectionBackground";
 import styles from "./PairingSection.module.css";
-
-function TableIcon({ kind }: { kind: string }) {
-  if (kind === "bowl") return <BowlIcon className={styles.categoryIcon} />;
-  return (
-    <svg className={styles.categoryIcon} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      {kind === "mandu" ? (
-        <>
-          <path d="M12 42c0-15 11-25 20-25s20 10 20 25c-8 7-32 7-40 0Z" />
-          <path d="m19 31 6 8m1-19 4 15m7-15-3 15m11-5-7 9M14 43c10-5 26-5 36 0" />
-        </>
-      ) : (
-        <>
-          <ellipse cx="32" cy="36" rx="24" ry="12" />
-          <ellipse cx="32" cy="35" rx="17" ry="7" />
-          <path d="M8 36v5c3 14 45 14 48 0v-5M18 15l28 7M20 10l28 7" />
-        </>
-      )}
-    </svg>
-  );
-}
 
 export function PairingSection() {
   return (
@@ -34,7 +12,6 @@ export function PairingSection() {
       <div className="container">
         <div className={styles.heading}>
           <Reveal>
-            <SectionEyebrow>함께 즐기는 한 상</SectionEyebrow>
             <h2 id="pairing-title" className="section-title">한 그릇에서,<br />한 상으로.</h2>
           </Reveal>
           <Reveal effect="fade" delay={0.15} className={styles.intro}>
@@ -59,16 +36,6 @@ export function PairingSection() {
           </Reveal>
           <Reveal effect="rise" delay={0.12} className={styles.suggestionPanel}><PairingSuggestions /></Reveal>
         </div>
-        <Reveal className={styles.categories}>
-          <ul aria-label="한 상을 채우는 메뉴">
-            {pairingFeature.categories.map((category) => (
-              <li key={category.name}>
-                <TableIcon kind={category.icon} />
-                <div><h3>{category.name}</h3><p>{category.detail}</p></div>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
         <p className={styles.footnote}>취향에 맞는 메뉴 선택을 돕기 위한 추천 조합입니다.</p>
       </div>
     </section>

@@ -17,12 +17,6 @@ export const pairingFeature = {
     "혼자 든든하게, 여럿이 넉넉하게.",
     "뚝손의 맛을 한 상에 펼쳐보세요.",
   ],
-  categories: [
-    { name: "국밥", detail: "진하게 · 맑게 · 얼큰하게", icon: "bowl" },
-    { name: "수육 · 순대", detail: "국밥 곁에 더하는 한 접시", icon: "plate" },
-    { name: "전", detail: "부추전부터 육전까지", icon: "plate" },
-    { name: "만두", detail: "고기 · 김치 · 반반", icon: "mandu" },
-  ],
   // Editorial combinations of supplied menus; no set-menu or price claims.
   suggestions: [
     {

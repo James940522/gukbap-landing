@@ -10,6 +10,8 @@ const notices = [
     id: "founder",
     storageKey: "ddukson-founder-notice-hidden-until",
     image: "/images/popup/founder-message-v2.png",
+    width: 1024,
+    height: 1536,
     title: "뚝손국밥 대표의 이야기",
     alt: "뚝손국밥 대표가 전하는 가맹점주와 함께하는 프랜차이즈의 기준",
     paragraphs: [
@@ -24,7 +26,9 @@ const notices = [
   {
     id: "strength",
     storageKey: "ddukson-brand-strength-notice-hidden-until",
-    image: "/images/popup/brand-strength.png",
+    image: "/images/popup/brand-strength-v3.png",
+    width: 1122,
+    height: 1402,
     title: "뚝손국밥의 브랜드 저력",
     alt: "뚝손국밥 × 오늘은 오므라이스, 불경기에도 성장하는 브랜드",
     paragraphs: [
@@ -138,8 +142,8 @@ export function BrandNoticePopup({ delayMs = 0 }: { delayMs?: number }) {
               <Image
                 src={notice.image}
                 alt={notice.alt}
-                width={1024}
-                height={1536}
+                width={notice.width}
+                height={notice.height}
                 className={styles.image}
                 loading="eager"
                 unoptimized

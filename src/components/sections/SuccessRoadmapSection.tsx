@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image, { getImageProps } from 'next/image';
 import type { CSSProperties } from 'react';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { roadmapStrengths, roadmapSignals, type RoadmapStrength } from '@/data/roadmap';
@@ -9,36 +9,78 @@ import { revealViewport } from '@/lib/motion';
 import styles from './SuccessRoadmapSection.module.css';
 
 const stepVariants: Variants = {
-  hidden: { opacity: 0, x: -16, y: 12 },
-  visible: { opacity: 1, x: 0, y: 0 },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
 };
+
+const accentVariants: Variants = {
+  hidden: { opacity: 0, scaleX: 0 },
+  visible: { opacity: 1, scaleX: 1 },
+};
+
+const backgroundProps = {
+  alt: '',
+  fill: true,
+  sizes: '100vw',
+};
+
+const { props: desktopBackground } = getImageProps({
+  ...backgroundProps,
+  src: '/images/backgrounds/roadmap-desktop.webp',
+  sizes: '(max-width: 1023px) 1536px, 100vw',
+});
+
+const { props: mobileBackground } = getImageProps({
+  ...backgroundProps,
+  src: '/images/backgrounds/roadmap-mobile.webp',
+  // The tall list makes cover scale beyond the viewport width; keep wall detail.
+  sizes: '941px',
+});
 
 function TimelineItem({
   strength,
+  index,
   reduceMotion,
 }: {
   strength: RoadmapStrength;
+  index: number;
   reduceMotion: boolean;
 }) {
+  const delay = reduceMotion ? 0 : (index % 3) * 0.12;
+
   return (
     <motion.li
       data-roadmap-step-tile
       data-roadmap-step={strength.number}
       data-reveal="rise"
       className={styles.step}
+      initial="hidden"
+      whileInView="visible"
+      viewport={revealViewport}
       variants={stepVariants}
       transition={{
         type: 'tween',
-        duration: reduceMotion ? 0 : 0.42,
-        ease: [0.22, 1, 0.36, 1],
+        delay,
+        duration: reduceMotion ? 0 : 0.75,
+        ease: [0.22, 0.61, 0.36, 1],
       }}
     >
       <article className={styles.card}>
+        <motion.span
+          aria-hidden="true"
+          data-reveal="line"
+          className={styles.stepAccent}
+          variants={accentVariants}
+          transition={{
+            type: 'tween',
+            delay: reduceMotion ? 0 : delay + 0.25,
+            duration: reduceMotion ? 0 : 0.9,
+            ease: [0.22, 0.61, 0.36, 1],
+          }}
+        />
         <div className={styles.cardHeading}>
-          <div>
-            <p className={styles.stepLabel}>뚝손의 운영 기준</p>
-            <h3>{strength.title}</h3>
-          </div>
+          <h3>{strength.title}</h3>
+          <span className={styles.stepNumber} aria-hidden="true">{strength.number}</span>
         </div>
 
         <div
@@ -57,7 +99,7 @@ function TimelineItem({
                 transformOrigin: strength.imageOrigin ?? 'center',
                 '--roadmap-image-scale': strength.imageScale ?? 1,
               } as CSSProperties}
-              sizes="(max-width: 767px) calc(100vw - 86px), (max-width: 1023px) calc((100vw - 184px) / 2), (max-width: 1303px) calc((100vw - 262px) / 3), 347px"
+              sizes="(max-width: 767px) calc(100vw - 88px), (max-width: 1023px) calc((100vw - 188px) / 2), (max-width: 1303px) calc((100vw - 268px) / 3), 345px"
             />
           ) : null}
         </div>
@@ -70,15 +112,6 @@ function TimelineItem({
 
 export function SuccessRoadmapSection() {
   const reduceMotion = Boolean(useReducedMotion());
-  const gridVariants: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        delayChildren: reduceMotion ? 0 : 0.08,
-        staggerChildren: reduceMotion ? 0 : 0.12,
-      },
-    },
-  };
 
   return (
     <section
@@ -86,6 +119,16 @@ export function SuccessRoadmapSection() {
       aria-labelledby="success-roadmap-title"
       className={`section ${styles.section}`}
     >
+      <div className={styles.background} aria-hidden="true">
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcSet={mobileBackground.srcSet}
+            sizes={mobileBackground.sizes}
+          />
+          <img {...desktopBackground} alt="" className={styles.backgroundImage} fetchPriority="low" />
+        </picture>
+      </div>
       <div className={styles.container}>
         <motion.div
           data-roadmap-heading
@@ -96,12 +139,11 @@ export function SuccessRoadmapSection() {
           viewport={revealViewport}
           transition={{
             type: 'tween',
-            duration: reduceMotion ? 0 : 0.5,
-            ease: [0.22, 1, 0.36, 1],
+            duration: reduceMotion ? 0 : 0.8,
+            ease: [0.22, 0.61, 0.36, 1],
           }}
         >
           <div className={styles.introduction}>
-            <p className={styles.eyebrow}>뚝손국밥의 창업 운영 체계</p>
             <h2 id="success-roadmap-title">
               성공으로 가는
               <br />
@@ -130,22 +172,19 @@ export function SuccessRoadmapSection() {
           </div>
         </motion.div>
 
-        <motion.ol
+        <ol
           data-roadmap-grid
           className={styles.grid}
-          initial="hidden"
-          whileInView="visible"
-          viewport={revealViewport}
-          variants={gridVariants}
         >
-          {roadmapStrengths.map((strength) => (
+          {roadmapStrengths.map((strength, index) => (
             <TimelineItem
               key={strength.number}
               strength={strength}
+              index={index}
               reduceMotion={reduceMotion}
             />
           ))}
-        </motion.ol>
+        </ol>
       </div>
     </section>
   );

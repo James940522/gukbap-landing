@@ -2,7 +2,6 @@ import { brandValues, foodImages } from "@/data/site";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 export function BrandStorySection() {
   return (
@@ -10,7 +9,6 @@ export function BrandStorySection() {
       <div className="container">
         <div className="brand-heading">
           <Reveal>
-            <SectionEyebrow>뚝손 이야기</SectionEyebrow>
             <h2 id="brand-title" className="section-title display-font">
               뚝배기에 담은<br />우리의 손맛.
             </h2>

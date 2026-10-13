@@ -1,15 +1,19 @@
 .chart {
-  --value-space: 152px;
-  margin: 46px 0 0;
+  --value-space: 200px;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
 }
 
 .rows {
   display: grid;
-  gap: 18px;
-  padding-block: 4px;
+  gap: 36px;
+  padding-block: 10px;
+  border-left: 1px solid rgba(86, 65, 37, 0.24);
 }
 
 .row {
+  min-width: 0;
   color: #756e61;
 }
 
@@ -23,7 +27,8 @@
 
 .bar {
   position: relative;
-  height: 66px;
+  width: var(--bar-size);
+  height: 104px;
 }
 
 .fill {
@@ -32,6 +37,7 @@
   border: 1px solid rgba(117, 110, 97, 0.1);
   border-radius: 0 8px 8px 0;
   background: #faf7ef;
+  transform: scaleX(var(--bar-progress, 1));
   transform-origin: left center;
 }
 
@@ -42,12 +48,12 @@
 
 .name {
   position: absolute;
-  inset: 0 20px;
+  inset: 0 28px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   white-space: nowrap;
-  font-size: 18px;
+  font-size: 25px;
   font-weight: 650;
 }
 
@@ -58,10 +64,10 @@
 .value {
   position: absolute;
   top: 0;
-  left: calc(100% + 18px);
+  left: calc(100% + 24px);
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 9px;
   height: 100%;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
@@ -69,38 +75,95 @@
 }
 
 .value strong {
-  font-size: clamp(32px, 3vw, 42px);
+  font-size: clamp(42px, 4.5vw, 64px);
   font-weight: 650;
   line-height: 1;
 }
 
 .value > span {
-  margin-top: 5px;
-  font-size: 22px;
+  margin-top: 8px;
+  font-size: 25px;
   font-weight: 600;
   letter-spacing: -0.04em;
 }
 
-@media (max-width: 1099px) and (min-width: 900px) {
-  .chart { --value-space: 124px; }
-  .name { inset-inline: 14px; font-size: 16px; }
-  .value { left: calc(100% + 12px); gap: 5px; }
-  .value > span { font-size: 18px; }
+@media (max-width: 899px) {
+  .chart { --value-space: 160px; }
+  .rows { gap: 28px; }
+  .bar { height: 88px; }
+  .name { inset-inline: 20px; font-size: 21px; }
+  .value { left: calc(100% + 18px); gap: 7px; }
+  .value > span { font-size: 21px; }
 }
 
 @media (max-width: 599px) {
-  .chart { --value-space: 95px; margin-top: 32px; }
-  .rows { gap: 14px; }
-  .bar { height: 54px; }
-  .name { inset-inline: 12px; font-size: 14px; }
-  .value { left: calc(100% + 12px); gap: 4px; }
-  .value strong { font-size: 28px; }
-  .value > span { margin-top: 3px; font-size: 15px; }
-}
+  .chart {
+    max-width: 400px;
+  }
 
-@media (max-width: 359px) {
-  .chart { --value-space: 86px; }
-  .value { left: calc(100% + 8px); }
-  .value strong { font-size: 25px; }
-  .name { inset-inline: 9px; font-size: 13px; }
+  .rows {
+    --label-space: 64px;
+    --plot-height: clamp(240px, 40svh, 340px);
+    position: relative;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(28px, 8vw, 48px);
+    padding: 96px 12px var(--label-space);
+    border-left: 0;
+  }
+
+  .rows::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: var(--label-space);
+    left: 0;
+    height: 1px;
+    background: rgba(86, 65, 37, 0.24);
+  }
+
+  .rail {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: var(--plot-height);
+  }
+
+  .bar {
+    width: 100%;
+    height: var(--bar-size);
+  }
+
+  .fill {
+    border-radius: 8px 8px 0 0;
+    transform: scaleY(var(--bar-progress, 1));
+    transform-origin: center bottom;
+  }
+
+  .name {
+    inset: calc(100% + 18px) 0 auto;
+    justify-content: center;
+    font-size: clamp(18px, 5vw, 23px);
+    line-height: 1.5;
+  }
+
+  .featured .name {
+    color: var(--cost-accent);
+  }
+
+  .value {
+    inset: auto 0 calc(100% + 18px);
+    flex-direction: column;
+    gap: 6px;
+    height: auto;
+  }
+
+  .value strong {
+    font-size: clamp(38px, 10.5vw, 54px);
+  }
+
+  .value > span {
+    margin-top: 0;
+    font-size: 19px;
+    line-height: 1.2;
+  }
 }

@@ -14,10 +14,8 @@
 }
 
 .copy { width: 100%; text-align: center; }
-.copy :global(.eyebrow) { justify-content: center; }
 
 .title {
-  margin-top: 22px;
   color: var(--ivory);
   font-size: clamp(36px, 4.2vw, 58px);
   line-height: 1.5;
@@ -58,7 +56,7 @@
 @media (max-width: 599px) {
   .section { padding-block: 68px; }
   .layout { gap: 34px; }
-  .title { margin-top: 20px; font-size: clamp(29px, 8vw, 43px); line-height: 1.5; }
+  .title { font-size: clamp(29px, 8vw, 43px); line-height: 1.5; }
   .lead { margin-top: 16px; font-size: 18px; }
   .description { margin-top: 17px; font-size: 14px; }
   .action { margin-top: -15px; }

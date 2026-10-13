@@ -1,62 +1,646 @@
-.section {
+.section.section {
+  min-height: 0;
+  padding-block: clamp(48px, 5vw, 68px);
   background: var(--deep-brown);
   border-block: 1px solid var(--border-gold);
 }
-.heading { text-align: center; }
-.heading :global(.eyebrow) { justify-content: center; margin-bottom: 16px; }
-.kicker { color: var(--text-light); font-size: 18px; letter-spacing: 0.06em; }
+
 .composition {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(350px, 1.35fr) minmax(0, 1fr);
   align-items: center;
-  gap: 36px;
-  margin-top: var(--section-gap);
+  gap: 0 40px;
 }
-.message { grid-column: 2; grid-row: 1; text-align: center; }
-.seal { display: inline-block; padding: 5px 13px; border: 1px solid var(--border-gold); color: var(--gold-light); font-size: 14px; letter-spacing: 0.12em; font-weight: 600; }
-.description { margin-top: 25px; color: var(--text-light); font-size: 18px; line-height: 1.85; }
-.description span, .title span { display: block; }
-.title { margin-top: 23px; font-size: clamp(32px, 3.15vw, 44px); line-height: 1.55; letter-spacing: -0.055em; }
-.emphasis { color: var(--gold-light); }
-.rule { display: block; width: 36px; height: 1px; margin: 30px auto 0; background: var(--gold); }
-.element { min-width: 0; text-align: center; }
-.broth { grid-column: 1; grid-row: 1; }
-.ingredients { grid-column: 3; grid-row: 1; }
-.imageFrame { position: relative; aspect-ratio: 1; border-radius: 50%; border: 1px solid var(--border-gold); background: var(--surface); overflow: hidden; outline: 1px solid var(--border-gold); outline-offset: 8px; }
-.imageFrame img { object-fit: cover; }
-.placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; color: var(--text-light); font-size: 16px; }
-.placeholder svg { width: 54px; height: 54px; margin-bottom: 5px; color: var(--gold-light); }
-.placeholder .photoNote { color: var(--text-muted); font-size: 12px; }
-.caption { margin-top: 29px; }
-.captionLabel { color: var(--gold-light); font-size: 12px; letter-spacing: 0.04em; font-weight: 600; white-space: normal; }
-.caption h3 { margin-top: 7px; font-size: 24px; font-weight: 700; letter-spacing: -0.035em; white-space: normal; }
-.multiply { display: none; }
-.signature { display: flex; align-items: center; gap: 24px; margin-top: var(--section-gap); color: var(--gold-light); font-size: 12px; letter-spacing: 0.04em; font-weight: 600; }
-.signature::before, .signature::after { content: ""; flex: 1; height: 1px; background: var(--border-gold); }
+
+.message {
+  grid-column: 2;
+  grid-row: 1;
+  padding-inline: 18px;
+  text-align: center;
+}
+
+.description {
+  color: var(--text-light);
+  font-size: 17px;
+  line-height: 1.75;
+  letter-spacing: -0.025em;
+}
+
+.description span,
+.title span {
+  display: block;
+}
+
+.title {
+  margin-top: 18px;
+  font-size: clamp(34px, 3.1vw, 42px);
+  line-height: 1.35;
+  letter-spacing: -0.055em;
+}
+
+.emphasis {
+  color: var(--gold-light);
+}
+
+.rule {
+  display: block;
+  width: 68px;
+  height: 1px;
+  margin: 22px auto 0;
+  background: var(--gold);
+}
+
+.rule[data-reveal] {
+  transform-origin: center;
+}
+
+.blend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 18px;
+  color: var(--gold-light);
+}
+
+.blend::before,
+.blend::after {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: var(--border-gold);
+}
+
+.blendMark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--gold) 6%, transparent);
+}
+
+.blendMark svg {
+  width: 25px;
+  height: 25px;
+}
+
+.element {
+  min-width: 0;
+  text-align: center;
+}
+
+.broth {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.ingredients {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.imageShell {
+  position: relative;
+  width: min(100%, 300px);
+  margin-inline: auto;
+}
+
+.imageFrame {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+  background: var(--surface);
+  transition: border-color 0.45s ease;
+}
+
+.imageFrame img {
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.photoOrnament {
+  position: absolute;
+  inset: -12px;
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  overflow: visible;
+  fill: none;
+  color: var(--gold-light);
+  pointer-events: none;
+}
+
+.ornamentTicks {
+  stroke: currentColor;
+  stroke-width: 0.75;
+  opacity: 0.28;
+}
+
+.ornamentArc {
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+
+.ornamentTicks,
+.ornamentArc {
+  vector-effect: non-scaling-stroke;
+}
+
+.ornamentDot {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.7;
+}
+
+.steamDecoration {
+  position: absolute;
+  top: -10%;
+  left: 25%;
+  width: 50%;
+  height: 35%;
+  overflow: visible;
+  fill: none;
+  stroke: var(--gold-light);
+  stroke-width: 1;
+  stroke-linecap: round;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.connector {
+  position: absolute;
+  top: 50%;
+  width: clamp(28px, 3.3vw, 48px);
+  height: 1px;
+  background: var(--border-gold);
+  pointer-events: none;
+}
+
+.connectorLeft {
+  left: calc(100% + 16px);
+}
+
+.connectorRight {
+  right: calc(100% + 16px);
+}
+
+.connectorLeft[data-reveal] {
+  transform-origin: left center;
+}
+
+.connectorRight[data-reveal] {
+  transform-origin: right center;
+}
+
+.connector::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: var(--deep-brown);
+}
+
+.connectorLeft::after {
+  right: 0;
+}
+
+.connectorRight::after {
+  left: 0;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--text-light);
+  font-size: 16px;
+}
+
+.placeholder svg {
+  width: 54px;
+  height: 54px;
+  margin-bottom: 5px;
+  color: var(--gold-light);
+}
+
+.placeholder .photoNote {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.caption {
+  margin-top: 18px;
+}
+
+.caption h3 {
+  font-size: 20px;
+  font-weight: 650;
+  line-height: 1.45;
+  letter-spacing: -0.035em;
+}
+
+.multiply {
+  display: none;
+}
+
+.principlesRail {
+  position: relative;
+  display: flex;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  align-items: center;
+  gap: 28px;
+  margin-top: 28px;
+  padding-block: 18px;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.railLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--border-gold);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.principles {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.principle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.principleIcon {
+  display: grid;
+  flex: 0 0 30px;
+  place-items: center;
+  color: var(--gold-light);
+}
+
+.principleIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.principleCopy {
+  min-width: 0;
+}
+
+.principleTitle {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+}
+
+.principleDescription {
+  margin-top: 3px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.55;
+  letter-spacing: -0.015em;
+}
+
+.action {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.nextLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.nextLink svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gold-light);
+  rotate: 90deg;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .imageFrame:hover {
+    border-color: var(--gold-light);
+  }
+
+  .imageFrame:hover img {
+    transform: scale(1.03);
+  }
+
+  .nextLink:hover {
+    color: var(--gold-light);
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 1000px) {
+  .composition {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 1.35fr) minmax(0, 1fr);
+    column-gap: 32px;
+  }
+
+  .message {
+    padding-inline: 8px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .connector {
+    width: 24px;
+  }
+
+  .connectorLeft {
+    left: calc(100% + 13px);
+  }
+
+  .connectorRight {
+    right: calc(100% + 13px);
+  }
+
+  .principles {
+    gap: 16px;
+  }
+
+  .principle {
+    gap: 8px;
+  }
+}
+
 @media (max-width: 999px) {
-  .composition { grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr); gap: 0 12px; max-width: 640px; margin-inline: auto; margin-top: 42px; }
-  .message { grid-column: 1 / -1; grid-row: 1; margin-bottom: 36px; }
-  .title { font-size: 40px; }
-  /* Shared rows align the circles and captions independently of text height. */
-  .element { display: grid; grid-template-rows: subgrid; grid-row: 2 / span 2; }
-  .broth { grid-column: 1; }
-  .ingredients { grid-column: 3; }
-  .multiply { display: block; grid-column: 2; grid-row: 2; align-self: center; text-align: center; color: var(--gold-light); font-size: 32px; font-weight: 300; line-height: 1; }
+  .composition {
+    grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr);
+    gap: 0 16px;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .message {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    margin-bottom: 32px;
+    padding-inline: 0;
+  }
+
+  .title {
+    font-size: 38px;
+  }
+
+  .blend,
+  .connector {
+    display: none;
+  }
+
+  /* Shared image and caption rows keep both circles aligned. */
+  .element {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: 2 / span 2;
+  }
+
+  .broth {
+    grid-column: 1;
+  }
+
+  .ingredients {
+    grid-column: 3;
+  }
+
+  .multiply {
+    display: grid;
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-gold);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--gold) 6%, transparent);
+    color: var(--gold-light);
+  }
+
+  .multiply svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .principlesRail {
+    grid-row: 4;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 26px;
+    padding-block: 18px 8px;
+  }
+
+  .principles {
+    width: 100%;
+    gap: 20px;
+  }
+
+  .principle {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .principleIcon {
+    flex-basis: auto;
+    height: 26px;
+  }
+
+  .action {
+    margin-top: 12px;
+  }
 }
+
+/* Keep the compact three-part composition on tablets with room for the copy. */
+@media (min-width: 768px) and (max-width: 999px) {
+  .composition {
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 1.45fr) minmax(0, 1fr);
+    column-gap: 24px;
+  }
+
+  .message {
+    grid-column: 2;
+    margin-bottom: 0;
+    padding-inline: 12px;
+  }
+
+  .description { font-size: 15px; }
+  .title { font-size: clamp(29px, 3.8vw, 36px); }
+  .blend { display: flex; }
+  .element { display: block; grid-row: 1; }
+  .caption h3 { font-size: 17px; }
+  .multiply { display: none; }
+
+  .principlesRail {
+    grid-row: 2;
+    flex-direction: row;
+    gap: 20px;
+    padding-block: 16px;
+  }
+
+  .principles { gap: 14px; }
+  .principle { flex-direction: row; gap: 8px; text-align: left; }
+  .principleIcon { flex: 0 0 24px; }
+  .principleTitle { font-size: 15px; }
+  .principleDescription { font-size: 12px; }
+  .action { margin-top: 0; }
+}
+
 @media (max-width: 599px) {
-  .kicker { font-size: 16px; }
-  .composition { grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr); column-gap: 10px; margin-top: 30px; }
-  .message { margin-bottom: 38px; }
-  .description { font-size: 16px; margin-top: 20px; }
-  .title { font-size: clamp(29px, 7.8vw, 38px); margin-top: 20px; }
-  .rule { margin-top: 24px; }
-  .imageFrame { outline-offset: 5px; }
-  .placeholder { gap: 4px; font-size: 14px; }
-  .placeholder svg { width: 36px; height: 36px; margin: 0; }
-  .placeholder .photoNote { font-size: 12px; }
-  .caption { margin-top: 20px; }
-  .caption h3 { margin-top: 8px; font-size: 18px; line-height: 1.5; white-space: normal; }
-  .captionLabel { line-height: 1.4; }
-  .multiply { font-size: 25px; }
-  .signature { margin-top: 42px; gap: 16px; }
+  .section.section {
+    padding-block: 44px;
+  }
+
+  .composition {
+    grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+    column-gap: 10px;
+  }
+
+  .message {
+    margin-bottom: 28px;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .title {
+    margin-top: 16px;
+    font-size: clamp(29px, 8.2vw, 34px);
+  }
+
+  .rule {
+    width: 56px;
+    margin-top: 18px;
+  }
+
+  .photoOrnament {
+    inset: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+  }
+
+  .placeholder {
+    gap: 4px;
+    font-size: 13px;
+  }
+
+  .placeholder svg {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+  }
+
+  .placeholder .photoNote {
+    font-size: 11px;
+  }
+
+  .caption {
+    margin-top: 16px;
+  }
+
+  .caption h3 {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .multiply {
+    width: 32px;
+    height: 32px;
+  }
+
+  .multiply svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .principlesRail {
+    margin-top: 24px;
+    padding-top: 16px;
+  }
+
+  .principles {
+    gap: 10px;
+  }
+
+  .principleTitle {
+    font-size: 15px;
+  }
+
+  .principleDescription {
+    font-size: 12px;
+    line-height: 1.55;
+    text-wrap: balance;
+  }
+
+  .action {
+    margin-top: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .composition [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .composition [data-ornament] {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+
+  .composition .steamDecoration[data-reveal] {
+    opacity: 0.35 !important;
+  }
+
+  .imageFrame,
+  .imageFrame img,
+  .nextLink {
+    transition: none;
+  }
+
+  .imageFrame:hover img {
+    transform: none;
+  }
 }

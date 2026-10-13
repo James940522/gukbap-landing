@@ -30,6 +30,7 @@ export function MenuOrbitSection() {
         let geometry: OrbitGeometry = { radiusX: 0, radiusY: 0 };
         let frame = 0;
         let reservedBottom = -1;
+        let reservedCopyHeight = -1;
 
         // CSS sticky supplies the pin; ScrollTrigger only scrubs the transforms.
         if (!reducedMotion) section.dataset.orbitAnimated = "true";
@@ -78,6 +79,11 @@ export function MenuOrbitSection() {
             reservedBottom = bottom;
             section.style.setProperty("--orbit-bottom", `${bottom}px`);
           }
+          const copyHeight = Math.ceil(Math.max(...statements.map((statement) => statement.offsetHeight)));
+          if (copyHeight !== reservedCopyHeight) {
+            reservedCopyHeight = copyHeight;
+            section.style.setProperty("--orbit-copy-height", `${copyHeight}px`);
+          }
           const safeHeight = visual.clientHeight - parseFloat(getComputedStyle(visual).paddingTop) - bottom;
           section.dataset.orbitCompact = String(safeHeight < 320);
           const edge = parseFloat(getComputedStyle(stage).getPropertyValue("--orbit-edge")) || 8;
@@ -90,7 +96,7 @@ export function MenuOrbitSection() {
             compact,
             narrow: window.matchMedia("(max-width: 599px)").matches,
             clearanceY: !compact
-              ? Math.max(...statements.map((statement) => statement.offsetHeight)) / 2 + size / 2 + 8
+              ? copyHeight / 2 + size / 2 + 8
               : 0,
           };
           render();
@@ -155,6 +161,7 @@ export function MenuOrbitSection() {
           delete section.dataset.orbitActive;
           delete section.dataset.orbitCompact;
           section.style.removeProperty("--orbit-bottom");
+          section.style.removeProperty("--orbit-copy-height");
           bowls.forEach((bowl) => { bowl.style.removeProperty("will-change"); });
         };
       });
@@ -168,7 +175,6 @@ export function MenuOrbitSection() {
     <section ref={sectionRef} id="menu-orbit" className={styles.section} aria-labelledby="menu-orbit-title">
       <h2 id="menu-orbit-title" className="sr-only">한 그릇에 담은 뚝손의 맛</h2>
       <div ref={visualRef} className={styles.visual}>
-        <p className={styles.eyebrow}>DDUKSON · ONE BOWL, FULL OF FLAVOR</p>
         <div className={styles.composition}>
           <div ref={stageRef} className={styles.stage}>
             {menuOrbitItems.map((item) => (
@@ -181,8 +187,6 @@ export function MenuOrbitSection() {
                   "--orbit-y": Math.sin(item.angle * Math.PI / 180).toFixed(6),
                   "--orbit-y-absolute": Math.abs(Math.sin(item.angle * Math.PI / 180)).toFixed(6),
                   "--orbit-y-sign": Math.sign(Math.sin(item.angle * Math.PI / 180)),
-                  "--compact-x": (item.compactPosition.x * Math.SQRT1_2).toFixed(6),
-                  "--compact-y": (item.compactPosition.y * Math.SQRT1_2).toFixed(6),
                 } as CSSProperties}
               >
                 <Image
@@ -197,9 +201,12 @@ export function MenuOrbitSection() {
           </div>
           <div className={styles.copy}>
             {menuOrbitCopy.map((item) => (
-              <p key={item.id} data-orbit-copy={item.id} className={styles.statement}>
-                {item.lines.map((line) => <span key={line}>{line}</span>)}
-              </p>
+              <div key={item.id} data-orbit-copy={item.id} className={styles.benefit}>
+                <h3 className={styles.statement} aria-label={item.lines.join(" ")}>
+                  {item.lines.map((line) => <span key={line}>{line}</span>)}
+                </h3>
+                <p className={styles.description}>{item.description}</p>
+              </div>
             ))}
           </div>
         </div>

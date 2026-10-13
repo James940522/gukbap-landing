@@ -9,14 +9,37 @@
   background: #211810;
 }
 
-.section::before {
+.background {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--gold) 5%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--gold) 5%, transparent) 1px, transparent 1px);
-  background-size: 88px 88px;
+  pointer-events: none;
+}
+
+.background picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.background::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(22, 17, 13, 0.32) 0%,
+    rgba(22, 17, 13, 0.24) 45%,
+    rgba(22, 17, 13, 0.42) 100%
+  );
   content: "";
 }
 
@@ -38,16 +61,7 @@
   min-width: 0;
 }
 
-.eyebrow,
-.stepLabel {
-  color: var(--gold-light);
-  font-size: 12px;
-  font-weight: 750;
-  letter-spacing: 0;
-}
-
 .section h2 {
-  margin-top: 20px;
   font-size: 52px;
   font-weight: 800;
   line-height: 1.2;
@@ -93,7 +107,7 @@
 }
 
 .signals dt {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 12px;
 }
 
@@ -121,13 +135,15 @@
   transition: transform 0.3s ease;
 }
 
-.inquiryLink:hover svg {
-  transform: translateX(4px);
+.inquiryLink:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 6px;
+  border-radius: 2px;
 }
 
 .supportCopy {
   margin-top: 6px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 14px;
 }
 
@@ -145,31 +161,58 @@
 }
 
 .card {
+  position: relative;
   display: flex;
   height: 100%;
   flex-direction: column;
   padding: 24px;
   overflow: hidden;
-  border: 1px solid var(--border-gold);
+  border: 2px solid color-mix(in srgb, var(--gold) 66%, transparent);
   border-radius: 8px;
-  background: #2a2119;
-  transition: border-color 0.3s ease;
+  background: rgba(36, 27, 21, 0.88);
+  transition: border-color 0.4s ease, background-color 0.4s ease;
 }
 
-.card:hover {
-  border-color: var(--gold);
+.stepAccent {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  width: 64px;
+  height: 3px;
+  background: var(--gold-light);
+  transform-origin: left;
 }
 
 .cardHeading {
   display: flex;
-  min-height: 96px;
+  min-height: 68px;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
 }
 
+.cardHeading h3 {
+  min-width: 0;
+}
+
+.stepNumber {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--gold-light) 58%, transparent);
+  border-radius: 4px;
+  color: var(--gold-light);
+  font-size: 15px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
 .section h3 {
-  margin-top: 8px;
   font-size: 24px;
   font-weight: 800;
   line-height: 1.4;
@@ -194,15 +237,26 @@
   transition: transform 0.5s ease;
 }
 
-.card:hover .image {
-  transform: scale(calc(var(--roadmap-image-scale, 1) * 1.03));
-}
-
 .description {
   margin-top: 20px;
   color: var(--text-light);
   font-size: 16px;
   line-height: 1.85;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    border-color: var(--gold-light);
+    background-color: rgba(44, 33, 24, 0.93);
+  }
+
+  .card:hover .image {
+    transform: scale(calc(var(--roadmap-image-scale, 1) * 1.03));
+  }
+
+  .inquiryLink:hover svg {
+    transform: translateX(4px);
+  }
 }
 
 @media (max-width: 1023px) {
@@ -235,8 +289,8 @@
     padding-block: 64px;
   }
 
-  .section::before {
-    opacity: 0.5;
+  .backgroundImage {
+    object-position: left center;
   }
 
   .container {
@@ -249,7 +303,6 @@
   }
 
   .section h2 {
-    margin-top: 16px;
     font-size: 34px;
     line-height: 1.3;
   }
@@ -268,8 +321,19 @@
     padding: 22px;
   }
 
+  .stepAccent {
+    left: 22px;
+    width: 56px;
+  }
+
+  .stepNumber {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
   .cardHeading {
-    min-height: 72px;
+    min-height: 56px;
   }
 
   .imageSlot {
@@ -277,7 +341,12 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), print {
+  .section [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   .card,
   .image,
   .inquiryLink svg {

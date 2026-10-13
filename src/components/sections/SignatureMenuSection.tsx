@@ -1,6 +1,5 @@
 import { MenuGallery } from "@/components/ui/MenuGallery";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { SectionBackground } from "@/components/ui/SectionBackground";
 
 export function SignatureMenuSection() {
@@ -14,7 +13,6 @@ export function SignatureMenuSection() {
       <div className="container">
         <div className="section-heading menu-heading">
           <Reveal>
-            <SectionEyebrow>뚝손의 메뉴</SectionEyebrow>
             <h2 id="menu-title" className="section-title">
               가장 자신 있는
               <br />

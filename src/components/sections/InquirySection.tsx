@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { InquiryForm } from "@/components/ui/InquiryForm";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { brand } from "@/data/site";
 import typography from "./SectionTypography.module.css";
@@ -18,7 +17,6 @@ export function InquirySection() {
       </div>
       <div className={`container inquiry-grid ${typography.content}`}>
         <Reveal effect="from-left" className="inquiry-copy">
-          <SectionEyebrow>뚝손과 함께 시작</SectionEyebrow>
           <h2 id="inquiry-title" className="section-title display-font">
             뚝손국밥과
             <br />

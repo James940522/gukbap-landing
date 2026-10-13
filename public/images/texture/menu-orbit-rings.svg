@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360" fill="none">
+  <defs>
+    <g id="wide-rim" stroke="#b89348" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-147 1C-149-77-91-139-5-141C81-144 145-83 147-5C150 77 88 140 4 142C-80 145-145 82-147 1Z" stroke-width="1.2" stroke-opacity=".16"/>
+      <path d="M-134 2C-137-68-82-126-4-128C74-130 132-76 134-5C137 69 81 126 3 129C-74 131-133 75-134 2Z" stroke-width=".9" stroke-opacity=".13"/>
+      <path d="M-121 2C-123-62-74-113-3-115C68-117 119-68 121-4C123 61 73 113 2 115C-67 117-119 67-121 2Z" stroke-width="1" stroke-opacity=".17"/>
+      <path d="M-107 1C-109-54-65-100-3-101C60-103 105-60 107-4C109 55 64 101 2 102C-59 104-105 61-107 1Z" stroke-width=".8" stroke-opacity=".12"/>
+    </g>
+    <g id="small-rim" stroke="#b89348" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-82 0C-83-42-48-76-1-78C47-80 82-46 83-2C85 42 49 78 1 79C-47 80-81 46-82 0Z" stroke-width="1" stroke-opacity=".15"/>
+      <path d="M-70 0C-71-36-41-64-1-66C40-68 69-39 70-2C72 36 42 66 1 67C-40 68-69 39-70 0Z" stroke-width=".8" stroke-opacity=".12"/>
+      <path d="M-58 0C-59-30-34-53-1-54C33-56 57-32 58-2C60 30 35 54 1 55C-33 56-57 32-58 0Z" stroke-width=".9" stroke-opacity=".16"/>
+    </g>
+  </defs>
+  <!-- Matching copies continue each rim across the tile boundaries. -->
+  <use href="#wide-rim" transform="translate(42 64) rotate(-9)"/>
+  <use href="#wide-rim" transform="translate(402 64) rotate(-9)"/>
+  <use href="#wide-rim" transform="translate(42 424) rotate(-9)"/>
+  <use href="#wide-rim" transform="translate(402 424) rotate(-9)"/>
+  <use href="#small-rim" transform="translate(266 260) rotate(14)"/>
+</svg>

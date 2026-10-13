@@ -1,13 +1,13 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import { costComparison } from "@/data/costComparison";
 import styles from "./CostRatioChart.module.css";
 
 export function CostRatioChart() {
   const chartRef = useRef<HTMLElement>(null);
-  const entered = useInView(chartRef, { once: true, amount: 0.65 });
+  const entered = useInView(chartRef, { once: true, amount: 0.35 });
   const reducedMotion = useReducedMotion();
   const [finishedBars, setFinishedBars] = useState<string[]>([]);
   const showValues = reducedMotion || finishedBars.length === costComparison.length;
@@ -29,18 +29,26 @@ export function CostRatioChart() {
             className={`${styles.row} ${item.featured ? styles.featured : ""}`}
           >
             <div className={styles.rail}>
-              <div className={styles.bar} style={{ width: item.relativeWidth }}>
+              <div
+                className={styles.bar}
+                style={{ "--bar-size": item.relativeWidth } as CSSProperties}
+              >
                 <motion.div
                   className={styles.fill}
-                  data-reveal="line"
+                  data-reveal="cost-bar"
                   data-cost-bar={item.id}
                   initial="empty"
                   animate={fillBars ? "filled" : "empty"}
-                  variants={{ empty: { scaleX: 0 }, filled: { scaleX: 1 } }}
+                  // CSS chooses the growth axis without changing the animation
+                  // or restarting it when the viewport crosses the breakpoint.
+                  variants={{
+                    empty: { "--bar-progress": 0 },
+                    filled: { "--bar-progress": 1 },
+                  }}
                   transition={{
                     type: "tween",
-                    duration: reducedMotion ? 0 : 1.2,
-                    delay: reducedMotion ? 0 : index * 0.16,
+                    duration: reducedMotion ? 0 : 1.6,
+                    delay: reducedMotion ? 0 : index * 0.18,
                     ease: [0.22, 0.61, 0.36, 1],
                   }}
                   onAnimationComplete={(definition) => {
@@ -56,7 +64,7 @@ export function CostRatioChart() {
                   data-reveal="fade"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: fillBars ? 1 : 0 }}
-                  transition={{ duration: reducedMotion ? 0 : 0.4, delay: reducedMotion ? 0 : 0.6 + index * 0.16 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.4, delay: reducedMotion ? 0 : 0.8 + index * 0.18 }}
                 >
                   {item.label}
                 </motion.span>

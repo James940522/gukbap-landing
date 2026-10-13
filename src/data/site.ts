@@ -66,6 +66,11 @@ export const nurungjiFeature = {
 export const brothFeature = {
   description: ['뚝손국밥만의 특별한 전용육수와', '엄선된 재료로'],
   title: ['원팩만큼 쉽지만,', '제대로 끓여낸', '한 그릇의 힘.'],
+  principles: [
+    { id: 'depth', title: '깊은 맛', description: '한 숟갈의 깊이' },
+    { id: 'care', title: '손맛', description: '뚝배기에 담은 정성' },
+    { id: 'warmth', title: '든든함', description: '한 끼를 제대로.' },
+  ],
   elements: [
     {
       id: 'broth',

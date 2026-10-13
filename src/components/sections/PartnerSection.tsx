@@ -47,17 +47,7 @@ export function PartnerSection() {
       <SectionBackground name="partners" />
       <div className={styles.backgroundRings} aria-hidden="true" />
       <div className={`container ${styles.content}`}>
-        <Reveal effect="fade" className={styles.masthead}>
-          <span>뚝손국밥</span>
-          <span>사람과 사람, 한 그릇으로 잇다.</span>
-        </Reveal>
-
         <div className={styles.heading}>
-          <Reveal effect="fade" className={styles.eyebrow}>
-            <span aria-hidden="true" />
-            함께할 점주님
-            <span aria-hidden="true" />
-          </Reveal>
           <Reveal as="h2" id="partners-title" delay={0.08} className={`section-title ${styles.title}`}>
             이런 점주님과<br />
             <span>함께하고 싶습니다.</span>

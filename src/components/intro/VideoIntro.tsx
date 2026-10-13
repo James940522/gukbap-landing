@@ -59,11 +59,28 @@ function VideoIntroPlayer({ onComplete }: { onComplete: () => void }) {
       rootOverflow: root.style.overflow,
       bodyOverflow: body.style.overflow,
       gutter: root.style.scrollbarGutter,
+      scrollRestoration: window.history.scrollRestoration,
     };
     const previousFocus = document.activeElement;
+    // Start at the hero even on reloads, history navigation or anchor URLs.
+    window.history.scrollRestoration = "manual";
+    const resetScroll = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    };
+    const keepScrollAtTop = () => {
+      if (window.scrollX !== 0 || window.scrollY !== 0) resetScroll();
+    };
+    resetScroll();
     root.style.scrollbarGutter = "stable";
     root.style.overflow = "hidden";
     body.style.overflow = "hidden";
+
+    // Block input without changing the page geometry used by scroll animations.
+    const preventScroll = (event: Event) => event.preventDefault();
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("scroll", keepScrollAtTop, { passive: true });
+    window.addEventListener("pageshow", resetScroll);
 
     const syncViewport = () => {
       if (overlay) overlay.style.width = `${window.innerWidth}px`;
@@ -79,9 +96,12 @@ function VideoIntroPlayer({ onComplete }: { onComplete: () => void }) {
     overlay?.focus({ preventScroll: true });
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
-      event.preventDefault();
-      reveal();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        reveal();
+      } else if ([" ", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "PageUp", "PageDown", "Home", "End"].includes(event.key)) {
+        event.preventDefault();
+      }
     };
     document.addEventListener("keydown", handleKeyDown);
 
@@ -89,6 +109,12 @@ function VideoIntroPlayer({ onComplete }: { onComplete: () => void }) {
       root.style.overflow = previous.rootOverflow;
       body.style.overflow = previous.bodyOverflow;
       root.style.scrollbarGutter = previous.gutter;
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("scroll", keepScrollAtTop);
+      window.removeEventListener("pageshow", resetScroll);
+      resetScroll();
+      window.history.scrollRestoration = previous.scrollRestoration;
       for (const { element, inert } of siblings) element.inert = inert;
       window.removeEventListener("resize", syncViewport);
       document.removeEventListener("keydown", handleKeyDown);

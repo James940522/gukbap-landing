@@ -55,9 +55,9 @@ export const sectionBackgrounds = {
   },
   territory: {
     image: "territory-contours",
-    opacity: 0.72,
-    mobileOpacity: 0.4,
-    position: "center",
+    opacity: 0.56,
+    mobileOpacity: 0.32,
+    position: "60% center",
     mobilePosition: "72% center",
   },
   franchise: {

@@ -16,7 +16,6 @@ export function GateHeroSection() {
           </>
         )}
       >
-        <p className={styles.eyebrow}>{brand.hero.eyebrow}</p>
         <h1 id="hero-title" className={styles.title}>
           <Image src={brandLogo} alt={brand.name} className={styles.logo} sizes="(max-width: 599px) 226px, (max-width: 899px) 38vw, (max-width: 1500px) 28vw, 420px" priority />
         </h1>

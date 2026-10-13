@@ -2,7 +2,6 @@ import { ArrowIcon } from "@/components/ui/Icons";
 import { CookingWheel } from "@/components/ui/CookingWheel";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionBackground } from "@/components/ui/SectionBackground";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { cooking } from "@/data/cooking";
 import styles from "./CookingSystemSection.module.css";
 
@@ -16,7 +15,6 @@ export function CookingSystemSection() {
       <SectionBackground name="cooking" />
       <div className={`container ${styles.layout}`}>
         <div className={styles.copy}>
-          <Reveal effect="fade"><SectionEyebrow>{cooking.eyebrow}</SectionEyebrow></Reveal>
           <h2 id="cooking-system-title" className={`display-font ${styles.title}`}>
             <Reveal as="span">{cooking.title}</Reveal>{" "}
             <Reveal as="span" delay={0.12} className={styles.highlight}>{cooking.highlight}</Reveal>

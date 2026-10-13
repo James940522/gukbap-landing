@@ -291,51 +291,6 @@
   transform: translateX(4px);
 }
 
-.categories {
-  margin-top: 30px;
-  border-block: 1px solid var(--border-gold);
-}
-
-.categories > ul {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 0;
-  padding: 18px 0;
-  list-style: none;
-}
-
-.categories li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding-inline: 16px;
-  border-left: 1px solid var(--border-gold);
-}
-
-.categories li:first-child {
-  border-left: 0;
-}
-
-.categoryIcon {
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
-  color: var(--gold-light);
-}
-
-.categories h3 {
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-.categories li p {
-  margin-top: 4px;
-  color: var(--text-muted);
-  font-size: 12px;
-  line-height: 1.7;
-}
-
 .footnote {
   margin-top: 14px;
   color: var(--text-muted);
@@ -347,8 +302,6 @@
 @media (max-width: 1099px) {
   .table { gap: 20px; grid-template-columns: 1.2fr 1fr; }
   .suggestions { padding: 24px; }
-  .categories li { gap: 10px; padding-inline: 10px; }
-  .categoryIcon { width: 34px; height: 34px; }
 }
 
 @media (max-width: 899px) {
@@ -361,10 +314,6 @@
   .dishes { max-width: 402px; margin-inline: auto; }
   .suggestionHeading > h3 { font-size: 24px; }
   .description { min-height: 3.6em; }
-  .categories > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 0; }
-  .categories li { justify-content: start; padding-inline: 24px; }
-  .categories li:nth-child(odd) { border-left: 0; }
-  .categoryIcon { width: 40px; height: 40px; }
 }
 
 @media (max-width: 599px) {
@@ -386,13 +335,6 @@
   .plus { right: -20px; width: 20px; }
   .selectionTitle { font-size: 18px; }
   .description { min-height: 5.4em; font-size: 15px; }
-  .categories { margin-top: 24px; }
-  .categories > ul { padding-block: 20px; gap: 20px 0; }
-  .categories li { padding-inline: 12px; gap: 8px; }
-  .categories li:nth-child(odd) { padding-left: 0; }
-  .categoryIcon { width: 30px; height: 30px; }
-  .categories h3 { font-size: 15px; }
-  .categories li p { font-size: 11px; }
   .footnote { text-align: left; font-size: 11px; }
 }
 
