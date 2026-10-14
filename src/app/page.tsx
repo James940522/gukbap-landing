@@ -9,10 +9,11 @@ import { FeaturedMenuSection } from "@/components/sections/FeaturedMenuSection";
 import { MenuOrbitSection } from "@/components/sections/MenuOrbitSection/MenuOrbitSection";
 import { PairingSection } from "@/components/sections/PairingSection";
 import { WhyDduksonSection } from "@/components/sections/WhyDduksonSection";
-import { FranchiseSection } from "@/components/sections/FranchiseSection";
 import { TerritorySection } from "@/components/sections/TerritorySection";
 import { InquirySection } from "@/components/sections/InquirySection";
+import { StoreMapSection } from "@/components/sections/StoreMapSection";
 import { StartupBenefitsSection } from "@/components/sections/StartupBenefitsSection";
+import { FranchiseProcessSection } from "@/components/sections/FranchiseProcessSection";
 import { LandscapeSection } from "@/components/sections/LandscapeSection";
 import { PartnerSection } from "@/components/sections/PartnerSection";
 import { CostRatioSection } from "@/components/sections/CostRatioSection";
@@ -45,9 +46,10 @@ export default function Home() {
         <CostRatioSection />
         <ProfitStructureSection />
         <SuccessRoadmapSection />
-        <FranchiseSection />
         <PartnerSection />
         <StartupBenefitsSection />
+        <FranchiseProcessSection />
+        <StoreMapSection />
         <InquirySection />
       </main>
       <Footer />

@@ -1,5 +1,6 @@
 type BackgroundPlacement = {
   image: string;
+  mobileImage?: string;
   opacity: number;
   mobileOpacity: number;
   position?: string;
@@ -68,9 +69,12 @@ export const sectionBackgrounds = {
     mobilePosition: "76% center",
   },
   cost: {
-    image: "warm-hanji",
-    opacity: 0.88,
-    mobileOpacity: 0.56,
+    image: "cost-ingredients",
+    mobileImage: "cost-ingredients-mobile",
+    opacity: 1,
+    mobileOpacity: 1,
+    position: "right center",
+    mobilePosition: "center",
   },
   partners: {
     image: "warm-hanji",

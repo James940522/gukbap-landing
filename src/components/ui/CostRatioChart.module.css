@@ -14,7 +14,7 @@
 
 .row {
   min-width: 0;
-  color: #756e61;
+  color: #655d51;
 }
 
 .featured {
@@ -34,9 +34,9 @@
 .fill {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(117, 110, 97, 0.1);
+  border: 1px solid rgba(86, 65, 37, 0.18);
   border-radius: 0 8px 8px 0;
-  background: #faf7ef;
+  background: #807667;
   transform: scaleX(var(--bar-progress, 1));
   transform-origin: left center;
 }
@@ -52,13 +52,10 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  color: #fff7ed;
   white-space: nowrap;
   font-size: 25px;
   font-weight: 650;
-}
-
-.featured .name {
-  color: #fff7ed;
 }
 
 .value {
@@ -103,7 +100,7 @@
 
   .rows {
     --label-space: 64px;
-    --plot-height: clamp(240px, 40svh, 340px);
+    --plot-height: var(--cost-plot-height, clamp(240px, 40svh, 340px));
     position: relative;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(28px, 8vw, 48px);
@@ -142,6 +139,7 @@
   .name {
     inset: calc(100% + 18px) 0 auto;
     justify-content: center;
+    color: #655d51;
     font-size: clamp(18px, 5vw, 23px);
     line-height: 1.5;
   }

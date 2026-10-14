@@ -1,0 +1,114 @@
+.section {
+  border-top: 1px solid var(--border-subtle);
+  background: var(--background);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.4fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: stretch;
+}
+
+.sidebar { min-width: 0; }
+.heading { margin-bottom: 30px; }
+.eyebrow { margin-bottom: 16px; letter-spacing: 0.14em; }
+.title { font-size: clamp(30px, 2.6vw, 38px); line-height: 1.5; }
+.introduction { margin-top: 16px; color: var(--text-muted); font-size: 15px; line-height: 1.8; }
+.search { margin-bottom: 22px; }
+.searchLabel { display: block; margin-bottom: 10px; font-size: 13px; color: var(--text-muted); }
+.searchField { display: flex; align-items: center; min-height: 54px; border: 1px solid var(--control-border); border-radius: 6px; background: var(--input-background); }
+.searchField > svg { width: 20px; height: 20px; margin-left: 16px; flex-shrink: 0; color: var(--accent-text); }
+.searchField input { width: 100%; min-width: 0; padding: 15px 12px; border: 0; background: transparent; font: inherit; font-size: 15px; color: var(--text-primary); }
+.searchField input::placeholder { color: var(--text-muted); opacity: 1; }
+.searchField input::-webkit-search-cancel-button { appearance: none; }
+.searchField input:focus-visible { outline: none; }
+.searchField:focus-within { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+.clearSearch { flex-shrink: 0; width: 44px; height: 44px; border: 0; background: transparent; color: var(--text-muted); font-size: 25px; cursor: pointer; }
+.resultsSummary { margin-bottom: 12px; color: var(--text-muted); font-size: 13px; }
+.resultsSummary strong { color: var(--accent-text); font-weight: 650; }
+.listPanel { min-height: 270px; max-height: 360px; overflow-y: auto; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); scrollbar-width: thin; scrollbar-color: var(--gold-dark) transparent; }
+.listPanel::-webkit-scrollbar { display: block; width: 3px; }
+.listPanel::-webkit-scrollbar-thumb { background: var(--gold-dark); }
+.storeList { margin: 0; padding: 0; list-style: none; }
+.storeItem { padding: 18px 16px; border-bottom: 1px solid var(--border-subtle); border-left: 2px solid transparent; transition: background-color 0.2s, border-color 0.2s; }
+.storeItem:last-child { border-bottom: 0; }
+.storeSelected { background: var(--accent-tint); border-left-color: var(--gold); }
+.storeTopline { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--accent-text); font-size: 12px; }
+.coordinateNote { color: var(--text-muted); font-size: 11px; }
+.storeSelect { display: flex; justify-content: space-between; align-items: center; gap: 16px; width: 100%; min-height: 44px; padding: 3px 0; background: transparent; color: var(--ivory); border: 0; font: inherit; font-size: 20px; font-weight: 650; text-align: left; cursor: pointer; }
+.storeSelect svg { flex-shrink: 0; width: 18px; height: 18px; color: var(--accent-text); transition: transform 0.2s; }
+.storeName { min-width: 0; word-break: normal; overflow-wrap: anywhere; }
+.storeSelect:hover svg { transform: translateX(3px); }
+.address { color: var(--text-muted); font-size: 14px; line-height: 1.7; word-break: normal; overflow-wrap: anywhere; }
+.storeActions, .cardActions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; column-gap: 16px; }
+.storeActions { margin-top: 6px; }
+.phone { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; color: var(--text-primary); font-size: 13px; overflow-wrap: anywhere; }
+a.phone:hover { color: var(--accent-text); }
+.directions { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; margin-left: auto; color: var(--accent-text); font-size: 13px; font-weight: 650; }
+.directions svg { width: 16px; height: 16px; }
+.directions:hover { color: var(--ivory); }
+.empty { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 270px; padding: 28px 16px; gap: 10px; }
+.empty p { font-size: 16px; color: var(--ivory); }
+.empty > span { color: var(--text-muted); font-size: 13px; line-height: 1.7; }
+.empty .statusMark { color: var(--gold); letter-spacing: 5px; font-size: 24px; }
+.retry { margin-top: 8px; min-height: 44px; padding-inline: 18px; font-size: 13px; }
+.locationNotice { margin-top: 12px; color: var(--text-muted); font-size: 12px; line-height: 1.7; }
+.tabs, .backToList { display: none; }
+.mapPanel { position: relative; min-width: 0; min-height: 680px; overflow: hidden; border: 1px solid var(--border-gold); border-radius: 8px; background: var(--surface); color-scheme: light; }
+.mapCanvas { position: absolute; inset: 0; }
+.mapState { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; gap: 14px; color: var(--text-muted); background: var(--surface); font-size: 14px; text-align: center; }
+.mapState .mapStateTitle { margin-top: 4px; color: var(--ivory); font-size: 18px; }
+.mapNotice { position: absolute; z-index: 3; inset: 22px 22px auto; padding: 12px 16px; border: 1px solid var(--border-gold); border-radius: 6px; background: var(--surface); color: var(--text-primary); font-size: 13px; text-align: center; }
+.selectedCard { position: absolute; z-index: 5; bottom: 24px; left: 24px; right: 24px; max-width: 400px; padding: 16px 20px 20px; border: 1px solid var(--border-gold); border-radius: 6px; background: var(--surface); color: var(--text-primary); color-scheme: dark; }
+.cardTopline { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 32px; }
+.closeCard { width: 44px; height: 44px; margin: -8px -10px -4px 0; background: transparent; border: 0; color: var(--text-muted); font-size: 25px; cursor: pointer; }
+.selectedCard h3 { margin-bottom: 6px; color: var(--ivory); font-size: 22px; word-break: normal; overflow-wrap: anywhere; }
+.cardActions { margin-top: 16px; }
+.cardDirections { min-height: 44px; padding-inline: 17px; gap: 16px; margin-left: auto; font-size: 14px; }
+.cardLocationNote { margin-top: 6px; color: var(--accent-text); font-size: 12px; }
+.pin { position: relative; display: flex; align-items: center; justify-content: center; width: 64px; height: 44px; padding: 5px; border: 2px solid var(--gold); border-radius: 6px; background: var(--deep-brown); cursor: pointer; box-shadow: 0 2px 4px rgb(17 17 15 / 20%); }
+.pin::after { content: ""; position: absolute; bottom: -7px; left: calc(50% - 6px); width: 10px; height: 10px; border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold); background: var(--deep-brown); transform: rotate(45deg); }
+.pin img { display: block; width: 48px; height: 20px; object-fit: contain; }
+.pinSelected { border-color: var(--gold-light); background: var(--main-black); outline: 2px solid var(--ivory); outline-offset: 3px; }
+.pinSelected::after { border-color: var(--gold-light); background: var(--main-black); }
+.pin:focus-visible { outline: 3px solid var(--ivory); outline-offset: 4px; }
+.storeSelect, .selectedCard h3 { word-break: normal; overflow-wrap: anywhere; }
+
+@media (max-width: 1099px) and (min-width: 900px) {
+  .layout { grid-template-columns: minmax(285px, 0.9fr) minmax(0, 1.2fr); gap: 28px; }
+  .title { font-size: 30px; }
+  .mapPanel { min-height: 660px; }
+}
+
+@media (max-width: 899px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .heading { margin-bottom: 28px; }
+  .title { font-size: clamp(30px, 4.2vw, 38px); }
+  .introduction { margin-top: 14px; }
+  .desktopBreak { display: none; }
+  .search { margin-bottom: 20px; }
+  .tabs { display: flex; margin-bottom: 17px; border-bottom: 1px solid var(--border-gold); }
+  .tabs button { flex: 1; min-height: 48px; padding: 12px 16px; border: 0; border-bottom: 2px solid transparent; background: transparent; font: inherit; color: var(--text-muted); font-size: 14px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { border-bottom-color: var(--gold); color: var(--accent-text); background: var(--accent-tint); }
+  .listPanel { min-height: 340px; max-height: 440px; }
+  .mobileHidden { display: none; }
+  .resultsSummary { margin-bottom: 12px; }
+  .locationNotice { margin-top: 10px; margin-bottom: 12px; }
+  .mapPanel { min-height: 480px; height: min(70svh, 620px); margin-top: 3px; }
+  .backToList { position: absolute; z-index: 6; top: 16px; left: 16px; display: inline-flex; align-items: center; min-height: 44px; padding: 10px 15px; background: var(--surface); border: 1px solid var(--border-gold); border-radius: 6px; color: var(--text-primary); font: inherit; font-size: 13px; cursor: pointer; }
+  .selectedCard { bottom: 16px; left: 16px; right: 16px; }
+  .mapNotice { top: 76px; inset-inline: 16px; }
+}
+
+@media (max-width: 499px) {
+  .storeItem { padding-inline: 12px; }
+  .selectedCard { padding: 14px 16px 16px; }
+  .selectedCard h3 { font-size: 20px; }
+  .mapPanel { min-height: 460px; }
+  .mapState { padding: 28px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .storeItem, .storeSelect svg { transition: none; }
+}

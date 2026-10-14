@@ -1,0 +1,329 @@
+.section {
+  --heading-color: var(--ivory);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: 88px;
+  color: var(--text-light);
+  background: color-mix(in srgb, var(--deep-brown) 82%, var(--background));
+}
+
+.section::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--gold) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--gold) 5%, transparent) 1px, transparent 1px);
+  background-size: 80px 80px;
+  content: "";
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 44px;
+}
+
+.eyebrow,
+.stepCount {
+  color: var(--gold-light);
+  font-weight: 750;
+  line-height: 1.5;
+  letter-spacing: 0.24em;
+}
+
+.eyebrow {
+  font-size: 12px;
+}
+
+.stepCount {
+  margin-top: 7px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+}
+
+.section h2 {
+  margin-top: 24px;
+  color: var(--ivory);
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.introduction {
+  padding-bottom: 3px;
+  color: var(--text-light);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  min-width: 0;
+}
+
+.card {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--deep-brown) 58%, var(--surface));
+  transition: border-color 0.4s ease;
+}
+
+.imageSlot {
+  position: relative;
+  aspect-ratio: 1.48;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--surface);
+}
+
+.imageSlot::after {
+  position: absolute;
+  inset: 0;
+  border-bottom: 1px solid var(--border-gold);
+  content: "";
+  pointer-events: none;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.stepBadge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 9px;
+  border: 1px solid color-mix(in srgb, var(--gold-light) 65%, transparent);
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--deep-brown) 94%, transparent);
+  color: var(--ivory);
+  font-size: 10px;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+}
+
+.cardBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 23px 22px 21px;
+}
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 17px;
+}
+
+.section h3 {
+  min-width: 0;
+  color: var(--ivory);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+}
+
+.number {
+  flex-shrink: 0;
+  color: color-mix(in srgb, var(--gold) 28%, transparent);
+  font-size: 42px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.description {
+  margin-bottom: 26px;
+  color: var(--text-light);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.checkpoint {
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-gold);
+  color: var(--gold-light);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.7;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 30px;
+}
+
+.note {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.note span {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+}
+
+.cta {
+  flex-shrink: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    border-color: var(--gold);
+  }
+
+  .card:hover .image {
+    transform: scale(1.03);
+  }
+}
+
+@media (max-width: 1099px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section h2 {
+    font-size: 48px;
+  }
+
+  .cardBody {
+    padding: 24px;
+  }
+
+  .cardHeading {
+    margin-bottom: 18px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 599px) {
+  .section {
+    padding-block: 64px;
+  }
+
+  .section::before {
+    opacity: 0.55;
+  }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+  .stepCount {
+    font-size: 9px;
+  }
+
+  .section h2 {
+    margin-top: 20px;
+    font-size: 38px;
+  }
+
+  .introduction {
+    padding-bottom: 0;
+    font-size: 16px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .imageSlot {
+    aspect-ratio: 1.55;
+  }
+
+  .cardBody {
+    padding: 22px;
+  }
+
+  .section h3 {
+    font-size: 25px;
+  }
+
+  .number {
+    font-size: 44px;
+  }
+
+  .description {
+    margin-bottom: 22px;
+  }
+
+  .footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 24px;
+  }
+
+  .note {
+    font-size: 12px;
+  }
+
+  .cta {
+    align-self: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .section [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .card,
+  .image {
+    transition: none;
+  }
+
+  .card:hover .image {
+    transform: none;
+  }
+}

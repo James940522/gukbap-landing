@@ -17,18 +17,29 @@ export function SectionBackground({
     "--background-image-position": background.position ?? "center",
     "--background-image-position-mobile": background.mobilePosition ?? background.position ?? "center",
   } as CSSProperties;
+  const backgroundImage = (
+    <Image
+      src={`/images/backgrounds/${background.image}.webp`}
+      alt=""
+      fill
+      sizes="100vw"
+      className={styles.image}
+      loading={background.eager ? "eager" : "lazy"}
+      fetchPriority="low"
+    />
+  );
 
   return (
     <div className={`${styles.layer} ${className}`} style={style} data-section-background={name} aria-hidden="true">
-      <Image
-        src={`/images/backgrounds/${background.image}.webp`}
-        alt=""
-        fill
-        sizes="100vw"
-        className={styles.image}
-        loading={background.eager ? "eager" : "lazy"}
-        fetchPriority="low"
-      />
+      {background.mobileImage ? (
+        <picture>
+          <source
+            media="(max-width: 899px)"
+            srcSet={`/images/backgrounds/${background.mobileImage}.webp`}
+          />
+          {backgroundImage}
+        </picture>
+      ) : backgroundImage}
     </div>
   );
 }

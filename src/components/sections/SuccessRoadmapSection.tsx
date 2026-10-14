@@ -1,7 +1,7 @@
 'use client';
 
 import Image, { getImageProps } from 'next/image';
-import type { CSSProperties } from 'react';
+import { useCallback, useEffect, useState, type CSSProperties } from 'react';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { roadmapStrengths, roadmapSignals, type RoadmapStrength } from '@/data/roadmap';
 import { ArrowIcon } from '@/components/ui/Icons';
@@ -17,6 +17,14 @@ const accentVariants: Variants = {
   hidden: { opacity: 0, scaleX: 0 },
   visible: { opacity: 1, scaleX: 1 },
 };
+
+// Observe cards rather than the tall section, so lower rows keep their entrance
+// until the user reaches them, including on short screens and mobile.
+const stepViewport = {
+  once: true,
+  amount: 0.22,
+  margin: '0px 0px -64px 0px',
+} as const;
 
 const backgroundProps = {
   alt: '',
@@ -41,13 +49,15 @@ function TimelineItem({
   strength,
   index,
   reduceMotion,
+  visible,
+  onEnter,
 }: {
   strength: RoadmapStrength;
   index: number;
   reduceMotion: boolean;
+  visible: boolean;
+  onEnter: (index: number) => void;
 }) {
-  const delay = reduceMotion ? 0 : (index % 3) * 0.12;
-
   return (
     <motion.li
       data-roadmap-step-tile
@@ -55,13 +65,13 @@ function TimelineItem({
       data-reveal="rise"
       className={styles.step}
       initial="hidden"
-      whileInView="visible"
-      viewport={revealViewport}
+      animate={reduceMotion || visible ? 'visible' : 'hidden'}
+      viewport={stepViewport}
+      onViewportEnter={() => onEnter(index)}
       variants={stepVariants}
       transition={{
         type: 'tween',
-        delay,
-        duration: reduceMotion ? 0 : 0.75,
+        duration: reduceMotion ? 0 : 0.65,
         ease: [0.22, 0.61, 0.36, 1],
       }}
     >
@@ -73,8 +83,8 @@ function TimelineItem({
           variants={accentVariants}
           transition={{
             type: 'tween',
-            delay: reduceMotion ? 0 : delay + 0.25,
-            duration: reduceMotion ? 0 : 0.9,
+            delay: reduceMotion ? 0 : 0.2,
+            duration: reduceMotion ? 0 : 0.65,
             ease: [0.22, 0.61, 0.36, 1],
           }}
         />
@@ -112,6 +122,25 @@ function TimelineItem({
 
 export function SuccessRoadmapSection() {
   const reduceMotion = Boolean(useReducedMotion());
+  const [readySteps, setReadySteps] = useState(0);
+  const [revealedSteps, setRevealedSteps] = useState(0);
+  const markEntered = useCallback((index: number) => {
+    // A fast scroll may skip earlier viewport callbacks. Catch up in order
+    // instead of leaving later steps waiting forever for a passed card.
+    setReadySteps((current) => Math.max(current, index + 1));
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion || revealedSteps >= readySteps) return;
+
+    const mobile = window.matchMedia('(max-width: 767px)').matches;
+    const delay = revealedSteps === 0 ? 200 : mobile ? 160 : 300;
+    const timeout = window.setTimeout(() => {
+      setRevealedSteps((current) => current + 1);
+    }, delay);
+
+    return () => window.clearTimeout(timeout);
+  }, [readySteps, revealedSteps, reduceMotion]);
 
   return (
     <section
@@ -182,6 +211,8 @@ export function SuccessRoadmapSection() {
               strength={strength}
               index={index}
               reduceMotion={reduceMotion}
+              visible={index < revealedSteps}
+              onEnter={markEntered}
             />
           ))}
         </ol>

@@ -9,28 +9,6 @@ import styles from "@/components/sections/WhyDduksonSection.module.css";
 
 const ease = [0.22, 0.61, 0.36, 1] as const;
 
-function PrincipleIcon({ kind }: { kind: string }) {
-  return (
-    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      {kind === "depth" ? (
-        <>
-          <path d="M5 17h22c-1 7-5 11-11 11S6 24 5 17Zm-2-3h26M11 30h10" />
-          <path d="M12 10c-4-4 4-5 0-9M20 10c-4-4 4-5 0-9" />
-        </>
-      ) : kind === "care" ? (
-        <>
-          <path d="m9 28 8-13M17 15c-3-2-3-6 0-10s7-5 9-3 1 7-2 11-5 4-7 2Z" />
-          <path d="M4 13h7M7.5 9.5v7M24 23h5M26.5 20.5v5" />
-        </>
-      ) : (
-        <>
-          <path d="M4 15h24c-1 7-6 11-12 11S5 22 4 15ZM11 29h10M9 11c-4-4 4-5 0-9M16 10c-4-4 4-5 0-9M23 11c-4-4 4-5 0-9" />
-        </>
-      )}
-    </svg>
-  );
-}
-
 export function BrothComposition() {
   const reducedMotion = useReducedMotion();
 
@@ -189,25 +167,45 @@ export function BrothComposition() {
       >
         <BowlIcon />
       </motion.span>
-      <div className={styles.principlesRail}>
-        <motion.span className={styles.railLine} variants={drawLine(0.85, 0.7)} data-reveal="line" aria-hidden="true" />
-        <ul className={styles.principles} aria-label="한 그릇에 담은 뚝손의 기준">
-          {brothFeature.principles.map((principle, index) => (
-            <motion.li key={principle.id} className={styles.principle} variants={reveal(0.95 + index * 0.1, 0.65)} data-reveal="rise">
-              <span className={styles.principleIcon}><PrincipleIcon kind={principle.id} /></span>
-              <div className={styles.principleCopy}>
-                <h3 className={styles.principleTitle}>{principle.title}</h3>
-                <p className={styles.principleDescription}>{principle.description}</p>
-              </div>
+      <div className={styles.details}>
+        <ul className={styles.detailGrid} aria-label="한 그릇에 담은 뚝손의 기준">
+          {brothFeature.details.map((detail, index) => (
+            <motion.li
+              key={detail.id}
+              className={styles.detailCard}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ ...revealViewport, margin: "0px 0px -48px 0px" }}
+              variants={reveal(index * 0.08, 0.7)}
+              data-reveal="rise"
+            >
+              <figure>
+                <div className={styles.detailImage}>
+                  <Image
+                    src={detail.image}
+                    alt={detail.alt}
+                    fill
+                    sizes="(max-width: 599px) calc((100vw - 52px) / 2), (max-width: 999px) calc((100vw - 68px) / 2), (max-width: 1303px) calc((100vw - 118px) / 4), 297px"
+                    style={{ objectPosition: detail.position }}
+                  />
+                </div>
+                <span className={styles.detailNumber} aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <figcaption className={styles.detailCaption}>
+                  <span className={styles.detailKeyword}>{detail.keyword}</span>
+                  <h3>{detail.title}</h3>
+                </figcaption>
+              </figure>
             </motion.li>
           ))}
         </ul>
-        <motion.div className={styles.action} variants={reveal(1.2, 0.65, false)} data-reveal="fade">
+        <div className={styles.action}>
           <a href="#cooking-system" className={styles.nextLink}>
             조리 방식 보기
             <ArrowIcon />
           </a>
-        </motion.div>
+        </div>
       </div>
       <noscript>
         <style>{`.${styles.photoOrnament} [data-ornament]{stroke-dasharray:none!important;stroke-dashoffset:0!important;opacity:1!important}.${styles.composition} .${styles.steamDecoration}{opacity:.35!important}`}</style>

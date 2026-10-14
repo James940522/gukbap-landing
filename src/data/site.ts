@@ -25,7 +25,8 @@ export const navigation = [
   { label: '브랜드', href: '#one-bowl' },
   { label: '메뉴', href: '#menu' },
   { label: '뚝손의 기준', href: '#standard' },
-  { label: '창업 안내', href: '#franchise' },
+  { label: '창업 안내', href: '#startup-benefits' },
+  { label: '매장 찾기', href: '/stores' },
 ];
 
 // Brand-supplied sample photography. Originals are kept in assets/food/originals.
@@ -66,10 +67,40 @@ export const nurungjiFeature = {
 export const brothFeature = {
   description: ['뚝손국밥만의 특별한 전용육수와', '엄선된 재료로'],
   title: ['원팩만큼 쉽지만,', '제대로 끓여낸', '한 그릇의 힘.'],
-  principles: [
-    { id: 'depth', title: '깊은 맛', description: '한 숟갈의 깊이' },
-    { id: 'care', title: '손맛', description: '뚝배기에 담은 정성' },
-    { id: 'warmth', title: '든든함', description: '한 끼를 제대로.' },
+  // User-supplied food photographs for the four details beneath the brand copy.
+  details: [
+    {
+      id: 'depth',
+      keyword: '깊은 맛',
+      title: '한 숟갈의 깊이',
+      image: foodImages.spoon,
+      alt: '고기와 밥, 대파가 담긴 국밥 한 숟갈',
+      position: '58% 58%',
+    },
+    {
+      id: 'care',
+      keyword: '손맛',
+      title: '손으로 채운 정성',
+      image: foodImages.cooking,
+      alt: '김이 오르는 가마솥에서 고기와 순대를 들어 올리는 손',
+      position: '62% 44%',
+    },
+    {
+      id: 'sundae',
+      keyword: '알찬 한 입',
+      title: '꽉 찬 한 입',
+      image: foodImages.sundae,
+      alt: '젓가락으로 집어 올린 속이 꽉 찬 순대',
+      position: '58% 48%',
+    },
+    {
+      id: 'warmth',
+      keyword: '든든함',
+      title: '뜨끈한 한 그릇',
+      image: '/images/food/broth-pour.webp',
+      alt: '고기와 대파가 담긴 뚝배기에 뜨거운 육수를 붓는 모습',
+      position: '56% 48%',
+    },
   ],
   elements: [
     {

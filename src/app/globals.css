@@ -674,6 +674,10 @@ h4 {
   gap: 28px;
   margin-top: 30px;
 }
+.menu-slider-controls[aria-hidden="true"] {
+  /* Keep the same footprint when every menu fits in the current view. */
+  visibility: hidden;
+}
 .menu-slider-progress {
   flex: 1;
   height: 1px;
@@ -683,18 +687,6 @@ h4 {
   display: block;
   height: 100%;
   background: var(--gold);
-}
-.menu-slider-position {
-  color: var(--text-muted);
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-  font-weight: 600;
-}
-.menu-slider-position strong {
-  color: var(--text-primary);
-  font-weight: 500;
 }
 .menu-slider-buttons {
   display: flex;
@@ -1334,31 +1326,12 @@ details[open] .details-plus::after {
   font-size: 20px;
   letter-spacing: -0.04em;
 }
-.menu-category-heading > span {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--text-muted);
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  font-weight: 600;
-}
-.menu-category-heading i {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--gold-dark);
-}
 .menu-gallery .menu-grid {
   row-gap: 38px;
 }
 @media (max-width: 599px) {
   .menu-category-heading h3 {
     font-size: 19px;
-  }
-  .menu-category-heading > span {
-    font-size: 11px;
-    gap: 9px;
   }
 }
 
@@ -1742,6 +1715,10 @@ details[open] .details-plus::after {
 .menu-section {
   --surface: var(--charcoal);
   --surface-elevated: var(--deep-brown);
+  min-height: calc(var(--section-height) - clamp(40px, 8svh, 80px));
+  padding-bottom: calc(var(--section-padding) * 0.75);
+  /* Anchor the heading to section padding, independent of active menu count. */
+  justify-content: flex-start;
   background: var(--background-deep);
 }
 .menu-background::after {
@@ -1804,18 +1781,10 @@ details[open] .details-plus::after {
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
   font-weight: 600;
 }
-.menu-tabs button span {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 600;
-}
 .menu-tabs button[aria-selected="true"] {
   background: var(--control-background);
   color: var(--control-text);
   border-color: var(--control-border);
-}
-.menu-tabs button[aria-selected="true"] span {
-  color: var(--gold-light);
 }
 .menu-tabs button:hover:not([aria-selected="true"]) {
   color: var(--text-primary);
@@ -1849,10 +1818,6 @@ details[open] .details-plus::after {
   font-weight: 600;
   transition: background-color 0.2s, color 0.2s;
 }
-.menu-subcategory-tabs button span {
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-}
 .menu-subcategory-tabs button:hover {
   background: var(--accent-tint);
   color: var(--text-primary);
@@ -1860,9 +1825,6 @@ details[open] .details-plus::after {
 .menu-subcategory-tabs button[aria-selected="true"] {
   background: var(--control-background);
   color: var(--control-text);
-}
-.menu-subcategory-tabs button[aria-selected="true"] span {
-  color: var(--gold-light);
 }
 .menu-subcategory-tabs button:focus-visible {
   outline-offset: 2px;
@@ -2551,9 +2513,6 @@ details[open] .details-plus::after {
     font-size: 14px;
     min-height: 46px;
     white-space: nowrap;
-  }
-  .menu-tabs button span {
-    display: none;
   }
   .menu-info {
     padding: 21px;

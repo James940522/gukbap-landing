@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   // Keep project instructions intact when starting the local preview.
   agentRules: false,
   devIndicators: false,
+  outputFileTracingIncludes: {
+    "/api/stores": ["./data/stores.csv"],
+  },
   images: {
     // Include QHD at 1x and 2x without serving the full camera original.
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560, 3840, 5120],

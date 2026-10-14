@@ -132,14 +132,8 @@ function MenuSlider({ category, autoAdvance, interactionVersion, onComplete }: {
           </Reveal>
         ))}
       </div>
-      <div className="menu-slider-controls" hidden={total <= position.perView}>
+      <div className="menu-slider-controls" aria-hidden={total <= position.perView}>
         <div className="menu-slider-progress" aria-hidden="true"><span style={{ width: `${(last / total) * 100}%` }} /></div>
-        <p className="menu-slider-position" role="status" aria-live={autoAdvance ? "off" : "polite"} aria-atomic="true">
-          <span className="sr-only">전체 {total}개 중 </span>
-          <strong>{String(position.first + 1).padStart(2, "0")}—{String(last).padStart(2, "0")}</strong>
-          <span aria-hidden="true"> / {String(total).padStart(2, "0")}</span>
-          <span className="sr-only">번째 메뉴</span>
-        </p>
         <div className="menu-slider-buttons">
           <button type="button" aria-label="이전 메뉴" aria-controls={trackId} disabled={position.first === 0} onClick={() => goTo(position.first - position.perView)}><ArrowIcon className="menu-slider-previous" /></button>
           <button type="button" aria-label="다음 메뉴" aria-controls={trackId} disabled={last === total} onClick={() => goTo(position.first + position.perView)}><ArrowIcon /></button>
@@ -175,14 +169,13 @@ function MenuCategoryPanel({ category, autoAdvance, interactionVersion, onComple
     <>
       <Reveal effect="fade" duration={0.45} className="menu-category-heading">
         <h3>{category.name}</h3>
-        <span>전체 메뉴<i />{category.items.length}가지</span>
       </Reveal>
       {groups ? (
         <>
           <div className="menu-subcategory-tabs" ref={groupTabsRef} role="tablist" aria-label={`${category.name} 세부 종류`}>
             {groups.map((group, index) => (
               <button key={group.id} id={`menu-subtab-${group.id}`} type="button" role="tab" aria-selected={groupIndex === index} aria-controls={`menu-subpanel-${group.id}`} tabIndex={groupIndex === index ? 0 : -1} onClick={() => setGroupIndex(index)} onKeyDown={(event) => handleGroupKeyDown(event, index)}>
-                {group.name}<span>{String(group.items.length).padStart(2, "0")}</span>
+                {group.name}
               </button>
             ))}
           </div>
@@ -250,7 +243,7 @@ export function MenuGallery() {
       <div className="menu-tabs" ref={tabsRef} role="tablist" aria-label="메뉴 종류" aria-orientation={isDesktop ? "vertical" : "horizontal"}>
         {menuCategories.map((category, index) => (
           <button key={category.id} id={`tab-${category.id}`} role="tab" type="button" aria-selected={activeIndex === index} aria-controls={`panel-${category.id}`} tabIndex={activeIndex === index ? 0 : -1} onClick={() => setActiveIndex(index)} onKeyDown={(event) => handleKeyDown(event, index)}>
-            {category.name}<span>{String(category.items.length).padStart(2, "0")}</span>
+            {category.name}
           </button>
         ))}
       </div>
