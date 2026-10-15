@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const DEFAULT_SITE_ORIGIN = "https://www.ttukson.com";
-export const SITE_TITLE = "뚝손국밥 | 국밥 메뉴·창업 안내";
+export const SITE_TITLE = "뚝손국밥 | 한 그릇을 제대로";
 export const SITE_DESCRIPTION =
-  "한 그릇을 제대로. 뚝손국밥의 대표 메뉴와 브랜드 이야기를 만나고, 창업에 관한 궁금한 점을 가맹 상담으로 확인하세요.";
+  "뜨끈하게, 제대로. 뚝손국밥이 한 그릇을 만드는 기준과 브랜드 이야기를 만나보세요. 국밥 창업을 위한 운영 방식과 가맹 상담을 안내합니다.";
 
 type SeoEnvironment = Record<string, string | undefined>;
 

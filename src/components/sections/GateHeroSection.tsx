@@ -17,8 +17,7 @@ export function GateHeroSection() {
         )}
       >
         <h1 id="hero-title" className={styles.title}>
-          <Image src={brandLogo} alt="" className={styles.logo} sizes="(max-width: 599px) 226px, (max-width: 899px) 38vw, (max-width: 1500px) 28vw, 420px" priority />
-          <span className={styles.introduction}>{brand.name} 메뉴와 창업 문의</span>
+          <Image src={brandLogo} alt={brand.name} className={styles.logo} sizes="(max-width: 599px) 226px, (max-width: 899px) 38vw, (max-width: 1500px) 28vw, 420px" priority />
         </h1>
         <p className={`${styles.tagline} display-font`}>{brand.hero.title.join(" ")}</p>
       </GateHeroScene>

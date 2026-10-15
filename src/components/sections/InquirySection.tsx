@@ -39,9 +39,9 @@ export function InquirySection() {
                 {brand.phone}
               </a>
               <p>
-                브랜드와 창업에 대해 궁금한 점을
+                국밥 창업과 매장 운영에 대해
                 <br />
-                아래 상담 폼 또는 전화로 문의해주세요.
+                궁금한 점을 남겨주세요.
               </p>
               <a className="inquiry-email" href={`mailto:${brand.email}`}>
                 이메일로 문의하기

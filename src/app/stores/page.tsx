@@ -9,8 +9,8 @@ import { ArrowIcon } from "@/components/ui/Icons";
 import brandLogo from "../../../public/images/logos/ddukson-gukbap.png";
 import styles from "./page.module.css";
 
-const title = "가맹점 찾기 | 뚝손국밥";
-const description = "뚝손국밥 매장 안내. 등록된 매장의 주소와 연락처를 확인하고 길찾기를 이용하세요.";
+const title = "매장 안내 | 뚝손국밥";
+const description = "가까운 뚝손국밥을 찾아보세요. 매장 위치와 연락처, 찾아오시는 길을 안내합니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const directory = await getStoreDirectory();
