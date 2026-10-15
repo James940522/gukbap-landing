@@ -888,6 +888,7 @@ details[open] .details-plus::after {
   color: var(--text-muted);
 }
 .form-field input,
+.form-field select,
 .form-field textarea {
   width: 100%;
   background: var(--input-background);
@@ -898,8 +899,43 @@ details[open] .details-plus::after {
   padding: 12px 13px;
   transition: border-color 0.2s, background-color 0.2s;
 }
-.form-field input {
+.form-field input,
+.form-field select {
   height: 48px;
+}
+.form-legend {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.form-legend > span {
+  color: var(--accent-text);
+}
+.inquiry-phone-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.inquiry-referral-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 12px;
+}
+.inquiry-referral-options .checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+.inquiry-referral-options .checkbox-label > span {
+  margin-left: 0;
+  color: var(--text-secondary);
+}
+.inquiry-referral-options input {
+  padding: 0;
+}
+.inquiry-fields.form-field {
+  margin-bottom: 20px;
 }
 .form-field textarea {
   resize: vertical;
@@ -911,12 +947,13 @@ details[open] .details-plus::after {
   color: var(--text-muted);
 }
 .form-field input:focus,
+.form-field select:focus,
 .form-field textarea:focus {
   border-color: var(--focus-ring);
   background: var(--paper-raised);
   outline-offset: 2px;
 }
-.form-field :is(input, textarea)[aria-invalid="true"] {
+.form-field :is(input:not([type="checkbox"]), select, textarea)[aria-invalid="true"] {
   border-color: var(--color-error);
   background: var(--error-tint);
   outline-color: var(--color-error);

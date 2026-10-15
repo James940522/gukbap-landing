@@ -33,7 +33,7 @@ export function useInquirySubmission(source: "contact" | "floating") {
         body: JSON.stringify({
           name: data.get("name"), phone: data.get("phone"), region: data.get("region"),
           message: data.get("message") ?? "", privacyAgree: data.get("consent") === "on",
-          hp: data.get("hp") ?? "", source,
+          hp: data.get("hp") ?? "", domain: window.location.hostname, source,
         }),
         signal: AbortSignal.timeout(20000),
       });
@@ -42,7 +42,7 @@ export function useInquirySubmission(source: "contact" | "floating") {
         setStatus(result?.message || "접수에 실패했습니다. 잠시 후 다시 시도하거나 전화로 문의해주세요.");
         return false;
       }
-      if (!data.get("hp")) trackEvent("generate_lead", source);
+      if (!String(data.get("hp") ?? "").trim()) trackEvent("generate_lead", source);
       form.reset();
       setStatus("가맹문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.");
       return true;

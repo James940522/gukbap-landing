@@ -167,6 +167,7 @@ test('lead events follow successful API acknowledgement and skip validation, fai
   class LocalFormData { constructor(form) { this.values = form.values; } get(key) { return this.values[key] ?? null; } }
   const { useInquirySubmission } = load('src/lib/useInquirySubmission.ts', {}, dependencies, {
     FormData: LocalFormData, AbortSignal: { timeout: () => ({}) },
+    window: { location: { hostname: 'www.ttukson.com' } },
     fetch: async () => { calls++; return response; },
   });
   const form = { values: { name: 'private', phone: 'private', region: 'private', consent: 'on', hp: '' },
@@ -188,4 +189,85 @@ test('lead events follow successful API acknowledgement and skip validation, fai
   form.values.hp = '';
   assert.equal(await handleSubmit(event), true);
   assert.deepEqual(events, [['generate_lead', 'contact']]);
+});
+
+test('main contact submission resets only after acknowledgement and sends hostname without personal analytics data', async () => {
+  const schema = {};
+  const resolver = {};
+  const events = [];
+  const requests = [];
+  const statuses = [];
+  let resets = 0;
+  let valid = true;
+  let response = { ok: true, json: async () => ({ ok: true, message: '접수 완료' }) };
+  let values = { name: 'private name', phoneFirst: '010', phoneMiddle: '1234', phoneLast: '5678',
+    desiredRegion: 'private region', expectedBudget: '상담 후 결정', inquiryDetail: 'private inquiry',
+    referralSources: ['네이버 검색'], privacyAgreed: true, hp: '', domain: 'untrusted.example' };
+  const dependencies = {
+    react: { useRef: (current) => ({ current }),
+      useState: (initial) => [initial, (value) => statuses.push(value)] },
+    'react-hook-form': { useForm(options) {
+      assert.equal(options.resolver, resolver);
+      assert.equal(options.defaultValues.phoneFirst, '010');
+      assert.equal(options.defaultValues.privacyAgreed, undefined);
+      assert.deepEqual(plain(options.defaultValues.referralSources), []);
+      return {
+        reset() { resets++; },
+        handleSubmit(onValid, onInvalid) {
+          return async (event) => {
+            event.preventDefault();
+            return valid ? onValid(values, event) : onInvalid({}, event);
+          };
+        },
+      };
+    } },
+    '@hookform/resolvers/zod': { zodResolver: (actual) => { assert.equal(actual, schema); return resolver; } },
+    './contact-schema': { contactFormSchema: schema },
+    './analytics': { trackEvent: (...args) => events.push(args) },
+  };
+  const { useContactSubmission } = load('src/lib/useContactSubmission.ts', {}, dependencies, {
+    AbortSignal: { timeout: () => ({}) }, window: { location: { hostname: 'www.ttukson.com' } },
+    fetch: async (url, options) => {
+      requests.push({ url, options });
+      if (response instanceof Error) throw response;
+      return response;
+    },
+  });
+  const { handleSubmit } = useContactSubmission();
+  const event = { preventDefault() {} };
+  valid = false;
+  await handleSubmit(event);
+  assert.equal(requests.length, 0);
+  assert.equal(resets, 0);
+  valid = true;
+
+  for (const failed of [
+    { ok: false, json: async () => ({ ok: false, message: '다시 시도' }) },
+    { ok: true, json: async () => ({ ok: false, message: '다시 시도' }) },
+    { ok: true, json: async () => { throw new Error('invalid JSON'); } },
+    new Error('network unavailable'),
+  ]) {
+    response = failed;
+    await handleSubmit(event);
+    assert.equal(resets, 0, 'Failed acknowledgements must retain the entered form');
+    assert.equal(events.length, 0);
+  }
+  response = { ok: true, json: async () => ({ ok: true, message: '접수 완료' }) };
+  await handleSubmit(event);
+  assert.equal(resets, 1);
+  assert.deepEqual(events, [['generate_lead', 'contact']]);
+  assert.equal(statuses.at(-1), '접수 완료');
+  const lastRequest = requests.at(-1);
+  assert.equal(lastRequest.url, '/api/contact');
+  assert.equal(lastRequest.options.method, 'POST');
+  assert.deepEqual(JSON.parse(lastRequest.options.body), { ...values, domain: 'www.ttukson.com' });
+
+  values = { ...values, hp: 'bot' };
+  await handleSubmit(event);
+  assert.equal(resets, 2);
+  assert.equal(events.length, 1, 'Honeypot acknowledgements must not generate a lead event');
+  values = { ...values, hp: ' \t ' };
+  await handleSubmit(event);
+  assert.equal(resets, 3);
+  assert.deepEqual(events, [['generate_lead', 'contact'], ['generate_lead', 'contact']]);
 });
