@@ -177,12 +177,40 @@ test("both canonical routes allow empty or omitted referral sources and show a d
   assert.equal(h.requests.length, 4);
 });
 
+test("both canonical routes allow optional inquiry details and preserve short provided text", async () => {
+  const h = createHarness();
+  for (const route of ["contact", "leads"]) {
+    const omitted = canonical();
+    delete omitted.inquiryDetail;
+    const bothOmitted = { ...omitted };
+    delete bothOmitted.referralSources;
+    for (const body of [omitted, canonical({ inquiryDetail: "" }),
+      canonical({ inquiryDetail: " \t\n " }), bothOmitted]) {
+      const response = await h[route](h.request(body, { route }));
+      assert.equal(response.status, 200);
+      assert.equal((await response.json()).ok, true);
+      const message = sentMessage(h, h.requests.length - 1);
+      assert.ok(message.text.endsWith("문의 내용:\n-"));
+      if (!Object.hasOwn(body, "referralSources")) {
+        assert.ok(message.text.includes("방문 유입 경로: -"));
+      }
+    }
+    const short = await h[route](h.request(canonical({ inquiryDetail: " 짧음 " }), { route }));
+    assert.equal(short.status, 200);
+    assert.ok(sentMessage(h, h.requests.length - 1).text.endsWith("문의 내용:\n짧음"));
+    const sent = h.requests.length;
+    assert.equal((await h[route](h.request(canonical({ inquiryDetail: 1 }), { route }))).status, 400);
+    assert.equal(h.requests.length, sent, "Non-string inquiry details must not send a notification");
+  }
+  assert.equal(h.requests.length, 10);
+});
+
 test("invalid JSON and canonical fields fail before any notification request", async () => {
   const h = createHarness();
   const invalidBodies = ["{broken", "null", "[]", canonical({ name: "김" }),
     canonical({ phoneFirst: "0x0" }), canonical({ phoneMiddle: "12" }),
     canonical({ phoneLast: "123" }), canonical({ desiredRegion: "서" }),
-    canonical({ expectedBudget: " " }), canonical({ inquiryDetail: "짧음" }),
+    canonical({ expectedBudget: " " }), canonical({ inquiryDetail: 1 }),
     canonical({ referralSources: ["지원하지 않는 경로"] }),
     canonical({ privacyAgreed: false }), canonical({ privacyAgreed: "true" }),
     canonical({ hp: 1 }), canonical({ domain: 1 })];

@@ -96,12 +96,11 @@ export function InquiryForm() {
           {error("expectedBudget")}
         </div>
         <div className="form-field">
-          <label htmlFor="inquiry-message">문의 내용 <span>*</span></label>
+          <label htmlFor="inquiry-message">문의 내용 <span className="optional">선택</span></label>
           <textarea
             id="inquiry-message"
             placeholder="희망 상권, 오픈 시기, 궁금한 점을 남겨주세요."
             rows={3}
-            required
             aria-invalid={!!errors.inquiryDetail}
             aria-describedby={errors.inquiryDetail ? "inquiry-inquiryDetail-error" : undefined}
             {...register("inquiryDetail")}

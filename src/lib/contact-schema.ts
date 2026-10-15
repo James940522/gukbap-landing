@@ -19,7 +19,7 @@ export const budgetOptions = [
 
 const phoneSegment = z.string().trim().regex(/^\d+$/, "숫자만 입력해 주세요.");
 
-// Shared by the main form and API. Referral sources are optional.
+// Shared by the main form and API. Inquiry details and referral sources are optional.
 export const contactFormSchema = z.object({
   name: z.string().trim().min(2, "성함을 입력해 주세요."),
   phoneFirst: phoneSegment.min(2, "연락처를 확인해 주세요.").max(3, "연락처를 확인해 주세요."),
@@ -27,7 +27,7 @@ export const contactFormSchema = z.object({
   phoneLast: phoneSegment.min(4, "연락처를 확인해 주세요.").max(4, "연락처를 확인해 주세요."),
   desiredRegion: z.string().trim().min(2, "창업 희망 지역을 입력해 주세요."),
   expectedBudget: z.string().trim().min(1, "예상 창업 비용을 선택해 주세요."),
-  inquiryDetail: z.string().trim().min(5, "문의 내용을 5자 이상 입력해 주세요."),
+  inquiryDetail: z.string().trim().default(""),
   referralSources: z.array(z.enum(referralSourceOptions)).default([]),
   privacyAgreed: z.literal(true, { error: "개인정보 수집 및 이용에 동의해 주세요." }),
   hp: z.string().optional(),
