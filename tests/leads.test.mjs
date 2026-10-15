@@ -158,13 +158,32 @@ test("/api/leads accepts the canonical contract and keeps both existing compact 
   assert.ok(quick.text.includes("개설 절차가 궁금합니다."));
 });
 
+test("both canonical routes allow empty or omitted referral sources and show a dash in the notification", async () => {
+  const h = createHarness();
+  for (const route of ["contact", "leads"]) {
+    const omitted = canonical();
+    delete omitted.referralSources;
+    for (const body of [canonical({ referralSources: [] }), omitted]) {
+      const response = await h[route](h.request(body, { route }));
+      assert.equal(response.status, 200);
+      assert.equal((await response.json()).ok, true);
+      assert.ok(sentMessage(h, h.requests.length - 1).text.includes("방문 유입 경로: -"));
+    }
+    const sent = h.requests.length;
+    const invalid = await h[route](h.request(canonical({ referralSources: ["지원하지 않는 경로"] }), { route }));
+    assert.equal(invalid.status, 400);
+    assert.equal(h.requests.length, sent, "Unsupported supplied choices must not send a notification");
+  }
+  assert.equal(h.requests.length, 4);
+});
+
 test("invalid JSON and canonical fields fail before any notification request", async () => {
   const h = createHarness();
   const invalidBodies = ["{broken", "null", "[]", canonical({ name: "김" }),
     canonical({ phoneFirst: "0x0" }), canonical({ phoneMiddle: "12" }),
     canonical({ phoneLast: "123" }), canonical({ desiredRegion: "서" }),
     canonical({ expectedBudget: " " }), canonical({ inquiryDetail: "짧음" }),
-    canonical({ referralSources: [] }), canonical({ referralSources: ["지원하지 않는 경로"] }),
+    canonical({ referralSources: ["지원하지 않는 경로"] }),
     canonical({ privacyAgreed: false }), canonical({ privacyAgreed: "true" }),
     canonical({ hp: 1 }), canonical({ domain: 1 })];
   for (const body of invalidBodies) {

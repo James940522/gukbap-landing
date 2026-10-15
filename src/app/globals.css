@@ -883,7 +883,8 @@ details[open] .details-plus::after {
   color: var(--accent-text);
   margin-left: 3px;
 }
-.form-field label > .optional {
+.form-field label > .optional,
+.form-legend > .optional {
   font-size: 13px;
   color: var(--text-muted);
 }

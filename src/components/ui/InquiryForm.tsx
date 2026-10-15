@@ -109,7 +109,7 @@ export function InquiryForm() {
           {error("inquiryDetail")}
         </div>
         <fieldset className="inquiry-fields form-field" aria-describedby={errors.referralSources ? "inquiry-referralSources-error" : undefined}>
-          <legend className="form-legend">방문 유입 경로 <span>*</span></legend>
+          <legend className="form-legend">방문 유입 경로 <span className="optional">선택</span></legend>
           <div className="inquiry-referral-options">
             {referralSourceOptions.map((source) => (
               <label key={source} className="checkbox-label">

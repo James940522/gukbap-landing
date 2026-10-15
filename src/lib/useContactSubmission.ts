@@ -3,7 +3,7 @@
 import { useRef, useState, type FormEvent } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { contactFormSchema, type ContactFormValues } from "./contact-schema";
+import { contactFormSchema, type ContactFormInput, type ContactFormValues } from "./contact-schema";
 import { trackEvent } from "./analytics";
 
 type ContactSubmitResponse = { ok?: boolean; message?: string };
@@ -11,7 +11,7 @@ type ContactSubmitResponse = { ok?: boolean; message?: string };
 export function useContactSubmission() {
   const pending = useRef(false);
   const [status, setStatus] = useState("");
-  const form = useForm<ContactFormValues>({
+  const form = useForm<ContactFormInput, unknown, ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
