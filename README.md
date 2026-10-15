@@ -66,7 +66,9 @@ Linux 배포에서 메뉴 이미지가 404로 누락되는 문제를 확인합�
   이미지 6칸은 비워두었으며 `src/data/roadmap.ts`의 `image`에 경로를 넣으면 연결됩니다.
   뚝손 기준으로 확정되지 않은 조리 시간·배송 횟수·매장 평수는 원본에서 가져오지 않았습니다.
   Framer Motion의 영역별 등장·카드 호버를 적용하고, 모바일과 움직임 줄이기에 대응합니다.
-- 초안은 검색 색인을 비활성화했습니다. 공개 시 `src/app/layout.tsx`의 robots 설정을 변경하세요.
+- 초안은 기본 `noindex, follow`입니다. 정식 공개는 `SEO_DEPLOYMENT_ENV=production`과
+  `SEO_INDEXABLE=true`로 전환하며, preview에서는 항상 검색 제외를 유지합니다.
+  [SEO 적용·운영 안내](docs/seo-implementation.md)를 확인하세요.
 
 ## 로고
 
@@ -84,9 +86,21 @@ Linux 배포에서 메뉴 이미지가 404로 누락되는 문제를 확인합�
 - [Next.js 파일 기반 메타데이터](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image)로
   OG 이미지 URL·크기·형식과 `opengraph-image.alt.txt`의 대체 텍스트를 자동 생성합니다.
   Twitter 공유 이미지도 같은 OG 이미지를 사용합니다.
-- Vercel에서는 배포 URL을 자동 사용합니다. 다른 호스팅이나 별도 도메인을 사용할 경우
-  빌드 환경에 `NEXT_PUBLIC_SITE_URL`을 실제 홈페이지의 전체 주소(`https://` 포함)로 설정하세요.
-  로컬 개발에서는 localhost 주소를 사용합니다.
+- 대표 URL은 사용자가 확정한 `https://www.ttukson.com`입니다. Canonical·OG·Twitter·JSON-LD·사이트맵이
+  `src/lib/seo.ts`의 공통 origin을 사용합니다. 배포별로 `NEXT_PUBLIC_SITE_URL`을 설정할 수 있으며
+  검색 공개 시에는 정식 HTTPS 도메인만 허용합니다. 설정 변경 후 재빌드·재배포하세요.
+- `/stores`는 독립된 공유 제목·설명·URL을 사용하며, 같은 원본 로고 이미지를 명시적으로 연결합니다.
+
+## SEO 설정
+
+- `src/app/robots.ts`, `sitemap.ts`로 검색 수집 정책과 사이트맵을 생성합니다.
+  검색 제외 상태에서는 사이트맵이 비어 있고 robots에 사이트맵을 광고하지 않습니다.
+- 실제 OPEN 매장 0건 또는 CSV 오류인 `/stores`는 공개 환경에서도 검색 대상에서 제외됩니다.
+- 메인의 전체 메뉴명과 매장 목록은 최초 HTML에 포함하며 지도 좌표 조회를 기다리지 않습니다.
+- Google/Naver 소유확인 태그는 환경변수로 연결합니다. 실제 소유확인·사이트맵 제출은 운영 계정에서 진행합니다.
+- GA4는 아직 연결하지 않았습니다. 클릭·상담 성공 이벤트를 로컬 `dataLayer`와
+  `ddukson:analytics` 이벤트에만 기록합니다. 이름·전화번호·문의 내용·URL query는 포함하지 않습니다.
+- SEO와 문의·매장 회귀 검사는 `node --test tests/*.test.mjs`로 실행합니다.
 
 ## 섹션 배경
 

@@ -65,6 +65,49 @@ test('global malformed CSV/schema and duplicate IDs are errors; invalid rows are
   assert.ok(parsed.warnings.every((warning) => Number.isInteger(warning.row)));
 });
 
+test('server directory renders OPEN store text without keys or external coordinate requests', async () => {
+  let calls = 0;
+  let text = csv(row('open', '최초 HTML 주소'), row('closed', '닫힌 매장 주소', '', '', 'CLOSED'));
+  const { readStoreDirectory } = loadTypeScript('src/lib/stores.ts', {
+    'node:fs/promises': { readFile: async (filename, encoding) => {
+      assert.ok(filename.endsWith(path.join('data', 'stores.csv')));
+      assert.equal(encoding, 'utf8');
+      return text;
+    } },
+  });
+  const previousFetch = global.fetch;
+  global.fetch = async () => { calls++; throw new Error('must not geocode'); };
+  try {
+    const directory = await readStoreDirectory();
+    assert.equal(directory.error, false);
+    assert.equal(directory.stores.length, 1);
+    assert.equal(directory.stores[0].id, 'open');
+    assert.equal(directory.stores[0].address, '최초 HTML 주소');
+    assert.equal(directory.stores[0].latitude, null);
+    assert.equal(calls, 0);
+    text = header;
+    assert.deepEqual(plain(await readStoreDirectory()), { stores: [], error: false });
+  } finally {
+    global.fetch = previousFetch;
+  }
+});
+
+test('server directory safely distinguishes malformed or missing CSV from a valid empty list', async () => {
+  let text = csv(row('duplicate', '주소'), row('duplicate', '다른 주소'));
+  let unreadable = false;
+  const { readStoreDirectory } = loadTypeScript('src/lib/stores.ts', {
+    'node:fs/promises': { readFile: async () => {
+      if (unreadable) throw new Error('private filesystem path');
+      return text;
+    } },
+  });
+  assert.deepEqual(plain(await readStoreDirectory()), { stores: [], error: true });
+  text = 'id,name\ninvalid,row';
+  assert.deepEqual(plain(await readStoreDirectory()), { stores: [], error: true });
+  unreadable = true;
+  assert.deepEqual(plain(await readStoreDirectory()), { stores: [], error: true });
+});
+
 test('OPEN filtering, supplied coordinates and empty lists work without a REST key', async () => {
   let calls = 0;
   const geocoder = createStoreGeocoder({ fetch: async () => { calls++; throw new Error('must not fetch'); } });

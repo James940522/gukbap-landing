@@ -7,6 +7,11 @@
   user-select: none;
 }
 
+.layer > picture {
+  position: absolute;
+  inset: 0;
+}
+
 .image {
   object-fit: cover;
   object-position: var(--background-image-position);

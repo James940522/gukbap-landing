@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { loadKakaoMaps } from "@/lib/kakao-maps";
@@ -42,7 +43,15 @@ function StorePhone({ store }: { store: Store }) {
     : <span className={styles.phone}>{store.phone}</span>;
 }
 
-export function StoreMapSection({ headingLevel = 2 }: { headingLevel?: 1 | 2 } = {}) {
+export function StoreMapSection({
+  headingLevel = 2,
+  initialStores,
+  initialError = false,
+}: {
+  headingLevel?: 1 | 2;
+  initialStores?: Store[];
+  initialError?: boolean;
+} = {}) {
   const Heading = headingLevel === 1 ? "h1" : "h2";
   const instanceId = useId();
   const listTabId = `${instanceId}-list-tab`;
@@ -50,8 +59,10 @@ export function StoreMapSection({ headingLevel = 2 }: { headingLevel?: 1 | 2 } =
   const listPanelId = `${instanceId}-list-panel`;
   const mapPanelId = `${instanceId}-map-panel`;
   const searchId = `${instanceId}-search`;
-  const [stores, setStores] = useState<Store[]>([]);
-  const [dataStatus, setDataStatus] = useState<DataStatus>("loading");
+  const [stores, setStores] = useState<Store[]>(initialStores ?? []);
+  const [dataStatus, setDataStatus] = useState<DataStatus>(initialError ? "error" : initialStores ? "ready" : "loading");
+  const [updateFailed, setUpdateFailed] = useState(false);
+  const hasDirectoryRef = useRef(initialStores !== undefined && !initialError);
   const [dataAttempt, setDataAttempt] = useState(0);
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -91,10 +102,16 @@ export function StoreMapSection({ headingLevel = 2 }: { headingLevel?: 1 | 2 } =
         const result = readStoresResponse(payload);
         if (cancelled) return;
         setStores(result);
-        setSelectedId(null);
+        setSelectedId((current) => result.some((store) => store.id === current) ? current : null);
+        hasDirectoryRef.current = true;
         setDataStatus("ready");
+        setUpdateFailed(false);
       } catch {
-        if (!cancelled) setDataStatus("error");
+        if (!cancelled) {
+          // Keep the server directory usable when coordinate refresh is unavailable.
+          setDataStatus(hasDirectoryRef.current ? "ready" : "error");
+          setUpdateFailed(hasDirectoryRef.current);
+        }
       } finally {
         window.clearTimeout(timeout);
       }
@@ -268,9 +285,8 @@ export function StoreMapSection({ headingLevel = 2 }: { headingLevel?: 1 | 2 } =
   };
 
   const retryData = () => {
-    setDataStatus("loading");
-    setStores([]);
-    setSelectedId(null);
+    if (!hasDirectoryRef.current) setDataStatus("loading");
+    setUpdateFailed(false);
     setDataAttempt((attempt) => attempt + 1);
   };
 
@@ -287,6 +303,9 @@ export function StoreMapSection({ headingLevel = 2 }: { headingLevel?: 1 | 2 } =
             <p className={`small-label ${styles.eyebrow}`}>FIND DDUKSON</p>
             <Heading id="stores-title" className={`section-title ${styles.title}`}>가까운 뚝손국밥을<br />찾아보세요</Heading>
             <p className={styles.introduction}>전국 뚝손국밥 매장을 확인하고,<br className={styles.desktopBreak} /> 가까운 매장을 만나보세요.</p>
+            {headingLevel === 2 && stores.length > 0 && (
+              <Link href="/stores" className="button button-secondary">전체 매장 보기<ArrowIcon /></Link>
+            )}
           </Reveal>
           <div className={styles.search}>
             <label htmlFor={searchId} className={styles.searchLabel}>지역·매장명·주소 검색</label>
@@ -326,6 +345,7 @@ export function StoreMapSection({ headingLevel = 2 }: { headingLevel?: 1 | 2 } =
             )}
           </div>
           {dataStatus === "ready" && missingCoordinates > 0 && <p className={styles.locationNotice}>지도 위치가 확인되지 않은 매장은 주소로 검색할 수 있습니다.</p>}
+          {updateFailed && <p className={styles.locationNotice} role="status">매장 정보를 갱신하지 못했습니다. 표시된 주소와 연락처는 계속 확인할 수 있습니다. <button type="button" className={`button button-secondary ${styles.retry}`} onClick={retryData}>다시 불러오기</button></p>}
         </div>
         <div id={mapPanelId} role="tabpanel" aria-labelledby={mapTabId} tabIndex={0} className={`${styles.mapPanel} ${mobileTab === "list" ? styles.mobileHidden : ""}`} aria-busy={mapStatus === "loading"}>
           <div ref={mapContainerRef} className={styles.mapCanvas} aria-label="뚝손국밥 매장 지도" />

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { CustomCursorState } from "@/components/ui/CustomCursorState";
+import { SiteAnalytics } from "@/components/seo/SiteAnalytics";
+import { getSeoConfig, robotsMetadata, SITE_DESCRIPTION, SITE_TITLE, verificationMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const pretendard = localFont({
@@ -19,32 +21,27 @@ const displayFont = localFont({
   fallback: ["Batang", "serif"],
 });
 
-const siteTitle = "뚝손국밥 | (주)산본에프앤비";
-const siteDescription =
-  "오래된 국밥집의 깊이를, 현대적인 브랜드로 재해석한 뚝손국밥";
-
 export const metadata: Metadata = {
-  // Vercel infers its deployment URL; other hosts can set the public site URL.
-  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
-    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
-    : undefined,
-  title: siteTitle,
-  description: siteDescription,
-  // Prevent the unfinished brand draft from appearing in search results.
-  robots: { index: false, follow: false },
+  metadataBase: getSeoConfig().siteUrl,
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  robots: robotsMetadata(getSeoConfig().indexable),
+  ...verificationMetadata(),
   openGraph: {
-    title: siteTitle,
-    description: siteDescription,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     locale: "ko_KR",
     type: "website",
     siteName: "뚝손국밥",
   },
+  twitter: { card: "summary_large_image", title: SITE_TITLE, description: SITE_DESCRIPTION },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="ko"
+      data-scroll-behavior="smooth"
       className={`${pretendard.variable} ${displayFont.variable}`}
     >
       <body>
@@ -52,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <style>{`[data-reveal] { opacity: 1 !important; transform: none !important; }`}</style>
         </noscript>
         <CustomCursorState />
+        <SiteAnalytics />
         {children}
       </body>
     </html>

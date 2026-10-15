@@ -12,19 +12,55 @@ const VIDEO_SOURCES = {
 const FADE_DURATION = 0.8;
 const PLAYBACK_TIMEOUT_MS = 10_000;
 const POPUP_DELAY_MS = 1000;
+const INTRO_STORAGE_KEY = "ddukson-video-intro-seen";
+
+function shouldSkipIntro() {
+  const navigation = window.performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      navigation?.type === "back_forward" || window.scrollY > 0) return true;
+
+  if (window.location.hash) {
+    try {
+      const target = decodeURIComponent(window.location.hash.slice(1));
+      if (document.getElementById(target) || target.includes(":~:text=")) return true;
+    } catch {
+      // An unreadable fragment must not prevent access to the requested page.
+      return true;
+    }
+  }
+
+  try {
+    if (window.sessionStorage.getItem(INTRO_STORAGE_KEY) === "true") return true;
+    // Count the visit when playback starts, including interrupted introductions.
+    window.sessionStorage.setItem(INTRO_STORAGE_KEY, "true");
+  } catch {
+    // Keep the homepage usable when the browser disallows session storage.
+    return true;
+  }
+  return false;
+}
 
 // Keep the server-rendered homepage in place; remove only the finished overlay.
 export function VideoIntro() {
-  const [finished, setFinished] = useState(false);
-  const finish = useCallback(() => setFinished(true), []);
+  const [state, setState] = useState<"pending" | "playing" | "finished" | "skipped">("pending");
+  const finish = useCallback(() => setState("finished"), []);
+  const skip = useCallback(() => setState("skipped"), []);
+
+  useEffect(() => {
+    // SSR and hydration both expose the homepage before browser-only policy checks.
+    const frame = requestAnimationFrame(() => {
+      setState(shouldSkipIntro() ? "skipped" : "playing");
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   return (
     <>
-      {finished ? (
+      {state === "finished" ? (
         <BrandNoticePopup delayMs={POPUP_DELAY_MS} />
-      ) : (
-        <VideoIntroPlayer onComplete={finish} />
-      )}
+      ) : state === "playing" ? (
+        <VideoIntroPlayer onComplete={finish} onSkip={skip} />
+      ) : null}
       <noscript>
         <style>{`[data-video-intro] { display: none !important; }`}</style>
       </noscript>
@@ -38,7 +74,7 @@ function forceMuted(video: HTMLVideoElement) {
   if (video.volume !== 0) video.volume = 0;
 }
 
-function VideoIntroPlayer({ onComplete }: { onComplete: () => void }) {
+function VideoIntroPlayer({ onComplete, onSkip }: { onComplete: () => void; onSkip: () => void }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const revealingRef = useRef(false);
@@ -46,6 +82,7 @@ function VideoIntroPlayer({ onComplete }: { onComplete: () => void }) {
   const reducedMotion = useReducedMotion();
   const fadeDuration = reducedMotion ? 0.15 : FADE_DURATION;
   const reveal = useCallback(() => {
+    if (revealingRef.current) return;
     revealingRef.current = true;
     videoRef.current?.pause();
     setPhase("revealing");
@@ -59,18 +96,8 @@ function VideoIntroPlayer({ onComplete }: { onComplete: () => void }) {
       rootOverflow: root.style.overflow,
       bodyOverflow: body.style.overflow,
       gutter: root.style.scrollbarGutter,
-      scrollRestoration: window.history.scrollRestoration,
     };
     const previousFocus = document.activeElement;
-    // Start at the hero even on reloads, history navigation or anchor URLs.
-    window.history.scrollRestoration = "manual";
-    const resetScroll = () => {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    };
-    const keepScrollAtTop = () => {
-      if (window.scrollX !== 0 || window.scrollY !== 0) resetScroll();
-    };
-    resetScroll();
     root.style.scrollbarGutter = "stable";
     root.style.overflow = "hidden";
     body.style.overflow = "hidden";
@@ -79,8 +106,11 @@ function VideoIntroPlayer({ onComplete }: { onComplete: () => void }) {
     const preventScroll = (event: Event) => event.preventDefault();
     window.addEventListener("wheel", preventScroll, { passive: false });
     window.addEventListener("touchmove", preventScroll, { passive: false });
-    window.addEventListener("scroll", keepScrollAtTop, { passive: true });
-    window.addEventListener("pageshow", resetScroll);
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) onSkip();
+    };
+    window.addEventListener("pageshow", handlePageShow);
+    window.addEventListener("hashchange", onSkip);
 
     const syncViewport = () => {
       if (overlay) overlay.style.width = `${window.innerWidth}px`;
@@ -111,10 +141,8 @@ function VideoIntroPlayer({ onComplete }: { onComplete: () => void }) {
       root.style.scrollbarGutter = previous.gutter;
       window.removeEventListener("wheel", preventScroll);
       window.removeEventListener("touchmove", preventScroll);
-      window.removeEventListener("scroll", keepScrollAtTop);
-      window.removeEventListener("pageshow", resetScroll);
-      resetScroll();
-      window.history.scrollRestoration = previous.scrollRestoration;
+      window.removeEventListener("pageshow", handlePageShow);
+      window.removeEventListener("hashchange", onSkip);
       for (const { element, inert } of siblings) element.inert = inert;
       window.removeEventListener("resize", syncViewport);
       document.removeEventListener("keydown", handleKeyDown);
@@ -122,7 +150,13 @@ function VideoIntroPlayer({ onComplete }: { onComplete: () => void }) {
         previousFocus.focus({ preventScroll: true });
       }
     };
-  }, [reveal]);
+  }, [onSkip, reveal]);
+
+  useEffect(() => {
+    if (!reducedMotion) return;
+    const frame = requestAnimationFrame(onSkip);
+    return () => cancelAnimationFrame(frame);
+  }, [onSkip, reducedMotion]);
 
   useEffect(() => {
     const video = videoRef.current;

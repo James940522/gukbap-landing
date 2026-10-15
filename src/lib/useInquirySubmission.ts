@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import { validateInquiry, type InquiryErrors } from "./inquiry";
+import { trackEvent } from "./analytics";
 
 export function useInquirySubmission(source: "contact" | "floating") {
   const formRef = useRef<HTMLFormElement>(null);
@@ -41,6 +42,7 @@ export function useInquirySubmission(source: "contact" | "floating") {
         setStatus(result?.message || "접수에 실패했습니다. 잠시 후 다시 시도하거나 전화로 문의해주세요.");
         return false;
       }
+      if (!data.get("hp")) trackEvent("generate_lead", source);
       form.reset();
       setStatus("가맹문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.");
       return true;

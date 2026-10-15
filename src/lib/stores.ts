@@ -1,5 +1,8 @@
 // Server-only data access. Client components import the shared types instead.
 import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { cache } from "react";
 import { parse } from "csv-parse/sync";
 import type { Store, StoresApiResponse, StoresWarning } from "@/types/stores";
 
@@ -24,6 +27,7 @@ export class StoresDataError extends Error {
 
 type CsvRecord = { record: string[]; info: { lines: number } };
 type ParsedStores = { stores: Store[]; warnings: StoresWarning[] };
+export type StoreDirectoryResult = { stores: Store[]; error: boolean };
 type Coordinates = { latitude: number; longitude: number };
 type Failure = "not-found" | "authentication" | "quota" | "unavailable" | "invalid-response";
 type GeocodeResult = { coordinates: Coordinates; failure?: never } | { failure: Failure; coordinates?: never };
@@ -111,6 +115,21 @@ export function parseStoresCsv(csvText: string): ParsedStores {
   }
   return { stores, warnings };
 }
+
+/** Read public store text without waiting for map coordinates or external APIs. */
+export async function readStoreDirectory(): Promise<StoreDirectoryResult> {
+  try {
+    const csv = await readFile(path.join(process.cwd(), "data", "stores.csv"), "utf8");
+    const { stores } = parseStoresCsv(csv);
+    return { stores: stores.filter((store) => store.status === "OPEN"), error: false };
+  } catch {
+    // Never expose filesystem paths or malformed CSV details to the public page.
+    return { stores: [], error: true };
+  }
+}
+
+// Shared by server page content, metadata and sitemap within the same render.
+export const getStoreDirectory = cache(readStoreDirectory);
 
 /** Preserve the displayed original, removing only details for a retry query. */
 export function cleanStoreAddress(address: string): string {

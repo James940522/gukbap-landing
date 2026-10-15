@@ -1,20 +1,28 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { StoreMapSection } from "@/components/sections/StoreMapSection";
+import { StoreDirectorySection } from "@/components/sections/StoreDirectorySection";
+import { StructuredData } from "@/components/seo/StructuredData";
+import { createPageMetadata } from "@/lib/seo";
+import { getStoreDirectory } from "@/lib/stores";
 import { ArrowIcon } from "@/components/ui/Icons";
 import brandLogo from "../../../public/images/logos/ddukson-gukbap.png";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "가맹점 찾기 | 뚝손국밥",
-  description: "가까운 뚝손국밥 매장의 주소와 연락처를 확인하고 길찾기를 이용하세요.",
-};
+const title = "가맹점 찾기 | 뚝손국밥";
+const description = "뚝손국밥 매장 안내. 등록된 매장의 주소와 연락처를 확인하고 길찾기를 이용하세요.";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const directory = await getStoreDirectory();
+  return createPageMetadata({ path: "/stores", title, description,
+    ready: !directory.error && directory.stores.length > 0 });
+}
 
 // The same section is also rendered on the homepage; this is a public store page.
 export default function StoresPage() {
   return (
     <>
+      <StructuredData path="/stores" title={title} description={description} />
       <a className="skip-link" href="#main">본문으로 바로가기</a>
       <header className={styles.header}>
         <div className={`container ${styles.headerInner}`}>
@@ -27,7 +35,7 @@ export default function StoresPage() {
         </div>
       </header>
       <main id="main">
-        <StoreMapSection headingLevel={1} />
+        <StoreDirectorySection headingLevel={1} />
       </main>
       <footer className={`container ${styles.footer}`}>
         <Link href="/">메인페이지로 <ArrowIcon /></Link>

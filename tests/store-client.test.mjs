@@ -3,15 +3,20 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import vm from "node:vm";
 import ts from "typescript";
+import { createRequire } from "node:module";
+import { renderToStaticMarkup } from "react-dom/server";
 
-function loadTypeScript(file, globals = {}) {
+const requireDependency = createRequire(import.meta.url);
+
+function loadTypeScript(file, globals = {}, dependencies = {}) {
   const source = fs.readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
   const compiled = ts.transpileModule(source, {
-    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
   }).outputText;
   const compiledModule = { exports: {} };
   vm.runInNewContext(compiled, {
-    module: compiledModule, exports: compiledModule.exports, URL, ...globals,
+    module: compiledModule, exports: compiledModule.exports, URL, process,
+    require: (name) => dependencies[name] ?? requireDependency(name), ...globals,
   }, { filename: file });
   return compiledModule.exports;
 }
@@ -21,6 +26,27 @@ const store = {
   id: "test-only-01", region: "경기", name: "테스트 매장 A", address: "테스트시  예시로 10",
   latitude: 37.5, longitude: 127, phone: "02-1234-5678", status: "OPEN", coordinateStatus: "provided",
 };
+
+test("server-provided store name, address and telephone are present before API or map code runs", () => {
+  const react = requireDependency("react");
+  const { StoreMapSection } = loadTypeScript("src/components/sections/StoreMapSection.tsx", {}, {
+    "@/components/ui/Icons": { ArrowIcon: () => react.createElement("svg") },
+    "@/components/ui/Reveal": { Reveal: ({ children, className }) => react.createElement("div", { className }, children) },
+    "@/lib/kakao-maps": { loadKakaoMaps: () => { throw new Error("must not load during server render"); } },
+    "@/lib/store-search": search,
+    "./StoreMapSection.module.css": {},
+  });
+  const html = renderToStaticMarkup(react.createElement(StoreMapSection, { initialStores: [store] }));
+  assert.ok(html.includes("테스트 매장 A"));
+  assert.ok(html.includes("테스트시  예시로 10"));
+  assert.ok(html.includes('href="tel:0212345678"'));
+  assert.ok(!html.includes("가까운 매장을 찾고 있습니다."));
+  const emptyHtml = renderToStaticMarkup(react.createElement(StoreMapSection, { initialStores: [] }));
+  assert.ok(emptyHtml.includes("매장 정보를 준비하고 있습니다."));
+  const errorHtml = renderToStaticMarkup(react.createElement(StoreMapSection, { initialStores: [], initialError: true }));
+  assert.ok(errorHtml.includes("매장 정보를 불러오지 못했습니다."));
+  assert.ok(!errorHtml.includes("매장 정보를 준비하고 있습니다."));
+});
 
 test("search normalizes spaces and case across region, name and address, excluding CLOSED", () => {
   const stores = [store, { ...store, id: "closed", status: "CLOSED" }];

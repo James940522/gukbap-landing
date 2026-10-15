@@ -42,15 +42,14 @@ const notices = [
 // Mounted after the fullscreen intro has unmounted; wait before opening the modal.
 export function BrandNoticePopup({ delayMs = 0 }: { delayMs?: number }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [readyIds, setReadyIds] = useState<string[]>([]);
   const [hideToday, setHideToday] = useState<Record<string, boolean>>({});
   const [dismissedIds, setDismissedIds] = useState<string[]>([]);
   const [delayElapsed, setDelayElapsed] = useState(false);
   const reducedMotion = useReducedMotion();
   const remaining = notices.filter((notice) => !dismissedIds.includes(notice.id));
   const firstId = remaining[0]?.id;
-  const canOpen = delayElapsed && remaining.length > 0 &&
-    remaining.every((notice) => readyIds.includes(notice.id));
+  // Open before lazy images load; a closed dialog would prevent their download.
+  const canOpen = delayElapsed && remaining.length > 0;
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -135,7 +134,7 @@ export function BrandNoticePopup({ delayMs = 0 }: { delayMs?: number }) {
       }}
     >
       <div className={styles.notices}>
-        {remaining.map((notice) => (
+        {delayElapsed && remaining.map((notice) => (
           <section key={notice.id} className={styles.content}
             data-notice-id={notice.id} aria-label={notice.title}>
             <figure className={styles.poster}>
@@ -145,9 +144,8 @@ export function BrandNoticePopup({ delayMs = 0 }: { delayMs?: number }) {
                 width={notice.width}
                 height={notice.height}
                 className={styles.image}
-                loading="eager"
-                unoptimized
-                onLoad={() => setReadyIds((ids) => [...new Set([...ids, notice.id])])}
+                sizes="(max-width: 431px) calc(100vw - 32px), (max-width: 767px) 400px, (max-width: 1075px) calc((100vw - 116px) / 2), 480px"
+                quality={90}
                 onError={() => setDismissedIds((ids) => [...new Set([...ids, notice.id])])}
               />
               <figcaption className="sr-only">
