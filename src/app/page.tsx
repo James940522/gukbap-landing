@@ -40,18 +40,26 @@ export default function Home() {
         <StrategySection />
         <LandscapeSection />
         <NurungjiSection />
-        <MenuOrbitSection />
-        <FeaturedMenuSection />
-        <SignatureMenuSection />
-        <PairingSection />
+
+        {/* 맛의 기준에서 조리로 이어지는 브랜드 이야기 */}
         <WhyDduksonSection />
         <CookingSystemSection />
-        <TerritorySection />
+
+        {/* 밝은 대표 메뉴를 시작으로 메뉴와 한 상을 소개합니다. */}
+        <FeaturedMenuSection />
+        <MenuOrbitSection />
+        <SignatureMenuSection />
+        <PairingSection />
+
+        {/* 원가 · 운영 지원 · 수익을 밝음–어두움–밝음으로 구분합니다. */}
         <CostRatioSection />
-        <ProfitStructureSection />
         <SuccessRoadmapSection />
-        <PartnerSection />
+        <ProfitStructureSection />
+
+        {/* 창업 준비에서 동행, 개설 절차와 상담으로 이어집니다. */}
+        <TerritorySection />
         <StartupBenefitsSection />
+        <PartnerSection />
         <FranchiseProcessSection />
         <InquirySection />
       </main>

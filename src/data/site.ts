@@ -21,12 +21,13 @@ export const brand = {
   },
 };
 
-// Keep the header focused on the main visitor tasks; each link stays on the homepage.
+// Follow the homepage's chapter order and link to the first section of each chapter.
 export const navigation = [
   { label: '브랜드', href: '#one-bowl' },
-  { label: '메뉴', href: '#menu' },
   { label: '뚝손의 기준', href: '#standard' },
-  { label: '창업 안내', href: '#franchise-process' },
+  { label: '메뉴', href: '#featured-menu' },
+  { label: '운영 경쟁력', href: '#cost-ratio' },
+  { label: '창업 안내', href: '#territory' },
 ];
 
 // Brand-supplied sample photography. Originals are kept in assets/food/originals.
