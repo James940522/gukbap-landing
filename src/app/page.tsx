@@ -11,7 +11,6 @@ import { PairingSection } from "@/components/sections/PairingSection";
 import { WhyDduksonSection } from "@/components/sections/WhyDduksonSection";
 import { TerritorySection } from "@/components/sections/TerritorySection";
 import { InquirySection } from "@/components/sections/InquirySection";
-import { StoreDirectorySection } from "@/components/sections/StoreDirectorySection";
 import { StartupBenefitsSection } from "@/components/sections/StartupBenefitsSection";
 import { FranchiseProcessSection } from "@/components/sections/FranchiseProcessSection";
 import { LandscapeSection } from "@/components/sections/LandscapeSection";
@@ -54,7 +53,6 @@ export default function Home() {
         <PartnerSection />
         <StartupBenefitsSection />
         <FranchiseProcessSection />
-        <StoreDirectorySection />
         <InquirySection />
       </main>
       <Footer />

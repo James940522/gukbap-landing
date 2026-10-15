@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ready: !directory.error && directory.stores.length > 0 });
 }
 
-// The same section is also rendered on the homepage; this is a public store page.
+// Public store page. The shared section is currently hidden on the homepage.
 export default function StoresPage() {
   return (
     <>

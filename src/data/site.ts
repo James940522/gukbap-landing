@@ -27,7 +27,6 @@ export const navigation = [
   { label: '메뉴', href: '#menu' },
   { label: '뚝손의 기준', href: '#standard' },
   { label: '창업 안내', href: '#franchise-process' },
-  { label: '매장 찾기', href: '#stores' },
 ];
 
 // Brand-supplied sample photography. Originals are kept in assets/food/originals.
